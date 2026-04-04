@@ -1,10 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rel_layout_item_travail"
     android:layout_width="match_parent"
     android:layout_height="62dp"
     android:background="@drawable/forme_list_travail"
-    android:ignoreGravity="false"
     android:paddingLeft="12dp"
     android:paddingTop="8dp"
     android:paddingRight="12dp"
@@ -15,7 +15,8 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_centerVertical="false"
-        android:src="@drawable/icone_travail" />
+        android:src="@drawable/icone_travail"
+        tools:ignore="ContentDescription" />
 
     <Space
         android:id="@+id/space3"
@@ -42,8 +43,9 @@
             android:paddingTop="1dp"
             android:paddingRight="6dp"
             android:paddingBottom="1dp"
-            android:text="À faire"
-            android:textSize="8sp" />
+            android:text="@string/statut_travail"
+            android:textSize="8sp"
+            tools:ignore="TextSizeCheck" />
 
         <TextView
             android:id="@+id/txt_nom_travail"
@@ -52,7 +54,8 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="Nom du travail"
             android:textColor="@color/Carbon"
-            android:textSize="16dp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText,TextSizeCheck" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -65,9 +68,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="12dp"
                 android:fontFamily="@font/poppins_light"
-                android:text="1 avril 2026 à 23:59"
+                android:text="@string/date_echeance_travail"
                 android:textColor="@color/Carbon_70"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                tools:ignore="SmallSp,TextSizeCheck" />
 
             <Space
                 android:layout_width="4dp"
@@ -78,7 +82,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="4dp"
                 android:layout_height="4dp"
-                app:srcCompat="@drawable/ellipse_gris" />
+                app:srcCompat="@drawable/ellipse_gris"
+                tools:ignore="ContentDescription" />
 
             <Space
                 android:layout_width="4dp"
@@ -91,9 +96,10 @@
                 android:layout_height="12dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_light"
-                android:text="Bases de données"
+                android:text="@string/txt_cours_travail"
                 android:textColor="@color/Carbon_70"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                tools:ignore="SmallSp,TextSizeCheck" />
         </LinearLayout>
     </LinearLayout>
 
@@ -105,7 +111,8 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="0dp"
         android:textAlignment="center"
-        app:srcCompat="@drawable/caretright__1_" />
+        app:srcCompat="@drawable/caretright__1_"
+        tools:ignore="ContentDescription" />
 
     <Space
         android:id="@+id/space4"
@@ -121,9 +128,10 @@
         android:layout_marginEnd="0dp"
         android:layout_toStartOf="@+id/space4"
         android:fontFamily="@font/poppins_light"
-        android:text="Note:"
+        android:text="@string/note_travail"
         android:textColor="@color/Carbon_70"
-        android:textSize="10sp" />
+        android:textSize="10sp"
+        tools:ignore="SmallSp,TextSizeCheck" />
 
     <TextView
         android:id="@+id/txt_Score_Pourcentage"
@@ -134,8 +142,9 @@
         android:layout_marginBottom="0dp"
         android:layout_toStartOf="@+id/space4"
         android:fontFamily="@font/poppins_semibold"
-        android:text="100%"
+        android:text="@string/_100"
         android:textColor="@color/Carbon"
-        android:textSize="20dp" />
+        android:textSize="20sp"
+        tools:ignore="TextSizeCheck" />
 
 </RelativeLayout>
