@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="Blanc">#FFFFFFFF</color>
+    <color name="Carbon">#212022</color>
+    <color name="BG">#F9F8FD</color>
+    <color name="Carbon_70">#B3212022</color>
+    <color name="Lilac_1">#D7CFFF</color>
+    <color name="Lilac_2">#B2B9FF</color>
+    <color name="Lilac_3">#D5D3DF</color>
+    <color name="Peche_1">#FBEECE</color>
+    <color name="Peche_2">#F7E0A3</color>
+    <color name="Rouge">#FF797D</color>
+    <color name="Vert">#46AAA2</color>
+    <color name="Bleu">#537CC7</color>
 </resources>
