@@ -144,4 +144,45 @@
         app:srcCompat="@drawable/filtres"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="240dp" />
+
+    <TextView
+        android:id="@+id/txt_filtre_actuel_travaux"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Tous les travaux"
+        android:textColor="@color/Carbon"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="274dp" />
+
+    <ListView
+        android:id="@+id/lvTravaux"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="96dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
