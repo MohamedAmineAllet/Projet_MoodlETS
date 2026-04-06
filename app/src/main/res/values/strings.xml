@@ -2,6 +2,8 @@
     <string name="app_name">Projet_MoodlETS</string>
     <string name="mes">Mes</string>
     <string name="travaux">Travaux</string>
+    <string name="cours">Cours</string>
+    <string name="rechercher_un_cours">Rechercher un cours</string>
     <string name="rechercher_un_travail">Rechercher un travail</string>
     <string name="tous_les_travaux_filtres">Tous les travaux</string>
     <string name="_100">100%</string>
