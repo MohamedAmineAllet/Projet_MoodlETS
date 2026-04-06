@@ -3,20 +3,14 @@ package com.example.projet_moodlets.daos;
 import com.example.projet_moodlets.modeles.Travail;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class TravailLocalDao {
-    private static TravailLocalDao instance = null;
-
+public class TravailLocalDao implements TravauxDao {
     private List<Travail> travaux = new ArrayList<>();
 
-    public static TravailLocalDao getInstance(){
-        if(instance == null)
-            instance = new TravailLocalDao();
-        return instance;
-    }
 
-    private TravailLocalDao(){
+    /*private TravailLocalDao(){
         Travail t;
 
         int[] ids = {1, 2, 3};
@@ -84,9 +78,18 @@ public class TravailLocalDao {
 
             travaux.add(t);
         }
+    }*/
+
+    @Override
+    public List<String> getTitresDesTravaux() {
+        List<String> lesTitres = new ArrayList<>();
+        for( Travail t:travaux){
+            lesTitres.add(t.getTitle());
+        }
+        return lesTitres;
     }
 
-    public List<Travail> getTravail(){
+    public List<Travail> getTravaux(){
         return travaux;
     }
 
@@ -97,6 +100,9 @@ public class TravailLocalDao {
         }
         return null;
     }
+
+
+
 }
 
 

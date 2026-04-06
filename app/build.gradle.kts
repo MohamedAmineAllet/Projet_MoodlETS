@@ -42,4 +42,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
 }
