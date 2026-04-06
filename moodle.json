@@ -348,7 +348,7 @@
       "dueDate": "2026-03-20",
       "instructions": "PDF 5 pages",
       "status": "Non soumis",
-      "grade": null,
+      "grade": 20,
       "comment": null,
       "totalPoints": 20,
       "type": "text"

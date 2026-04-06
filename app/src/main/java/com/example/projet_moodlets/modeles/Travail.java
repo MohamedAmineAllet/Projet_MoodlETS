@@ -3,10 +3,10 @@ package com.example.projet_moodlets.modeles;
 public class Travail {
 
     private int id, courseId;
-    private double grade, totalPoints;
-    private String title, description, dueDate, instruction, status, comment, type;
+    private Double grade, totalPoints;
+    private String title, description, dueDate, instructions, status, comment, type;
 
-    public Travail(int id, int courseId, double grade, double totalPoints, String title, String description, String dueDate, String instruction, String status, String comment, String type) {
+    public Travail(int id, int courseId, Double grade, Double totalPoints, String title, String description, String dueDate, String instructions, String status, String comment, String type) {
         this.id = id;
         this.courseId = courseId;
         this.grade = grade;
@@ -14,18 +14,18 @@ public class Travail {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
-        this.instruction = instruction;
+        this.instructions = instructions;
         this.status = status;
         this.comment = comment;
         this.type = type;
     }
 
-    public Travail(int courseId, String title, String description, String dueDate, String instruction, String status, String type) {
+    public Travail(int courseId, String title, String description, String dueDate, String instructions, String status, String type) {
         this.courseId = courseId;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
-        this.instruction = instruction;
+        this.instructions = instructions;
         this.status = status;
         this.type = type;
     }
@@ -34,7 +34,7 @@ public class Travail {
         this.title = "";
         this.description = "";
         this.dueDate = "";
-        this.instruction = "";
+        this.instructions = "";
         this.status = "";
         this.comment = "";
         this.type = type;
@@ -65,19 +65,19 @@ public class Travail {
         this.courseId = courseId;
     }
 
-    public double getGrade() {
+    public Double getGrade() {
         return grade;
     }
 
-    public void setGrade(double grade) {
+    public void setGrade(Double grade) {
         this.grade = grade;
     }
 
-    public double getTotalPoints() {
+    public Double getTotalPoints() {
         return totalPoints;
     }
 
-    public void setTotalPoints(double totalPoints) {
+    public void setTotalPoints(Double totalPoints) {
         this.totalPoints = totalPoints;
     }
 
@@ -105,12 +105,12 @@ public class Travail {
         this.dueDate = dueDate;
     }
 
-    public String getInstruction() {
-        return instruction;
+    public String getInstructions() {
+        return instructions;
     }
 
-    public void setInstruction(String instruction) {
-        this.instruction = instruction;
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
     public String getStatus() {

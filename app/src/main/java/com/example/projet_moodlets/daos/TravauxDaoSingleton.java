@@ -5,7 +5,7 @@ public class TravauxDaoSingleton {
 
     public static TravauxDao getInstance() {
         if (daoInstance==null)
-            daoInstance = new TravailLocalDao();
+            daoInstance = new HttpJsonTravauxDao();
         return daoInstance;
     }
 }

@@ -29,7 +29,7 @@ public class TravauxAdapter extends ArrayAdapter<Travail> {
 
     private Resources ressources;
 
-    private TextView txtTitle, txtDate, txtCours, txtStatut;
+    private TextView txtTitle, txtDate, txtCours, txtStatut,txtNote, txtScore;
 
     private LinearLayout llvTravail;
     public TravauxAdapter(@NonNull Context contexte, int viewResourceId, @NonNull List<Travail> travaux) {
@@ -65,13 +65,45 @@ public class TravauxAdapter extends ArrayAdapter<Travail> {
             txtDate = view.findViewById(R.id.txt_date_echeance_travail);
             txtStatut = view.findViewById(R.id.txt_statut_travail);
             txtCours = view.findViewById(R.id.txt_cours_travail);
+            txtNote = view.findViewById(R.id.txt_note_travail);
+            txtScore = view.findViewById(R.id.txt_Score_Pourcentage);
 
 
+
+            String nomCours = "";
+            switch(travail.getCourseId()){
+                case 1 :
+                    nomCours = "Applications mobiles";
+                    break;
+                case 2 :
+                    nomCours = "Bases de données";
+                    break;
+                case 3 :
+                    nomCours = "Programmation Web";
+                    break;
+                case 4 :
+                    nomCours = "Projet intégrateur";
+                    break;
+                case 5 :
+                    nomCours = "Programmation orienté";
+                    break;
+                case 6 :
+                    nomCours = "Mathématiques discrètes";
+                    break;
+            }
+
+            if(travail.getGrade() == null){
+                txtNote.setVisibility(View.GONE);
+                txtScore.setVisibility(View.GONE);
+            }else{
+                Double score = (travail.getGrade() * 100) / travail.getTotalPoints();
+                txtScore.setText(score.toString() + "%");
+            }
 
             txtTitle.setText(travail.getTitle());
             txtDate.setText(travail.getDueDate());
             txtStatut.setText(travail.getStatus());
-            txtCours.setText(String.valueOf(travail.getCourseId()));
+            txtCours.setText(nomCours);
 
 
 
