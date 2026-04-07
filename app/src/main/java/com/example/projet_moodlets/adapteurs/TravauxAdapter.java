@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 
 
 import com.example.projet_moodlets.R;
-import com.example.projet_moodlets.modeles.Travail;
+import com.example.projet_moodlets.entites.Travail;
 
 import java.util.ArrayList;
 import java.util.List;

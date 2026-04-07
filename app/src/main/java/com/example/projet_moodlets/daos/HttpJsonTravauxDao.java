@@ -1,14 +1,12 @@
 package com.example.projet_moodlets.daos;
 
-import com.example.projet_moodlets.modeles.Travail;
+import com.example.projet_moodlets.entites.Travail;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kotlin.NotImplementedError;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 

@@ -18,9 +18,8 @@ import android.widget.Toast;
 
 import com.example.projet_moodlets.R;
 import com.example.projet_moodlets.adapteurs.TravauxAdapter;
-import com.example.projet_moodlets.daos.TravailLocalDao;
 import com.example.projet_moodlets.daos.TravauxDaoSingleton;
-import com.example.projet_moodlets.modeles.Travail;
+import com.example.projet_moodlets.entites.Travail;
 
 import java.io.IOException;
 import java.util.List;

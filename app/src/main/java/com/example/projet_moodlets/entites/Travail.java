@@ -1,4 +1,4 @@
-package com.example.projet_moodlets.modeles;
+package com.example.projet_moodlets.entites;
 
 public class Travail {
 
