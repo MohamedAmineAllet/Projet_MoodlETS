@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import com.example.projet_moodlets.R;
 import com.example.projet_moodlets.entites.Travail;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TravauxAdapter extends ArrayAdapter<Travail> {
@@ -33,18 +34,24 @@ public class TravauxAdapter extends ArrayAdapter<Travail> {
 
     private LinearLayout llvTravail;
     public TravauxAdapter(@NonNull Context contexte, int viewResourceId, @NonNull List<Travail> travaux) {
-        super(contexte, viewResourceId, travaux);
+        super(contexte, viewResourceId, new ArrayList<>(travaux));
 
         this.contexte = contexte;
         this.viewResourceId = viewResourceId;
         this.ressources = contexte.getResources();
-        this.lesTravaux = travaux;
-    }
 
+        this.lesTravaux =  new ArrayList<>(travaux);
+    }
+/*
     @Override
     public int getCount() {
         return this.lesTravaux.size();
     }
+
+    @Override
+    public Travail getItem(int position){
+        return lesTravaux.get(position);
+    }*/
 
     @SuppressLint("NewApi")
     @NonNull
@@ -58,12 +65,12 @@ public class TravauxAdapter extends ArrayAdapter<Travail> {
             view = layoutInflater.inflate(this.viewResourceId, parent, false);
         }
 
-        final Travail travail = this.lesTravaux.get(position);
+        final Travail travail = getItem(position);
 
         if (travail != null) {
             txtTitle = view.findViewById(R.id.txt_nom_travail);
             txtDate = view.findViewById(R.id.txt_date_echeance_travail);
-            txtStatut = view.findViewById(R.id.txt_statut_travail);
+            txtStatut = view.findViewById(R.id.txt_filtre_travail);
             txtCours = view.findViewById(R.id.txt_cours_travail);
             txtNote = view.findViewById(R.id.txt_note_travail);
             txtScore = view.findViewById(R.id.txt_Score_Pourcentage);
@@ -111,4 +118,39 @@ public class TravauxAdapter extends ArrayAdapter<Travail> {
 
         return view;
     }
+
+    public void filtrer(String filtre){
+        this.clear();
+
+        if (filtre.equalsIgnoreCase("Tous les travaux")) {
+            this.addAll(lesTravaux);
+        } else {
+            for (Travail t : lesTravaux) {
+                if (t.getStatus().equalsIgnoreCase(filtre)) {
+                    this.add(t);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void rechercher(String recherche){
+        this.clear();
+
+        if(recherche.isEmpty()){
+            this.addAll(lesTravaux);
+        }else{
+            String query = recherche.toLowerCase().trim();
+            for(Travail t: lesTravaux){
+                String titre = t.getTitle().toLowerCase();
+                //Code?
+
+                if(titre.contains(query)){
+                    this.add(t);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
 }
