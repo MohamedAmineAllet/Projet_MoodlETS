@@ -51,13 +51,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline24"
         app:layout_constraintStart_toStartOf="@+id/guideline23"
-        app:layout_constraintTop_toTopOf="@+id/guideline22"
-       >
+        app:layout_constraintTop_toTopOf="@+id/guideline22">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-           >
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/imageView7"
@@ -85,8 +83,7 @@
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 tools:layout_editor_absoluteX="80dp"
-                tools:layout_editor_absoluteY="51dp"
-                 />
+                tools:layout_editor_absoluteY="51dp" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -99,10 +96,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="113dp" />
 
-            <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
 
@@ -131,13 +130,14 @@
 
             <TextView
                 android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="77dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins"
                 android:text="texte  descriptif"
                 android:textColor="@color/Carbon_70"
                 android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -152,6 +152,55 @@
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <LinearLayout
+                android:id="@+id/layoutCartesHoraire"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+                <include
+                    android:id="@+id/horraire"
+                    layout="@layout/horaire_composante"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1" />
+
+                <include
+                    android:id="@+id/horraire"
+                    layout="@layout/horaire_composante"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/textView6"
+                tools:layout_editor_absoluteY="159dp" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/annonces"
+                android:textColor="@color/Carbon"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
