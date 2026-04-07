@@ -11,4 +11,9 @@
     <string name="date_echeance_travail">1 avril 2026 à 23:59</string>
     <string name="note_travail">Note:</string>
     <string name="statut_travail">À faire</string>
+    <string name="tous_les_travaux">Tous les travaux</string>
+    <string name="faire_filtre">À faire</string>
+    <string name="en_retard_filtre">En Retard</string>
+    <string name="remis_filtre">Remis</string>
+    <string name="corrige_filtres">Corrigé</string>
 </resources>
