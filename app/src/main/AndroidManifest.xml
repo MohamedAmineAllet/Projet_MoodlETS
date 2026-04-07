@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Projet_MoodlETS"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.MonCours"
+            android:exported="false" />
+        <activity
             android:name=".activities.MesCoursActivity"
             android:exported="false" />
         <activity
