@@ -1,10 +1,15 @@
 package com.example.projet_moodlets.entites;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Travail {
 
     private int id, courseId;
     private Double grade, totalPoints;
-    private String title, description, dueDate, instructions, status, comment, type;
+
+    private String title;
+    private String description, dueDate, instructions, status, comment, type;
 
     public Travail(int id, int courseId, Double grade, Double totalPoints, String title, String description, String dueDate, String instructions, String status, String comment, String type) {
         this.id = id;
@@ -31,7 +36,7 @@ public class Travail {
     }
 
     public Travail() {
-        this.title = "";
+        this.title = "TEST_VIDE";
         this.description = "";
         this.dueDate = "";
         this.instructions = "";
@@ -81,10 +86,12 @@ public class Travail {
         this.totalPoints = totalPoints;
     }
 
+    @JsonProperty("title")
     public String getTitle() {
         return title;
     }
 
+    @JsonProperty("title")
     public void setTitle(String title) {
         this.title = title;
     }

@@ -232,7 +232,9 @@
             android:text="@string/en_retard_filtre"
             android:textColor="@color/Carbon_70"
             android:textSize="10sp"
-            tools:ignore="SmallSp,VisualLintBounds" />
+            tools:ignore="SmallSp,VisualLintBounds"
+            android:clickable="true"
+            android:focusable="true"/>
 
         <Space
             android:layout_width="12dp"
@@ -252,7 +254,9 @@
             android:text="@string/remis_filtre"
             android:textColor="@color/Carbon_70"
             android:textSize="10sp"
-            tools:ignore="SmallSp,VisualLintBounds" />
+            tools:ignore="SmallSp,VisualLintBounds"
+            android:clickable="true"
+            android:focusable="true"/>
 
         <Space
             android:layout_width="12dp"
@@ -273,7 +277,9 @@
             android:text="@string/corrige_filtres"
             android:textColor="@color/Carbon_70"
             android:textSize="10sp"
-            tools:ignore="InefficientWeight,SmallSp,VisualLintBounds" />
+            tools:ignore="InefficientWeight,SmallSp,VisualLintBounds"
+            android:clickable="true"
+            android:focusable="true"/>
 
     </LinearLayout>
 
