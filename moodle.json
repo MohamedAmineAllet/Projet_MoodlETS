@@ -398,14 +398,13 @@
     },
     {
       "id": "5",
-      "courseId": "3",
+      "courseid": 0,
       "title": "Devoir 1",
       "description": "UI Mobile.",
       "dueDate": "2026-03-30",
       "instructions": "Activity",
       "status": "À faire",
-      "grade": null,
-      "comment": null,
+      "comment": "",
       "totalPoints": 20,
       "type": "file",
       "submissionDate": null

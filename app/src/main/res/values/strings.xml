@@ -34,4 +34,19 @@
     <string name="d_tails">Détails</string>
     <string name="instructions">Instructions :</string>
     <string name="instructions_Travai_Details">Instructions</string>
+    <string name="marquer_comme_remis">Marquer comme remis</string>
+    <string name="entrez_votre_message">Entrez votre message</string>
+    <string name="entrez_l_url_de_votre_travail">Entrez l\'URL de votre travail</string>
+    <string name="lorem_ipsum">Lorem ipsum</string>
+    <string name="correction">Correction</string>
+    <string name="date_Travail_Details">Date</string>
+    <string name="message">Message</string>
+    <string name="remis_le">Remis le :</string>
+    <string name="url_du_travail">URL du travail</string>
+    <string name="commentaires">Commentaires</string>
+    <string name="votre_note">Votre note</string>
+    <string name="n_a">N/A</string>
+    <string name="lazhar_khelifi">Lazhar Khelifi</string>
+    <string name="ajoutez_un_message">Ajoutez un message</string>
+    <string name="entrez_l_url_de_votre_travail_details">Entrez l\'URL de votre travail</string>
 </resources>

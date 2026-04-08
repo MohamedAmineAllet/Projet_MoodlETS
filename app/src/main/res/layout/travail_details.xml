@@ -240,7 +240,7 @@
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toTopOf="@+id/guideline25"
-            tools:ignore="TextSizeCheck" />
+            tools:ignore="TextSizeCheck,VisualLintOverlap" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline26"
@@ -306,9 +306,10 @@
             android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Votre note"
+            android:text="@string/votre_note"
             android:textColor="@color/Carbon"
             android:textSize="20sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toTopOf="@+id/guideline28" />
 
@@ -317,13 +318,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="493dp" />
+            app:layout_constraintGuide_begin="494dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_Note"
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:background="@drawable/fond_blanc"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/guideline22"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toTopOf="@+id/guideline29">
@@ -334,9 +336,9 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:indeterminate="false"
-                android:indeterminateTint="#46AAA2"
+                android:indeterminateTint="#E4E3E7"
                 android:max="100"
-                android:progress="70"
+                android:progress="100"
                 android:progressDrawable="@drawable/cercle_note"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -348,7 +350,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="70%"
+                android:text="@string/n_a"
                 android:textColor="@color/Carbon"
                 android:textSize="28sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -370,9 +372,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Commentaires"
+            android:text="@string/commentaires"
             android:textColor="@color/Carbon"
             android:textSize="20sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toTopOf="@+id/guideline30" />
 
@@ -393,6 +396,7 @@
             android:paddingTop="12dp"
             android:paddingEnd="12dp"
             android:paddingRight="12dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/guideline22"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toTopOf="@+id/guideline31">
@@ -402,7 +406,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Correction"
+                android:text="@string/correction"
                 android:textColor="@color/Carbon"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -438,7 +442,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:fontFamily="@font/poppins"
-                    android:text="Lazhar Khelifi"
+                    android:text="@string/lazhar_khelifi"
                     android:textColor="@color/Carbon_70"
                     android:textSize="12sp" />
 
@@ -455,16 +459,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:fontFamily="@font/poppins_light"
-                android:text="Lorem ipsum"
+                android:text="@string/lorem_ipsum"
                 android:textColor="@color/Carbon_70"
                 android:textSize="12sp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_Remise_Infos"
             android:layout_width="0dp"
             android:layout_height="16dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/guideline22"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
@@ -475,7 +481,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Remis le :"
+                android:text="@string/remis_le"
                 android:textColor="@color/Carbon_70"
                 android:textSize="12sp" />
 
@@ -488,7 +494,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="Date"
+                android:text="@string/date_Travail_Details"
                 android:textColor="@color/Carbon_70"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -500,6 +506,111 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline22"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="547dp" />
+
+        <LinearLayout
+            android:id="@+id/ll_Url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline22"
+            app:layout_constraintStart_toStartOf="@+id/guideline12"
+            app:layout_constraintTop_toTopOf="@+id/guideline28">
+
+            <TextView
+                android:id="@+id/txt_Url"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/url_du_travail"
+                android:textColor="@color/Carbon"
+                tools:ignore="TextSizeCheck" />
+
+            <Space
+                android:id="@+id/space6"
+                android:layout_width="match_parent"
+                android:layout_height="4dp" />
+
+            <EditText
+                android:id="@+id/editTxt_Url"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_text_rechercher"
+                android:ems="10"
+                android:fontFamily="@font/poppins_light"
+                android:hint="@string/entrez_l_url_de_votre_travail_details"
+                android:inputType="text"
+                android:paddingLeft="12dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="4dp"
+                android:paddingRight="12dp"
+                android:textColor="@color/Carbon_70"
+                android:textColorHint="@color/Carbon_70"
+                android:textSize="12sp"
+                tools:ignore="Autofill,LabelFor,TextFields,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_Message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline22"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline12"
+            app:layout_constraintTop_toTopOf="@+id/guideline32">
+
+            <TextView
+                android:id="@+id/txt_Message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/message" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="4dp" />
+
+            <EditText
+                android:id="@+id/editTxt_Message"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/edit_text_rechercher"
+                android:ems="10"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="start"
+                android:hint="@string/ajoutez_un_message"
+                android:inputType="text"
+                android:paddingLeft="12dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="12dp"
+                android:paddingRight="12dp"
+                android:textColor="@color/Carbon_70"
+                android:textColorHint="@color/Carbon_70"
+                android:textSize="12sp"
+                tools:ignore="Autofill,LabelFor,VisualLintTextFieldSize" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_Remise"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:backgroundTint="@color/Peche_1"
+            android:elevation="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/marquer_comme_remis"
+            android:textColor="@color/Carbon"
+            app:layout_constraintEnd_toStartOf="@+id/guideline22"
+            app:layout_constraintStart_toStartOf="@+id/guideline12"
+            app:layout_constraintTop_toTopOf="@+id/guideline31"
+            tools:ignore="VisualLintButtonSize" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

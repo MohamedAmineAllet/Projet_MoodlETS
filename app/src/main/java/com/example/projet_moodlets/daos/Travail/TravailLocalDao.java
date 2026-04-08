@@ -2,6 +2,9 @@ package com.example.projet_moodlets.daos.Travail;
 
 import com.example.projet_moodlets.entites.Travail;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,6 +102,18 @@ public class TravailLocalDao implements TravauxDao {
             }
         }
         return null;
+    }
+
+
+    @Override
+    public void modifier(Travail travail) throws IOException, JSONException{
+        for (int i = 0; i < travaux.size(); i++) {
+            // On compare par ID et non par titre, car le titre peut changer ou être identique
+            if (travaux.get(i).getId() == travail.getId()) {
+                travaux.set(i, travail); // Remplace l'ancien objet par le nouveau
+                break;
+            }
+        }
     }
 
 

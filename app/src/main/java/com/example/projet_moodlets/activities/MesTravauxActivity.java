@@ -143,6 +143,5 @@ public class MesTravauxActivity extends AppCompatActivity implements AdapterView
         view.setBackgroundResource(R.drawable.filtre_travail_active);
 
         adapteur.filtrer(filtre);
-        Toast.makeText(this, "Filtre : " + filtre, Toast.LENGTH_SHORT).show();
     }
 }
