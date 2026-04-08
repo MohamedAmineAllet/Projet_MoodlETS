@@ -9,9 +9,9 @@ public class Travail {
     private Double grade, totalPoints;
 
     private String title;
-    private String description, dueDate, instructions, status, comment, type;
+    private String description, dueDate, instructions, status, comment, type, submissionDate;
 
-    public Travail(int id, int courseId, Double grade, Double totalPoints, String title, String description, String dueDate, String instructions, String status, String comment, String type) {
+    public Travail(int id, int courseId, Double grade, Double totalPoints, String title, String description, String dueDate, String instructions, String status, String comment, String type, String submissionDate) {
         this.id = id;
         this.courseId = courseId;
         this.grade = grade;
@@ -23,6 +23,7 @@ public class Travail {
         this.status = status;
         this.comment = comment;
         this.type = type;
+        this.submissionDate = submissionDate;
     }
 
     public Travail(int courseId, String title, String description, String dueDate, String instructions, String status, String type) {
@@ -36,7 +37,7 @@ public class Travail {
     }
 
     public Travail() {
-        this.title = "TEST_VIDE";
+        this.title = "";
         this.description = "";
         this.dueDate = "";
         this.instructions = "";
@@ -142,5 +143,13 @@ public class Travail {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getSubmissionDate() {
+        return submissionDate;
+    }
+
+    public void setSubmissionDate(String submissionDate) {
+        this.submissionDate = submissionDate;
     }
 }

@@ -12,14 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.projet_moodlets.R;
-import com.example.projet_moodlets.daos.TravauxDaoSingleton;
+import com.example.projet_moodlets.daos.Travail.TravauxDaoSingleton;
 import com.example.projet_moodlets.entites.Travail;
 
 public class TravailDetailsRemisActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton btnRetour;
 
-    private TextView txtTitle, txtStatut, txtType, txtDate, txtDescription, txtInstructions, txtNote, txtVotreNote, txtCommentaire;
+    private TextView txtTitle, txtStatut, txtType, txtDate, txtDescription, txtInstructions, txtNote, txtVotreNote, txtLabelCommentaire, txtNomCommentaire, txtCommentaire, txtDateRemis, txtRemis;
 
     private Travail travail;
 
@@ -31,7 +31,7 @@ public class TravailDetailsRemisActivity extends AppCompatActivity implements Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.travail_details_remis);
+        setContentView(R.layout.travail_details);
 
         btnRetour = findViewById(R.id.btnRondFlecheGauche_Travail_details);
         txtTitle = findViewById(R.id.txt_Nom_Travail_Details);
@@ -42,7 +42,12 @@ public class TravailDetailsRemisActivity extends AppCompatActivity implements Vi
         txtInstructions = findViewById(R.id.txt_Instructions_Travaux_Details);
         txtNote = findViewById(R.id.txt_note_resultat);
         txtVotreNote = findViewById(R.id.txt_Votre_Note);
-        txtCommentaire = findViewById(R.id.txt_Vos_Commentaires);
+        txtLabelCommentaire = findViewById(R.id.txt_Vos_Commentaires);
+        txtDateRemis = findViewById(R.id.txt_Date_Remise);
+        txtRemis = findViewById(R.id.txt_Remis);
+        txtNomCommentaire = findViewById(R.id.txt_Correction_Titre);
+        txtCommentaire = findViewById(R.id.txt_Commentaire);
+
 
         progressBar = findViewById(R.id.progressBar_note);
 
@@ -73,7 +78,7 @@ public class TravailDetailsRemisActivity extends AppCompatActivity implements Vi
         new Thread(){
             @Override
             public void run(){
-                travail = TravauxDaoSingleton.getInstance().getTravailParTitre(id);
+                travail = TravauxDaoSingleton.getInstance().getTravailParId(id);
                TravailDetailsRemisActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -83,6 +88,13 @@ public class TravailDetailsRemisActivity extends AppCompatActivity implements Vi
                         txtDate.setText(travail.getDueDate());
                         txtDescription.setText(travail.getDescription());
                         txtInstructions.setText(travail.getInstructions());
+
+                        if(travail.getSubmissionDate() != null){
+                            txtDateRemis.setText(travail.getSubmissionDate());
+                        }else{
+                            txtDateRemis.setVisibility(View.GONE);
+                            txtRemis.setVisibility(View.GONE);
+                        }
 
 
                         if(travail.getStatus().equals("Corrigé")){
@@ -95,7 +107,12 @@ public class TravailDetailsRemisActivity extends AppCompatActivity implements Vi
                         }
                         if(travail.getComment() == null){
                             llCommentaire.setVisibility(View.GONE);
-                            txtCommentaire.setVisibility(View.GONE);
+                            txtLabelCommentaire.setVisibility(View.GONE);
+                        }
+
+                        if(travail.getComment() != null){
+                            txtNomCommentaire.setText("Correction " + travail.getTitle());
+                            txtCommentaire.setText(travail.getComment());
                         }
                     }
                 });

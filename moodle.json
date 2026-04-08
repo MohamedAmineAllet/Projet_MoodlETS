@@ -349,9 +349,10 @@
       "instructions": "PDF 5 pages",
       "status": "Corrigé",
       "grade": 20,
-      "comment": null,
+      "comment": "Bon travail",
       "totalPoints": 20,
-      "type": "text"
+      "type": "text",
+      "submissionDate": "2026-03-20"
     },
     {
       "id": "2",
@@ -360,11 +361,12 @@
       "description": "Assembleur.",
       "dueDate": "2026-04-05",
       "instructions": "Boucle",
-      "status": "Non soumis",
-      "grade": null,
+      "status": "Corrigé",
+      "grade": 18,
       "comment": null,
       "totalPoints": 20,
-      "type": "file"
+      "type": "file",
+      "submissionDate": "2026-04-04"
     },
     {
       "id": "3",
@@ -373,24 +375,26 @@
       "description": "Modélisation.",
       "dueDate": "2026-03-25",
       "instructions": "ER Diagram",
-      "status": "Non soumis",
+      "status": "Remis",
       "grade": null,
       "comment": null,
       "totalPoints": 20,
-      "type": "file"
+      "type": "file",
+      "submissionDate": "2026-03-23"
     },
     {
       "id": "4",
       "courseId": "2",
       "title": "Devoir 2",
       "description": "Requêtes.",
-      "dueDate": "2026-04-10",
+      "dueDate": "2026-02-10",
       "instructions": "SELECT",
-      "status": "Non soumis",
+      "status": "En retard",
       "grade": null,
       "comment": null,
       "totalPoints": 20,
-      "type": "text"
+      "type": "text",
+      "submissionDate": null
     },
     {
       "id": "5",
@@ -399,11 +403,12 @@
       "description": "UI Mobile.",
       "dueDate": "2026-03-30",
       "instructions": "Activity",
-      "status": "Non soumis",
+      "status": "À faire",
       "grade": null,
       "comment": null,
       "totalPoints": 20,
-      "type": "file"
+      "type": "file",
+      "submissionDate": null
     },
     {
       "id": "6",
@@ -412,11 +417,12 @@
       "description": "Navigation.",
       "dueDate": "2026-04-12",
       "instructions": "Intents",
-      "status": "Non soumis",
+      "status": "À faire",
       "grade": null,
       "comment": null,
       "totalPoints": 20,
-      "type": "text"
+      "type": "text",
+      "submissionDate": null
     },
     {
       "id": "7",
@@ -425,11 +431,12 @@
       "description": "HTML.",
       "dueDate": "2026-03-22",
       "instructions": "Lien",
-      "status": "Non soumis",
+      "status": "À faire",
       "grade": null,
       "comment": null,
       "totalPoints": 20,
-      "type": "file"
+      "type": "file",
+      "submissionDate": null
     },
     {
       "id": "8",
@@ -438,11 +445,12 @@
       "description": "CSS.",
       "dueDate": "2026-04-07",
       "instructions": "Style",
-      "status": "Non soumis",
+      "status": "À faire",
       "grade": null,
       "comment": null,
       "totalPoints": 20,
-      "type": "text"
+      "type": "text",
+      "submissionDate": null
     },
     {
       "id": "9",
@@ -455,7 +463,8 @@
       "grade": null,
       "comment": null,
       "totalPoints": 20,
-      "type": "text"
+      "type": "text",
+      "submissionDate": null
     },
     {
       "id": "10",
@@ -468,7 +477,8 @@
       "grade": null,
       "comment": null,
       "totalPoints": 20,
-      "type": "file"
+      "type": "file",
+      "submissionDate": null
     },
     {
       "id": "11",
@@ -481,7 +491,8 @@
       "grade": null,
       "comment": null,
       "totalPoints": 20,
-      "type": "text"
+      "type": "text",
+      "submissionDate": null
     },
     {
       "id": "12",
@@ -494,7 +505,8 @@
       "grade": null,
       "comment": null,
       "totalPoints": 20,
-      "type": "file"
+      "type": "file",
+      "submissionDate": null
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

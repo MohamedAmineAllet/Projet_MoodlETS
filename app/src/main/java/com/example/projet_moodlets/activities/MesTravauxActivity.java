@@ -11,7 +11,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,7 +18,7 @@ import android.widget.Toast;
 
 import com.example.projet_moodlets.R;
 import com.example.projet_moodlets.adapteurs.TravauxAdapter;
-import com.example.projet_moodlets.daos.TravauxDaoSingleton;
+import com.example.projet_moodlets.daos.Travail.TravauxDaoSingleton;
 import com.example.projet_moodlets.entites.Travail;
 
 import java.io.IOException;

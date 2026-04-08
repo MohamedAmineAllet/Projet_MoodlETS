@@ -42,16 +42,6 @@ public class TravauxAdapter extends ArrayAdapter<Travail> {
 
         this.lesTravaux =  new ArrayList<>(travaux);
     }
-/*
-    @Override
-    public int getCount() {
-        return this.lesTravaux.size();
-    }
-
-    @Override
-    public Travail getItem(int position){
-        return lesTravaux.get(position);
-    }*/
 
     @SuppressLint("NewApi")
     @NonNull
@@ -99,12 +89,15 @@ public class TravauxAdapter extends ArrayAdapter<Travail> {
                     break;
             }
 
-            if(travail.getGrade() == null){
-                txtNote.setVisibility(View.GONE);
-                txtScore.setVisibility(View.GONE);
-            }else{
+            if(travail.getGrade() != null){
                 Double score = (travail.getGrade() * 100) / travail.getTotalPoints();
                 txtScore.setText(score.toString() + "%");
+
+                txtNote.setVisibility(View.VISIBLE);
+                txtScore.setVisibility(View.VISIBLE);
+            }else{
+                txtNote.setVisibility(View.GONE);
+                txtScore.setVisibility(View.GONE);
             }
 
             txtTitle.setText(travail.getTitle());

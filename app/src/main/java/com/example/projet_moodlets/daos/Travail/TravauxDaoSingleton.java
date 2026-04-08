@@ -1,4 +1,4 @@
-package com.example.projet_moodlets.daos;
+package com.example.projet_moodlets.daos.Travail;
 
 public class TravauxDaoSingleton {
     private static TravauxDao daoInstance = null;
