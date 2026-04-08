@@ -21,4 +21,16 @@
     <string name="en_retard_filtre">En Retard</string>
     <string name="remis_filtre">Remis</string>
     <string name="corrige_filtres">Corrigé</string>
+    <string name="g_n_ralit_s">Généralités</string>
+    <string name="date_limite">Date limite:</string>
+    <string name="nom_du_cours_travail">Nom du cours</string>
+    <string name="nom_du_travail_details">Nom du travail</string>
+    <string name="statut_travail_details">Statut</string>
+    <string name="type_travail">Type</string>
+    <string name="date_limite_travail_details">Date limite :</string>
+    <string name="description">Description:</string>
+    <string name="date">Date</string>
+    <string name="d_tails">Détails</string>
+    <string name="instructions">Instructions :</string>
+    <string name="instructions_Travai_Details">Instructions</string>
 </resources>
