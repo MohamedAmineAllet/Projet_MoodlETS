@@ -1,4 +1,4 @@
-package com.example.projet_moodlets.daos;
+package com.example.projet_moodlets.daos.Travail;
 
 import com.example.projet_moodlets.entites.Travail;
 
@@ -10,5 +10,5 @@ public interface TravauxDao {
 
     List<Travail> getTravaux();
 
-    Travail getTravailParTitre(String title);
+    Travail getTravailParId(String title);
 }

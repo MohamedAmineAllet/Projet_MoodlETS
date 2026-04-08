@@ -1,4 +1,4 @@
-package com.example.projet_moodlets.daos;
+package com.example.projet_moodlets.daos.Travail;
 
 import com.example.projet_moodlets.entites.Travail;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -47,7 +47,7 @@ public class HttpJsonTravauxDao implements TravauxDao {
     }
 
     @Override
-    public Travail getTravailParTitre(String id) {
+    public Travail getTravailParId(String id) {
         Travail travail = null;
         OkHttpClient client = new OkHttpClient();
         Request requete = new Request.Builder().url(URL_POINT_ENTREE + "/assignments/" + id).build();

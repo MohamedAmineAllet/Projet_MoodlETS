@@ -1,4 +1,4 @@
-package com.example.projet_moodlets.daos;
+package com.example.projet_moodlets.daos.Travail;
 
 import com.example.projet_moodlets.entites.Travail;
 
@@ -92,7 +92,7 @@ public class TravailLocalDao implements TravauxDao {
         return travaux;
     }
 
-    public Travail getTravailParTitre(String title){
+    public Travail getTravailParId(String title){
         for(Travail t:travaux){
             if (t.getTitle() != null && t.getTitle().equalsIgnoreCase(title)) {
                 return t;
