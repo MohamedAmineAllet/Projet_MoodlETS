@@ -10,6 +10,7 @@
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lvCours"
         android:layout_width="390dp"
         android:layout_height="191dp"
         android:background="@drawable/forme_list_cours"
@@ -79,9 +80,9 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@drawable/button_rond_fleche_gauche"
-            android:src="@drawable/fleche_diagonal_droite"
-            android:padding="12dp"
             android:contentDescription="Voir les détails du cours"
+            android:padding="12dp"
+            android:src="@drawable/fleche_diagonal_droite"
             app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintEnd_toStartOf="@+id/guideline20"
             app:layout_constraintTop_toTopOf="@+id/guideline13" />
@@ -138,7 +139,6 @@
             app:layout_constraintStart_toStartOf="@+id/guideline19"
             app:layout_constraintTop_toTopOf="@+id/guideline13"
             app:srcCompat="@drawable/squircle_mauve" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

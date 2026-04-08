@@ -1,21 +1,29 @@
 package com.example.projet_moodlets.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.projet_moodlets.R;
 import com.example.projet_moodlets.adapteurs.CoursAdapter;
+import com.example.projet_moodlets.adapteurs.TravauxAdapter;
+import com.example.projet_moodlets.daos.Travail.TravauxDaoSingleton;
+import com.example.projet_moodlets.entites.Cours;
+import com.example.projet_moodlets.entites.Travail;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MesCoursActivity extends AppCompatActivity implements OnItemClickListener {
@@ -28,15 +36,38 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_mes_cours);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        lv = findViewById(R.id.lv);
+        List<Cours> listeDeCours = new ArrayList<>();
+
+        adapteur = new CoursAdapter(this, R.layout.list_cours, listeDeCours);
+        lv.setAdapter(adapteur);
+        lv.setOnItemClickListener(this);
     }
+
+//    private void obtenirCours() throws IOException {
+//
+//        new Thread(){
+//            @Override
+//            public void run(){
+//                List<Cours> cours = TravauxDaoSingleton.getInstance().getCours;
+//                MesTravauxActivity.this.runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        adapteur = new TravauxAdapter(MesTravauxActivity.this, R.layout.list_travail, travaux);
+//                        lv.setAdapter(adapteur);
+//                    }
+//                });
+//            }
+//        }.start();
+//    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Intent iCoursDetails = new Intent(this, CoursDetails.class);
+        Cours CoursClique = (Cours) parent.getAdapter().getItem(position);
+        String idCoursClique = String.valueOf(CoursClique.getId());
+        iCoursDetails.putExtra("ID_TRAVAIL", idCoursClique);
+        startActivity(iCoursDetails);
     }
 }

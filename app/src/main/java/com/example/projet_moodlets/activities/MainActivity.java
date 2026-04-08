@@ -15,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnTravaux;
 
+    private Button btnCours;
+
+
     private ActivityResultLauncher<Intent> travauxLauncher;
 
     @Override
@@ -31,11 +34,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         btnTravaux = findViewById(R.id.btnTravaux);
+        btnCours = findViewById(R.id.btncours);
+
 
         btnTravaux.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intention = new Intent(MainActivity.this, MesTravauxActivity.class);
+                travauxLauncher.launch(intention);
+                finish();
+            }
+        });
+        btnCours.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intention = new Intent(MainActivity.this, MesCoursActivity.class);
                 travauxLauncher.launch(intention);
                 finish();
             }
