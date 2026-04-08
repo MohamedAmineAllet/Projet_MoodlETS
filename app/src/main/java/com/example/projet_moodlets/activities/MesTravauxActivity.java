@@ -1,5 +1,6 @@
 package com.example.projet_moodlets.activities;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -99,8 +100,12 @@ public class MesTravauxActivity extends AppCompatActivity implements AdapterView
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent iTravailDetails = new Intent(this, TravailDetailsRemisActivity.class);
+        Travail travailClique = (Travail) adapterView.getAdapter().getItem(i);
+        String idTravailClique = String.valueOf(travailClique.getId());
+        iTravailDetails.putExtra("ID_TRAVAIL", idTravailClique);
+        startActivity(iTravailDetails);
     }
 
     private void obtenirTravaux() throws IOException{

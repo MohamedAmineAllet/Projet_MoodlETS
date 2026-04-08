@@ -57,12 +57,9 @@ public class HttpJsonTravauxDao implements TravauxDao {
             String jsonData = responseBody.string();
 
             ObjectMapper mapper = new ObjectMapper();
-            try {
-                travail = mapper.readValue(jsonData, Travail.class);
-            } catch (
-                    JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
+
+            travail = mapper.readValue(jsonData, Travail.class);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -94,8 +94,9 @@ public class TravailLocalDao implements TravauxDao {
 
     public Travail getTravailParTitre(String title){
         for(Travail t:travaux){
-            if(title.equals(t.getTitle()))
+            if (t.getTitle() != null && t.getTitle().equalsIgnoreCase(title)) {
                 return t;
+            }
         }
         return null;
     }
