@@ -1,29 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="2dp"
     app:cardBackgroundColor="@color/Blanc"
     app:cardCornerRadius="20dp"
     app:cardElevation="2dp">
 
-    <LinearLayout
-        android:layout_width="173dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="20dp">
+
         <TextView
             android:id="@+id/titre_annonce"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
-            android:includeFontPadding="false"
-            android:text="Titre annonce"
+            android:text="Titre de l'annonce"
             android:textColor="@color/Carbon"
-            android:textSize="18sp" >
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </TextView>
+        <TextView
+            android:id="@+id/nom_prof_annonce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins"
+            android:text="nom du prof"
+            android:textColor="@color/Carbon_70"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titre_annonce" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/separateur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="•"
+            android:textColor="@color/Carbon_70"
+            app:layout_constraintBottom_toBottomOf="@id/nom_prof_annonce"
+            app:layout_constraintStart_toEndOf="@id/nom_prof_annonce"
+            app:layout_constraintTop_toTopOf="@id/nom_prof_annonce" />
+
+        <TextView
+            android:id="@+id/date_annonce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/Carbon_70"
+            android:text="Titre de l'annonce"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/nom_prof_annonce"
+            app:layout_constraintStart_toEndOf="@id/separateur"
+            app:layout_constraintTop_toTopOf="@id/nom_prof_annonce" />
+
+        <ImageView
+            android:id="@+id/line_annonce"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nom_prof_annonce"
+            app:srcCompat="@drawable/line_annonce" />
+
+        <TextView
+            android:id="@+id/contenu_annonce"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins"
+            android:text="Texte de l'annonce..."
+            android:textColor="@color/Carbon_70"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line_annonce" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </com.google.android.material.card.MaterialCardView>

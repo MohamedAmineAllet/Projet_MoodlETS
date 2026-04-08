@@ -2,7 +2,10 @@ package com.example.projet_moodlets.entites;
 
 public class Annonces {
     private int idAnnonce;
-    private String titre, description, date;
+    private String titre;
+    private String description;
+    private String date;
+    private String auteur;
 
     public Annonces(){}
 
@@ -27,7 +30,20 @@ public class Annonces {
     public void setDate(String date) {
         this.date = date;
     }
+    public String getAuteur() {
+        return auteur;
+    }
+    public void setAuteur(String auteur) {
+        this.auteur = auteur;
+    }
 
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
 
 
 }

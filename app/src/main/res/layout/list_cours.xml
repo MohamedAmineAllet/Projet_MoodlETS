@@ -101,7 +101,7 @@
         <TextView
             android:id="@+id/ls_nom_cours"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:text="Nom du cours"
             android:textColor="@color/Carbon"
