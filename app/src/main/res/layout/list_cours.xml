@@ -2,22 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/BG"
 
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lvCours"
-        android:layout_width="390dp"
+        android:layout_width="match_parent"
         android:layout_height="191dp"
+        android:layout_margin="8dp"
         android:background="@drawable/forme_list_cours"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline13"
@@ -132,13 +131,17 @@
             app:layout_constraintTop_toTopOf="@+id/guideline18" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/icone_cours"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:background="@drawable/squircle_mauve"
+            android:scaleType="centerInside"
+            android:src="@drawable/application_mobile_icone"
             app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintStart_toStartOf="@+id/guideline19"
             app:layout_constraintTop_toTopOf="@+id/guideline13"
-            app:srcCompat="@drawable/squircle_mauve" />
+
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

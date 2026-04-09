@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.projet_moodlets.R;
 import com.example.projet_moodlets.adapteurs.CoursAdapter;
 import com.example.projet_moodlets.adapteurs.TravauxAdapter;
+import com.example.projet_moodlets.daos.Cours.CoursDaoSingleton;
 import com.example.projet_moodlets.daos.Travail.TravauxDaoSingleton;
 import com.example.projet_moodlets.entites.Cours;
 import com.example.projet_moodlets.entites.Travail;
@@ -43,24 +44,29 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
         adapteur = new CoursAdapter(this, R.layout.list_cours, listeDeCours);
         lv.setAdapter(adapteur);
         lv.setOnItemClickListener(this);
+        try {
+            obtenirCours();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-//    private void obtenirCours() throws IOException {
-//
-//        new Thread(){
-//            @Override
-//            public void run(){
-//                List<Cours> cours = TravauxDaoSingleton.getInstance().getCours;
-//                MesTravauxActivity.this.runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        adapteur = new TravauxAdapter(MesTravauxActivity.this, R.layout.list_travail, travaux);
-//                        lv.setAdapter(adapteur);
-//                    }
-//                });
-//            }
-//        }.start();
-//    }
+    private void obtenirCours() throws IOException {
+
+        new Thread(){
+            @Override
+            public void run(){
+                List<Cours> cours = CoursDaoSingleton.getDaoInstance().getTousLesCours();
+                MesCoursActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapteur = new CoursAdapter(MesCoursActivity.this, R.layout.list_cours, cours);
+                        lv.setAdapter(adapteur);
+                    }
+                });
+            }
+        }.start();
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

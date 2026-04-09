@@ -1,90 +1,52 @@
 package com.example.projet_moodlets.entites;
 
-import java.util.ArrayList;
 import java.util.List;
 
 // entite pour un cours
+
 public class Cours {
-    private  int idCours;
-    private String codeCours, nomCours, session, nomProfesseur, description;
+    //  noms doivent être IDENTIQUES aux clés du JSON
+    private String id;
+    private String code;
+    private String title;
+    private String session;
+    private String teacher;
+    private String description;
+    private String imageCours;
 
-    private List<Horaire> horaires =new ArrayList<>();
+    private List<Annonce> annonces;
 
-    //constructeur sans parametre
-    public Cours(){}
 
-    public Cours(int idCours ,String codeCours, String nomCours, String session, String nomProfesseur, String description){
-        this.idCours = idCours;
-        this.codeCours = codeCours;
-        this.nomCours = nomCours;
-        this.session = session;
-        this.nomProfesseur = nomProfesseur;
-        this.description = description;
+    //Constructeur
+    public Cours() {}
+
+    // Getters et Setters
+    public List<Annonce> getAnnonces() {
+        return annonces;
     }
 
-    public Cours(int idCours ,String codeCours, String nomCours, String session, String nomProfesseur){
-        this.idCours = idCours;
-        this.codeCours = codeCours;
-        this.nomCours = nomCours;
-        this.session = session;
-        this.nomProfesseur = nomProfesseur;
+    public void setAnnonces(List<Annonce> annonces) {
+        this.annonces = annonces;
     }
 
-    //methode d'acces
-    public Integer getId() {
-        return idCours;
-    }
+    public String getId() { return id; }
+    public void setId(String id) { this.id=id; }
 
-    public void setId(Integer idCours) {
-        this.idCours = idCours;
-    }
+    public String getCode() { return code; }
 
-    public String getCodeCours() {
-        return codeCours;
-    }
 
-    public void setCodeCours(String codeCours) {
-        this.codeCours = codeCours;
-    }
+    public String getTitle() { return title; }
 
-    public void setNomCours(String nomCours) {
-        this.nomCours = nomCours;
-    }
 
-    public String getNomCours() {
-        return nomCours;
-    }
+    public String getSession() { return session; }
 
-    public void setSession(String session) {
-        this.session = session;
-    }
+    public String getTeacher() { return teacher; }
 
-    public String getSession() {
-        return session;
-    }
 
-    public String getNomProfesseur() {
-        return nomProfesseur;
-    }
+    public String getDescription() { return description; }
 
-    public void setNomProfesseur(String nomProfesseur) {
-        this.nomProfesseur = nomProfesseur;
-    }
+    public String getImageCours(){ return imageCours; }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Horaire> getHoraires() {
-        return horaires;
-    }
-
-    public void setHoraires(List<Horaire> horaires) {
-        this.horaires = horaires;
-    }
 
 }
