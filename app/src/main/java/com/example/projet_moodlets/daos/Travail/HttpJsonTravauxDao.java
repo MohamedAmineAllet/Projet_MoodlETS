@@ -4,9 +4,14 @@ import com.example.projet_moodlets.entites.Travail;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import kotlin.NotImplementedError;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
@@ -38,6 +43,42 @@ public class HttpJsonTravauxDao implements TravauxDao {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void modifier(Travail travail) {
+        new Thread(() -> {
+            try {
+                OkHttpClient client = new OkHttpClient();
+                MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+                JSONObject obj = new JSONObject();
+                obj.put("id", travail.getId());
+                obj.put("courseid", travail.getCourseId());
+                obj.put("title", travail.getTitle());
+                obj.put("description", travail.getDescription());
+                obj.put("dueDate", travail.getDueDate());
+                obj.put("instructions", travail.getInstructions());
+                obj.put("status", travail.getStatus());
+                obj.put("grade", travail.getGrade());
+                obj.put("comment", travail.getComment());
+                obj.put("totalPoints", travail.getTotalPoints());
+                obj.put("type", travail.getType());
+                obj.put("submissionDate", travail.getSubmissionDate());
+
+                RequestBody body = RequestBody.create(obj.toString(), JSON);
+                String url = URL_POINT_ENTREE + "/assignments/" + travail.getId();
+                Request request = new Request.Builder().url(url).put(body).build();
+
+                try (Response response = client.newCall(request).execute()) {
+                    if (!response.isSuccessful()) {
+
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
 
