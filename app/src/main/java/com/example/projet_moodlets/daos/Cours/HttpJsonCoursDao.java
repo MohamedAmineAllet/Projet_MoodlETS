@@ -1,5 +1,7 @@
 package com.example.projet_moodlets.daos.Cours;
 
+import android.util.Log;
+
 import com.example.projet_moodlets.entites.Cours;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,8 +51,11 @@ public class HttpJsonCoursDao implements CoursDao {
             //chaîne de caractères
             String jsonData = responseBody.string();
 
+            Log.d("DEBUG_JSON", jsonData);
+
             //on declare un nouvel object mapper
             ObjectMapper mapper = new ObjectMapper();
+
             try{
                 //Conversion (désérialisation) du JSON
                 Cours[] tabCours = mapper.readValue(jsonData, Cours[].class);

@@ -67,10 +67,15 @@
       "description": "Ce cours vise à initier l’étudiante ou l’étudiant au rôle des différentes composantes matérielles d’un ordinateur.",
       "teacher": "Lazhar Khelifi",
       "session": "Hiver 2026",
-      "imageUrl": "https://example.com/arch.png",
+      "imageCours": "application_mobile_icone",
       "annonces": [
-        "L'examen intra aura lieu le 15 mars en salle A-1234."
-      ]
+        {
+         "titre":"L'examen intra",
+          "date": "2026-03-09",
+          "auteur": " Marie Tremblay",
+          "description_annonce":"L'examen intra aura lieu le 15 mars en salle A-1234."
+        }
+        ]
     },
     {
       "id": "2",
@@ -79,9 +84,14 @@
       "description": "Au terme de ce cours, l'étudiante ou l’étudiant sera en mesure de décrire les principales composantes d’un SGBD.",
       "teacher": " Marie Tremblay",
       "session": "Hiver 2026",
-      "imageUrl": "https://example.com/db.png",
+      "imageCours": "bases_de_donnees_icone",
       "annonces": [
-        "Le nouveau TP sur la modélisation est disponible sur Moodle."
+        {
+          "titre":"Nouveau TP sur la modélisation",
+          "date": "2026-03-09",
+          "auteur": " Marie Tremblay",
+          "description_annonce":"Le  nouveau TP sur la modélisation est disponible sur Moodle."
+        }
       ]
     },
     {
@@ -91,9 +101,14 @@
       "description": "Développement d’applications mobiles.",
       "teacher": "Pierre Durand",
       "session": "Hiver 2026",
-      "imageUrl": "https://example.com/mobile.png",
+      "imageCours": "application_mobile_icone",
       "annonces": [
-        "Installation d'Android Studio requise."
+        {
+        "titre":"Installation d'Android Studio requise.",
+        "date": "2026-03-09",
+        "auteur": "Pierre Durand",
+        "description_annonce": "Pour la prochaine séance de lab il faudrat que android studio soit installe est  fonctionel"
+        }
       ]
     },
     {
@@ -103,9 +118,14 @@
       "description": "Rudiments de la programmation Web.",
       "teacher": "Sophie Roy",
       "session": "Hiver 2026",
-      "imageUrl": "https://example.com/web.png",
+      "imageCours": "application_mobile_icone",
       "annonces": [
-        "Quiz HTML/CSS vendredi."
+        {
+        "titre":"Quiz HTML/CSS vendredi.",
+        "date": "2026-02-04",
+        "auteur": "Sophie Roy",
+        "description_annonce": "Quiz se fera le vendredi donc n'oubliez pas de tester sebs."
+        }
       ]
     },
     {
@@ -115,9 +135,14 @@
       "description": "Fonctionnement système et services Internet.",
       "teacher": "Luc Lefebvre",
       "session": "Hiver 2026",
-      "imageUrl": "https://example.com/os.png",
+      "imageCours": "application_mobile_icone",
       "annonces": [
-        "Mise à jour des serveurs terminée."
+        {
+        "titre": "Mise à jour des serveurs terminée.",
+        "date": "2026-02-04",
+        "auteur": "Luc Lefebvre",
+        "description_annonce": "Les mises a jour sont finalements terminée!"
+        }
       ]
     },
     {
@@ -127,9 +152,14 @@
       "description": "Programmation GRAFCET et séquences.",
       "teacher": "Julie Gagnon",
       "session": "Hiver 2026",
-      "imageUrl": "https://example.com/plc.png",
+      "imageCours":"application_mobile_icone",
       "annonces": [
-        "Séance de labo mardi soir."
+        {
+        "titre": "Séance de labo mardi soir.",
+        "date":"2026-02-04" ,
+        "auteur": "Julie Gagnon",
+        "description_annonce": "Ce mardi nous avons une séance très importante"
+        }
       ]
     }
   ],
