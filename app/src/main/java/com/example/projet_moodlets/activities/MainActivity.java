@@ -8,8 +8,10 @@ import android.widget.Button;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 
 import com.example.projet_moodlets.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private ActivityResultLauncher<Intent> travauxLauncher;
+
+    private BottomNavigationView menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
         btnTravaux = findViewById(R.id.btnTravaux);
         btnCours = findViewById(R.id.btncours);
         btnQuiz = findViewById(R.id.btn_Quiz);
+
+        menu = findViewById(R.id.menu_navigation);
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(menu, (v, insets) -> {
+            v.setPadding(0, 0, 0, 0);
+            return insets;
+        });
+
 
 
         btnTravaux.setOnClickListener(new View.OnClickListener(){

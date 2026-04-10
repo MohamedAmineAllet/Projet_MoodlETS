@@ -66,7 +66,7 @@
             <TextView
                 android:id="@+id/txt_date_echeance_travail"
                 android:layout_width="wrap_content"
-                android:layout_height="12dp"
+                android:layout_height="14dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="@string/date_echeance_travail"
                 android:textColor="@color/Carbon_70"
@@ -93,7 +93,7 @@
             <TextView
                 android:id="@+id/txt_cours_travail"
                 android:layout_width="wrap_content"
-                android:layout_height="12dp"
+                android:layout_height="14dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_light"
                 android:text="@string/txt_cours_travail"
