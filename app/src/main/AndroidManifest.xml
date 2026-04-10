@@ -21,8 +21,15 @@
             android:name=".activities.MesCoursActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.InscriptionActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".activities.ConnexionActivity"
+            android:exported="false"/>
+        <activity
             android:name=".activities.MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +37,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.MesTravauxActivity" />
-        <activity android:name=".activities.TravailDetailsRemisActivity"/>
+        <activity android:name=".activities.TravailDetailsActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"

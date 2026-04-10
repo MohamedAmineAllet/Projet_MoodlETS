@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnTravaux, btnQuiz;
 
     private Button btnCours;
+    private Button btnConnexion;
 
 
     private ActivityResultLauncher<Intent> travauxLauncher;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         btnTravaux = findViewById(R.id.btnTravaux);
         btnCours = findViewById(R.id.btncours);
         btnQuiz = findViewById(R.id.btn_Quiz);
+        btnConnexion = findViewById(R.id.btnConnexion);
 
         menu = findViewById(R.id.menu_navigation);
 
@@ -73,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intention = new Intent(MainActivity.this, MesCoursActivity.class);
                 travauxLauncher.launch(intention);
+                finish();
+            }
+        });
+        btnConnexion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iConnexion = new Intent(MainActivity.this, ConnexionActivity.class);
+                travauxLauncher.launch(iConnexion);
                 finish();
             }
         });
