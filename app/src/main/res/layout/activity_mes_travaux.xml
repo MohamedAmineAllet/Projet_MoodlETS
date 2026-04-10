@@ -45,28 +45,8 @@
         android:textColor="@color/Carbon"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintStart_toEndOf="@+id/space"
-        tools:ignore="TextSizeCheck" />
-
-    <ImageButton
-        android:id="@+id/btnRondFlecheGauche"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@drawable/button_rond_fleche_gauche"
-        android:elevation="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:srcCompat="@drawable/fleche_gauche"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
-
-    <Space
-        android:id="@+id/space"
-        android:layout_width="12dp"
-        android:layout_height="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintStart_toEndOf="@+id/btnRondFlecheGauche"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:ignore="TextSizeCheck" />
 
     <Space
         android:id="@+id/space2"
@@ -175,7 +155,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline8">
 
         <TextView
-            android:id="@+id/txt_filtre_travail"
+            android:id="@+id/txt_filtre_travaux"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:background="@drawable/filtre_travail_active"
@@ -223,7 +203,9 @@
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:background="@drawable/filtre_travail_ferme"
+            android:clickable="true"
             android:elevation="4dp"
+            android:focusable="true"
             android:fontFamily="@font/poppins_medium"
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
@@ -232,9 +214,7 @@
             android:text="@string/en_retard_filtre"
             android:textColor="@color/Carbon_70"
             android:textSize="10sp"
-            tools:ignore="SmallSp,VisualLintBounds"
-            android:clickable="true"
-            android:focusable="true"/>
+            tools:ignore="SmallSp,VisualLintBounds,TouchTargetSizeCheck" />
 
         <Space
             android:layout_width="12dp"
@@ -245,7 +225,9 @@
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:background="@drawable/filtre_travail_ferme"
+            android:clickable="true"
             android:elevation="4dp"
+            android:focusable="true"
             android:fontFamily="@font/poppins_medium"
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
@@ -254,9 +236,7 @@
             android:text="@string/remis_filtre"
             android:textColor="@color/Carbon_70"
             android:textSize="10sp"
-            tools:ignore="SmallSp,VisualLintBounds"
-            android:clickable="true"
-            android:focusable="true"/>
+            tools:ignore="SmallSp,VisualLintBounds,TouchTargetSizeCheck" />
 
         <Space
             android:layout_width="12dp"
@@ -268,7 +248,9 @@
             android:layout_height="28dp"
             android:layout_weight="0"
             android:background="@drawable/filtre_travail_ferme"
+            android:clickable="true"
             android:elevation="4dp"
+            android:focusable="true"
             android:fontFamily="@font/poppins_medium"
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
@@ -277,9 +259,7 @@
             android:text="@string/corrige_filtres"
             android:textColor="@color/Carbon_70"
             android:textSize="10sp"
-            tools:ignore="InefficientWeight,SmallSp,VisualLintBounds"
-            android:clickable="true"
-            android:focusable="true"/>
+            tools:ignore="InefficientWeight,SmallSp,VisualLintBounds,TouchTargetSizeCheck" />
 
     </LinearLayout>
 

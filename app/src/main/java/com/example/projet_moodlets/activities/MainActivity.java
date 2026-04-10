@@ -13,7 +13,7 @@ import com.example.projet_moodlets.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnTravaux;
+    private Button btnTravaux, btnQuiz;
 
     private Button btnCours;
 
@@ -35,12 +35,22 @@ public class MainActivity extends AppCompatActivity {
 
         btnTravaux = findViewById(R.id.btnTravaux);
         btnCours = findViewById(R.id.btncours);
+        btnQuiz = findViewById(R.id.btn_Quiz);
 
 
         btnTravaux.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intention = new Intent(MainActivity.this, MesTravauxActivity.class);
+                travauxLauncher.launch(intention);
+                finish();
+            }
+        });
+
+        btnQuiz.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intention = new Intent(MainActivity.this, MesQuizActivity.class);
                 travauxLauncher.launch(intention);
                 finish();
             }
