@@ -3,7 +3,6 @@ package com.example.projet_moodlets.entites;
 import java.util.List;
 
 // entite pour un cours
-
 public class Cours {
     //  noms doivent être IDENTIQUES aux clés du JSON
     private String id;
@@ -15,6 +14,7 @@ public class Cours {
     private String imageCours;
 
     private List<Annonce> annonces;
+    private List<Horaire> horaire;
 
 
     //Constructeur
@@ -47,6 +47,10 @@ public class Cours {
 
     public String getImageCours(){ return imageCours; }
 
-
-
+    public List<Horaire> getHoraire() {
+        return horaire;
+    }
+    public void setHoraires(List<Horaire> horaire) {
+        this.horaire = horaire;
+    }
 }

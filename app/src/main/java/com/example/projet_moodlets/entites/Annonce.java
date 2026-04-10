@@ -10,7 +10,6 @@ public class Annonce {
     public Annonce(){}
 
     //methodes d'acces
-
     public String getDescription_annonce() {
         return description_annonce;
     }

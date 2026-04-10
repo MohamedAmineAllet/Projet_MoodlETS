@@ -47,8 +47,8 @@
                 android:layout_height="48dp"
                 android:background="@drawable/button_rond_fleche_gauche"
                 android:elevation="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline3"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/fleche_gauche"
                 tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
@@ -74,9 +74,8 @@
                 android:id="@+id/imageView7"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginTop="72dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline33"
                 app:srcCompat="@drawable/squircle_mauve" />
 
             <TextView
@@ -84,13 +83,12 @@
                 android:layout_width="200dp"
                 android:layout_height="51dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="72dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Nom du cours"
                 android:textColor="@color/Carbon"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView7"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/guideline33" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -109,8 +107,11 @@
                 android:text="@string/generalites"
                 android:textColor="@color/Carbon"
                 android:textSize="20sp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="184dp" />
+                tools:layout_editor_absoluteY="184dp"
+                tools:ignore="MissingConstraints" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline12"
@@ -231,6 +232,13 @@
                 android:text="@string/votre_note_cours"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="72dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -66,8 +66,8 @@
       "title": "Architecture des ordinateurs",
       "description": "Ce cours vise à initier l’étudiante ou l’étudiant au rôle des différentes composantes matérielles d’un ordinateur.",
       "teacher": "Lazhar Khelifi",
-      "session": "Hiver 2026",
-      "imageCours": "application_mobile_icone",
+      "session": "Automne 2025",
+      "imageCours": "icone_web",
       "annonces": [
         {
          "titre":"L'examen intra",
@@ -75,7 +75,23 @@
           "auteur": " Marie Tremblay",
           "description_annonce":"L'examen intra aura lieu le 15 mars en salle A-1234."
         }
-        ]
+      ],
+      "horaire": [
+        {
+          "jour": "Lundi",
+          "heureDebut": "13:30",
+          "heureFin": "17:00",
+          "type": "Cours",
+          "local": "B-2035"
+        },
+        {
+          "jour": "Mardi",
+          "heureDebut": "13:30",
+          "heureFin": "17:00",
+          "type": "Labo",
+          "local": "B-3416"
+        }
+      ]
     },
     {
       "id": "2",
@@ -84,13 +100,29 @@
       "description": "Au terme de ce cours, l'étudiante ou l’étudiant sera en mesure de décrire les principales composantes d’un SGBD.",
       "teacher": " Marie Tremblay",
       "session": "Hiver 2026",
-      "imageCours": "bases_de_donnees_icone",
+      "imageCours": "icone_bases_donnees",
       "annonces": [
         {
           "titre":"Nouveau TP sur la modélisation",
           "date": "2026-03-09",
           "auteur": " Marie Tremblay",
           "description_annonce":"Le  nouveau TP sur la modélisation est disponible sur Moodle."
+        }
+      ],
+      "horaire":[
+        {
+          "jour": "Mercredi",
+          "heureDebut": "09:00",
+          "heureFin": "12:30",
+          "type": "Cours",
+          "local": "E-2024"
+        },
+        {
+          "jour": "Jeudi",
+          "heureDebut": "13:30",
+          "heureFin": "15:30",
+          "type": "Labo",
+          "local": "B-3402"
         }
       ]
     },
@@ -101,13 +133,29 @@
       "description": "Développement d’applications mobiles.",
       "teacher": "Pierre Durand",
       "session": "Hiver 2026",
-      "imageCours": "application_mobile_icone",
+      "imageCours": "icone_mobile_cours",
       "annonces": [
         {
         "titre":"Installation d'Android Studio requise.",
         "date": "2026-03-09",
         "auteur": "Pierre Durand",
         "description_annonce": "Pour la prochaine séance de lab il faudrat que android studio soit installe est  fonctionel"
+        }
+      ],
+      "horaire": [
+        {
+          "jour": "vendredi",
+          "heureDebut": "09:00",
+          "heureFin": "12:30",
+          "type": "Cours",
+          "local": "B-1502"
+        },
+        {
+          "jour": "Mercredi",
+          "heureDebut": "13:30",
+          "heureFin": "15:30",
+          "type": "Labo",
+          "local": "B-3402"
         }
       ]
     },
@@ -118,13 +166,43 @@
       "description": "Rudiments de la programmation Web.",
       "teacher": "Sophie Roy",
       "session": "Hiver 2026",
-      "imageCours": "application_mobile_icone",
+      "imageCours": "icone_web",
       "annonces": [
         {
         "titre":"Quiz HTML/CSS vendredi.",
         "date": "2026-02-04",
         "auteur": "Sophie Roy",
         "description_annonce": "Quiz se fera le vendredi donc n'oubliez pas de tester sebs."
+        }
+      ],
+      "horaire": [
+        {
+          "jour": "Lundi",
+          "heureDebut": "09:00",
+          "heureFin": "12:30",
+          "type": "Cours",
+          "local": "B-3416"
+        },
+        {
+          "jour": "Mardi",
+          "heureDebut": "09:00",
+          "heureFin": "12:30",
+          "type": "Cours",
+          "local": "B-1404"
+        },
+        {
+          "jour": "Lundi",
+          "heureDebut": "13:30",
+          "heureFin": "15:30",
+          "type": "Labo",
+          "local": "B-2504"
+        },
+        {
+          "jour": "Mardi",
+          "heureDebut": "13:30",
+          "heureFin": "15:30",
+          "type": "Labo",
+          "local": "B-3504"
         }
       ]
     },
@@ -135,13 +213,29 @@
       "description": "Fonctionnement système et services Internet.",
       "teacher": "Luc Lefebvre",
       "session": "Hiver 2026",
-      "imageCours": "application_mobile_icone",
+      "imageCours": "icone_base_donnees",
       "annonces": [
         {
         "titre": "Mise à jour des serveurs terminée.",
         "date": "2026-02-04",
         "auteur": "Luc Lefebvre",
         "description_annonce": "Les mises a jour sont finalements terminée!"
+        }
+      ],
+      "horaire": [
+        {
+          "jour": "Jeudi",
+          "heureDebut": "13:30",
+          "heureFin": "17:00",
+          "type": "Cours",
+          "local": "E-4035"
+        },
+        {
+          "jour": "Vendredi",
+          "heureDebut": "13:30",
+          "heureFin": "17:00",
+          "type": "Labo",
+          "local": "B-3402"
         }
       ]
     },
@@ -151,14 +245,30 @@
       "title": "Automates programmables",
       "description": "Programmation GRAFCET et séquences.",
       "teacher": "Julie Gagnon",
-      "session": "Hiver 2026",
-      "imageCours":"application_mobile_icone",
+      "session": "Automne 2025",
+      "imageCours":"icone_web",
       "annonces": [
         {
         "titre": "Séance de labo mardi soir.",
         "date":"2026-02-04" ,
         "auteur": "Julie Gagnon",
         "description_annonce": "Ce mardi nous avons une séance très importante"
+        }
+      ],
+      "horaire": [
+        {
+          "jour": "Jeudi",
+          "heureDebut": "13:30",
+          "heureFin": "17:00",
+          "type": "Cours",
+          "local": "E-4035"
+        },
+        {
+          "jour": "Vendredi",
+          "heureDebut": "13:30",
+          "heureFin": "17:00",
+          "type": "Labo",
+          "local": "B-3402"
         }
       ]
     }
