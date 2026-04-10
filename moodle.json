@@ -138,6 +138,11 @@
       "id": "1",
       "courseId": "1",
       "title": "Quiz 1",
+      "status": "Non commencé",
+      "grade": 1,
+      "totalPoints": 1,
+      "dueDate": "2026-03-20",
+      "submissionDate": "2026-03-18",
       "questions": [
         {
           "id": "1",
@@ -155,6 +160,11 @@
       "id": "2",
       "courseId": "1",
       "title": "Quiz 2",
+      "status": "Non commencé",
+      "grade": null,
+      "totalPoints": null,
+      "dueDate": "2026-04-05",
+      "submissionDate": null,
       "questions": [
         {
           "id": "5",
@@ -172,6 +182,11 @@
       "id": "3",
       "courseId": "2",
       "title": "Quiz 1",
+      "status": "Non commencé",
+      "grade": null,
+      "totalPoints": null,
+      "dueDate": "2026-03-25",
+      "submissionDate": null,
       "questions": [
         {
           "id": "9",
@@ -189,6 +204,11 @@
       "id": "4",
       "courseId": "2",
       "title": "Quiz 2",
+      "status": "Non commencé",
+      "grade": null,
+      "totalPoints": null,
+      "dueDate": "2026-04-10",
+      "submissionDate": null,
       "questions": [
         {
           "id": "13",
@@ -206,6 +226,11 @@
       "id": "5",
       "courseId": "3",
       "title": "Quiz 1",
+      "status": "Non commencé",
+      "grade": null,
+      "totalPoints": null,
+      "dueDate": "2026-03-30",
+      "submissionDate": null,
       "questions": [
         {
           "id": "17",
@@ -223,6 +248,11 @@
       "id": "6",
       "courseId": "3",
       "title": "Quiz 2",
+      "status": "Non commencé",
+      "grade": null,
+      "totalPoints": null,
+      "dueDate": "2026-04-12",
+      "submissionDate": null,
       "questions": [
         {
           "id": "21",
@@ -240,6 +270,11 @@
       "id": "7",
       "courseId": "4",
       "title": "Quiz 1",
+      "status": "Non commencé",
+      "grade": null,
+      "totalPoints": null,
+      "dueDate": "2026-03-22",
+      "submissionDate": null,
       "questions": [
         {
           "id": "25",
@@ -257,6 +292,11 @@
       "id": "8",
       "courseId": "4",
       "title": "Quiz 2",
+      "status": "Non commencé",
+      "grade": null,
+      "totalPoints": null,
+      "dueDate": "2026-04-07",
+      "submissionDate": null,
       "questions": [
         {
           "id": "29",
@@ -274,6 +314,11 @@
       "id": "9",
       "courseId": "5",
       "title": "Quiz 1",
+      "status": "Non commencé",
+      "grade": null,
+      "totalPoints": null,
+      "dueDate": "2026-03-24",
+      "submissionDate": null,
       "questions": [
         {
           "id": "33",
@@ -291,6 +336,11 @@
       "id": "10",
       "courseId": "5",
       "title": "Quiz 2",
+      "status": "Non commencé",
+      "grade": null,
+      "totalPoints": null,
+      "dueDate": "2026-04-09",
+      "submissionDate": null,
       "questions": [
         {
           "id": "37",
@@ -308,6 +358,11 @@
       "id": "11",
       "courseId": "6",
       "title": "Quiz 1",
+      "status": "Non commencé",
+      "grade": null,
+      "totalPoints": null,
+      "dueDate": "2026-03-24",
+      "submissionDate": null,
       "questions": [
         {
           "id": "41",
@@ -325,6 +380,11 @@
       "id": "12",
       "courseId": "6",
       "title": "Quiz 2",
+      "status": "Non commencé",
+      "grade": null,
+      "totalPoints": null,
+      "dueDate": "2026-04-12",
+      "submissionDate": null,
       "questions": [
         {
           "id": "45",

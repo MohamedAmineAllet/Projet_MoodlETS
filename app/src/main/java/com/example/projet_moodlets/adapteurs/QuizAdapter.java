@@ -7,23 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-
 import com.example.projet_moodlets.R;
-import com.example.projet_moodlets.entites.Travail;
+import com.example.projet_moodlets.entites.Quiz;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TravauxAdapter extends ArrayAdapter<Travail> {
+public class QuizAdapter extends ArrayAdapter<Quiz> {
 
-    private List<Travail> lesTravaux;
-
+    private List<Quiz> lesQuiz;
     private Context contexte;
 
     private int viewResourceId;
@@ -32,42 +29,40 @@ public class TravauxAdapter extends ArrayAdapter<Travail> {
 
     private TextView txtTitle, txtDate, txtCours, txtStatut,txtNote, txtScore;
 
-    public TravauxAdapter(@NonNull Context contexte, int viewResourceId, @NonNull List<Travail> travaux) {
-        super(contexte, viewResourceId, new ArrayList<>(travaux));
+    public QuizAdapter(@NonNull Context context, int viewResourceId, @NonNull List<Quiz> quiz) {
+        super(context, viewResourceId, new ArrayList<>(quiz));
 
-        this.contexte = contexte;
+        this.contexte = context;
         this.viewResourceId = viewResourceId;
         this.ressources = contexte.getResources();
 
-        this.lesTravaux =  new ArrayList<>(travaux);
+        this.lesQuiz =  new ArrayList<>(quiz);
     }
 
     @SuppressLint("NewApi")
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
         View view = convertView;
 
-        if (view == null) {
+        if(view == null){
             LayoutInflater layoutInflater = (LayoutInflater) contexte.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(this.viewResourceId, parent, false);
         }
 
-        final Travail travail = getItem(position);
+        final Quiz quiz = getItem(position);
 
-        if (travail != null) {
-            txtTitle = view.findViewById(R.id.txt_nom_travail);
-            txtDate = view.findViewById(R.id.txt_date_echeance_travail);
-            txtStatut = view.findViewById(R.id.txt_filtre_travail);
-            txtCours = view.findViewById(R.id.txt_cours_travail);
-            txtNote = view.findViewById(R.id.txt_note_travail);
-            txtScore = view.findViewById(R.id.txt_Score_Pourcentage);
-
+        if(quiz != null){
+            txtTitle = view.findViewById(R.id.txt_nom_quiz);
+            txtDate = view.findViewById(R.id.txt_date_echeance_quiz);
+            txtStatut = view.findViewById(R.id.txt_filtre_quiz);
+            txtCours = view.findViewById(R.id.txt_cours_quiz);
+            txtNote = view.findViewById(R.id.txt_note_quiz);
+            txtScore = view.findViewById(R.id.txt_Score_Pourcentage_quiz);
 
             //À modifier
             String nomCours = "";
-            switch(travail.getCourseId()){
+            switch(quiz.getCourseId()){
                 case 1 :
                     nomCours = "Applications mobiles";
                     break;
@@ -86,10 +81,10 @@ public class TravauxAdapter extends ArrayAdapter<Travail> {
                 case 6 :
                     nomCours = "Mathématiques discrètes";
                     break;
-            }
+        }
 
-            if(travail.getGrade() != null){
-                Double score = (travail.getGrade() * 100) / travail.getTotalPoints();
+            if(quiz.getGrade() != null ){
+                Double score = (quiz.getGrade() * 100) / quiz.getTotalPoints();
                 txtScore.setText(score.toString() + "%");
 
                 txtNote.setVisibility(View.VISIBLE);
@@ -99,50 +94,44 @@ public class TravauxAdapter extends ArrayAdapter<Travail> {
                 txtScore.setVisibility(View.GONE);
             }
 
-            txtTitle.setText(travail.getTitle());
-            txtDate.setText(travail.getDueDate());
-            txtStatut.setText(travail.getStatus());
+            txtTitle.setText(quiz.getTitle());
+            txtDate.setText(quiz.getDueDate());
+            txtStatut.setText(quiz.getStatus());
             txtCours.setText(nomCours);
-
-
-
-        }
-
-        return view;
+        }return view;
     }
+
 
     public void filtrer(String filtre){
         this.clear();
 
-        if (filtre.equalsIgnoreCase("Tous les travaux")) {
-            this.addAll(lesTravaux);
-        } else {
-            for (Travail t : lesTravaux) {
-                if (t.getStatus().equalsIgnoreCase(filtre)) {
-                    this.add(t);
+        if(filtre.equalsIgnoreCase("Tous les quiz")){
+            this.addAll(lesQuiz);
+        }else{
+            for(Quiz q : lesQuiz){
+                if(q.getStatus().equalsIgnoreCase(filtre)){
+                    this.add(q);
                 }
             }
         }
         notifyDataSetChanged();
     }
 
-    public void rechercher(String recherche){
+    public void rechercher(String rechercher){
         this.clear();
 
-        if(recherche.isEmpty()){
-            this.addAll(lesTravaux);
+        if(rechercher.isEmpty()){
+            this.addAll(lesQuiz);
         }else{
-            String query = recherche.toLowerCase().trim();
-            for(Travail t: lesTravaux){
-                String titre = t.getTitle().toLowerCase();
-                //Code?
+            String query = rechercher.toLowerCase().trim();
+            for(Quiz q: lesQuiz){
+                String titre = q.getTitle().toLowerCase();
 
                 if(titre.contains(query)){
-                    this.add(t);
+                    this.add(q);
                 }
             }
         }
         notifyDataSetChanged();
     }
-
 }

@@ -43,7 +43,7 @@ public class Travail {
         this.instructions = "";
         this.status = "";
         this.comment = "";
-        this.type = type;
+        this.type = "";
     }
 
     public Travail(int id, String title, String dueDate) {

@@ -30,7 +30,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.MesTravauxActivity" />
-        <activity android:name=".activities.TravailDetailsRemisActivity"/>
+        <activity android:name=".activities.TravailDetailsActivity"/>
+        <activity android:name=".activities.MesQuizActivity"/>
+        <activity android:name=".activities.QuizDetailsActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"

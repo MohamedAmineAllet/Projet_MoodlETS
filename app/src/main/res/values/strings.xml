@@ -49,4 +49,13 @@
     <string name="lazhar_khelifi">Lazhar Khelifi</string>
     <string name="ajoutez_un_message">Ajoutez un message</string>
     <string name="entrez_l_url_de_votre_travail_details">Entrez l\'URL de votre travail</string>
+    <string name="rechercher_un_quiz">Rechercher un quiz</string>
+    <string name="quiz">Quiz</string>
+    <string name="tous_les_quiz">Tous les quiz</string>
+    <string name="non_commenc">Non commencé</string>
+    <string name="termin">Terminé</string>
+    <string name="nom_du_quiz">Nom du quiz</string>
+    <string name="_1_question">1 question</string>
+    <string name="nombre_de_questions">Nombre de questions :</string>
+    <string name="remis_le_quiz">Remis le :</string>
 </resources>

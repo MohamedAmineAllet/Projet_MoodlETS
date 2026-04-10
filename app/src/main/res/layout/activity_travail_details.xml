@@ -163,7 +163,7 @@
                     android:layout_height="4dp" />
 
                 <TextView
-                    android:id="@+id/txt_Cours_travail_Details"
+                    android:id="@+id/txt_Cours_Travail_Details"
                     android:layout_width="match_parent"
                     android:layout_height="14dp"
                     android:fontFamily="@font/poppins"
@@ -321,7 +321,7 @@
             app:layout_constraintGuide_begin="494dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_Note"
+            android:id="@+id/cl_Note_Travail_details"
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:background="@drawable/fond_blanc"
@@ -331,7 +331,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline29">
 
             <ProgressBar
-                android:id="@+id/progressBar_note"
+                android:id="@+id/progressBar_note_travail_details"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
@@ -346,7 +346,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txt_note_resultat"
+                android:id="@+id/txt_note_resultat_travail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
@@ -610,7 +610,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline22"
             app:layout_constraintStart_toStartOf="@+id/guideline12"
             app:layout_constraintTop_toTopOf="@+id/guideline31"
-            tools:ignore="VisualLintButtonSize" />
+            tools:ignore="VisualLintButtonSize,TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
