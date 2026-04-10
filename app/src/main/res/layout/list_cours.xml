@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/BG"
+    android:descendantFocusability="blocksDescendants"
 
     >
 
@@ -84,7 +85,9 @@
             android:src="@drawable/fleche_diagonal_droite"
             app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintEnd_toStartOf="@+id/guideline20"
-            app:layout_constraintTop_toTopOf="@+id/guideline13" />
+            app:layout_constraintTop_toTopOf="@+id/guideline13"
+            android:focusable="false"
+            android:clickable="false"/>
 
         <TextView
             android:id="@+id/ls_code_cours"
@@ -136,11 +139,11 @@
             android:layout_height="48dp"
             android:background="@drawable/squircle_mauve"
             android:scaleType="centerInside"
-            android:src="@drawable/application_mobile_icone"
             app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintStart_toStartOf="@+id/guideline19"
             app:layout_constraintTop_toTopOf="@+id/guideline13"
-
+            android:focusable="false"
+            android:clickable="false"
             />
 
 

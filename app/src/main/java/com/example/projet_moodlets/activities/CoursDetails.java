@@ -13,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.projet_moodlets.R;
 
 public class CoursDetails extends AppCompatActivity {
+    private TextView txtNomCours, txtDetails;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +22,8 @@ public class CoursDetails extends AppCompatActivity {
         setContentView(R.layout.activity_cours_details);
 
         // Faire le lien avec les vues du XML
-        TextView txtNomCours = findViewById(R.id.textView3);
-        TextView txtDetails = findViewById(R.id.textView4);
+        txtNomCours = findViewById(R.id.textView3);
+        txtDetails = findViewById(R.id.textView4);
 
         // Récupérer les données de l'Intent
         Bundle extras = getIntent().getExtras();

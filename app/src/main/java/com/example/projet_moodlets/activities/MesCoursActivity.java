@@ -32,6 +32,8 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
     private ListView lv;
     private CoursAdapter adapteur;
 
+    private List<Cours> listeDeCours = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +41,12 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
         setContentView(R.layout.activity_mes_cours);
 
         lv = findViewById(R.id.lv);
-        List<Cours> listeDeCours = new ArrayList<>();
+
 
         adapteur = new CoursAdapter(this, R.layout.list_cours, listeDeCours);
         lv.setAdapter(adapteur);
         lv.setOnItemClickListener(this);
+
         try {
             obtenirCours();
         } catch (IOException e) {
@@ -56,12 +59,16 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
         new Thread(){
             @Override
             public void run(){
-                List<Cours> cours = CoursDaoSingleton.getDaoInstance().getTousLesCours();
+                List<Cours> coursRecuperes = CoursDaoSingleton.getDaoInstance().getTousLesCours();
                 MesCoursActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        adapteur = new CoursAdapter(MesCoursActivity.this, R.layout.list_cours, cours);
-                        lv.setAdapter(adapteur);
+                        if (coursRecuperes != null) {
+                            listeDeCours.clear();
+                            listeDeCours.addAll(coursRecuperes);
+                            // On prévient l'adapteur du changement SANS le recréer
+                            adapteur.notifyDataSetChanged();
+                        }
                     }
                 });
             }
@@ -71,9 +78,12 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent iCoursDetails = new Intent(this, CoursDetails.class);
-        Cours CoursClique = (Cours) parent.getAdapter().getItem(position);
-        String idCoursClique = String.valueOf(CoursClique.getId());
-        iCoursDetails.putExtra("ID_TRAVAIL", idCoursClique);
+        Cours coursClique = (Cours) parent.getAdapter().getItem(position);
+
+        iCoursDetails.putExtra("TITRE_COURS", coursClique.getTitle());
+        iCoursDetails.putExtra("CODE_COURS", coursClique.getCode());
+        iCoursDetails.putExtra("ID_COURS", coursClique.getId());
+
         startActivity(iCoursDetails);
     }
 }
