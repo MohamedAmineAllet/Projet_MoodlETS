@@ -22,7 +22,7 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class TravailDetailsRemisActivity extends AppCompatActivity implements View.OnClickListener {
+public class TravailDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton btnRetour;
     private Button btnRemise;
@@ -39,7 +39,7 @@ public class TravailDetailsRemisActivity extends AppCompatActivity implements Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.travail_details);
+        setContentView(R.layout.activity_travail_details);
 
         btnRetour = findViewById(R.id.btnRondFlecheGauche_Travail_details);
         btnRemise = findViewById(R.id.btn_Remise);
@@ -50,7 +50,7 @@ public class TravailDetailsRemisActivity extends AppCompatActivity implements Vi
         txtDate = findViewById(R.id.txt_Date_Limite_Travail_Details);
         txtDescription = findViewById(R.id.txt_Description_Travail_Details);
         txtInstructions = findViewById(R.id.txt_Instructions_Travaux_Details);
-        txtNote = findViewById(R.id.txt_note_resultat);
+        txtNote = findViewById(R.id.txt_note_resultat_travail);
         txtVotreNote = findViewById(R.id.txt_Votre_Note);
         txtLabelCommentaire = findViewById(R.id.txt_Vos_Commentaires);
         txtDateRemis = findViewById(R.id.txt_Date_Remise);
@@ -60,9 +60,9 @@ public class TravailDetailsRemisActivity extends AppCompatActivity implements Vi
         llMessage = findViewById(R.id.ll_Message);
 
 
-        progressBar = findViewById(R.id.progressBar_note);
+        progressBar = findViewById(R.id.progressBar_note_travail_details);
 
-        clNote = findViewById(R.id.cl_Note);
+        clNote = findViewById(R.id.cl_Note_Travail_details);
         llCommentaire = findViewById(R.id.ll_Commentaire);
         llRemise = findViewById(R.id.ll_Remise_Infos);
 
@@ -92,8 +92,7 @@ public class TravailDetailsRemisActivity extends AppCompatActivity implements Vi
             new Thread() {
                 @Override
                 public void run() {
-                    // Utilise la méthode de mise à jour de ton DAO
-                    // (Le nom peut varier, ex: updateTravail, save, etc.)
+
                     try {
                         TravauxDaoSingleton.getInstance().modifier(travail);
                     } catch (IOException e) {
@@ -102,9 +101,8 @@ public class TravailDetailsRemisActivity extends AppCompatActivity implements Vi
                         throw new RuntimeException(e);
                     }
 
-                    // 3. Une fois sauvegardé, on recharge les données pour rafraîchir l'UI
                     runOnUiThread(() -> {
-                        Toast.makeText(TravailDetailsRemisActivity.this, "Travail remis !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TravailDetailsActivity.this, "Travail remis", Toast.LENGTH_SHORT).show();
                         obtenirTravail(String.valueOf(travail.getId()));
                     });
                 }
@@ -117,7 +115,7 @@ public class TravailDetailsRemisActivity extends AppCompatActivity implements Vi
             @Override
             public void run(){
                 travail = TravauxDaoSingleton.getInstance().getTravailParId(id);
-               TravailDetailsRemisActivity.this.runOnUiThread(new Runnable() {
+               TravailDetailsActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         txtTitle.setText(travail.getTitle());

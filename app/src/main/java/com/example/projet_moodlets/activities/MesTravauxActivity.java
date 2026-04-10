@@ -34,10 +34,10 @@ public class MesTravauxActivity extends AppCompatActivity implements AdapterView
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mes_travaux_activity);
+        setContentView(R.layout.activity_mes_travaux);
 
         lv = findViewById(R.id.lvTravaux);
-        btnTousTravaux = findViewById(R.id.txt_filtre_travail);
+        btnTousTravaux = findViewById(R.id.txt_filtre_travaux);
         btnAFaire = findViewById(R.id.txt_filtre_A_Faire);
         btnEnRetard = findViewById(R.id.txt_filtre_En_Retard);
         btnRemis = findViewById(R.id.txt_filtre_Remis);
@@ -100,7 +100,7 @@ public class MesTravauxActivity extends AppCompatActivity implements AdapterView
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent iTravailDetails = new Intent(this, TravailDetailsRemisActivity.class);
+        Intent iTravailDetails = new Intent(this, TravailDetailsActivity.class);
         Travail travailClique = (Travail) adapterView.getAdapter().getItem(i);
         String idTravailClique = String.valueOf(travailClique.getId());
         iTravailDetails.putExtra("ID_TRAVAIL", idTravailClique);

@@ -34,12 +34,12 @@ public class CoursAdapter extends ArrayAdapter<Cours> {
 
 
     public CoursAdapter(@NonNull Context contexte, int viewResourceId, @NonNull List<Cours> Cours) {
-        super(contexte, viewResourceId, new ArrayList<>(Cours));
+        super(contexte, viewResourceId, Cours);
         this.contexte = contexte;
         this.viewResourceId = viewResourceId;
         this.ressources = contexte.getResources();
 
-        this.lesCours =  new ArrayList<>(Cours);
+        this.lesCours =  Cours;
     }
 
     @SuppressLint("NewApi")
@@ -81,7 +81,7 @@ public class CoursAdapter extends ArrayAdapter<Cours> {
                     icone_cours.setImageResource(resId);
                 } else {
                     // Image par défaut si le nom est introuvable
-                    icone_cours.setImageResource(R.drawable.application_mobile_icone);
+                    icone_cours.setImageResource(R.drawable.icone_web);
                 }
             }
         }

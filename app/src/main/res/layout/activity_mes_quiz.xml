@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BG">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="96dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="274dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline34"
+        app:layout_constraintStart_toStartOf="@+id/guideline33"
+        app:layout_constraintTop_toTopOf="@+id/guideline38">
+
+        <TextView
+            android:id="@+id/txt_filtre_quiz"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:background="@drawable/filtre_quiz_active"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/tous_les_quiz"
+            android:textColor="@color/Carbon"
+            android:textSize="10sp"
+            tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+        <Space
+            android:layout_width="12dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/txt_filtre_non_commence"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:background="@drawable/filtre_quiz_ferme"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/non_commenc"
+            android:textColor="@color/Carbon_70"
+            android:textSize="10sp"
+            tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+        <Space
+            android:layout_width="12dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/txt_filtre_termine"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:background="@drawable/filtre_quiz_ferme"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/termin"
+            android:textColor="@color/Carbon_70"
+            android:textSize="10sp"
+            tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="220dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="168dp" />
+
+    <EditText
+        android:id="@+id/edit_txt_recherche_quiz"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:autofillHints=""
+        android:background="@drawable/edit_text_rechercher"
+        android:drawableStart="@drawable/magnifyingglass"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/poppins_light"
+        android:hint="@string/rechercher_un_quiz"
+        android:inputType="text"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textColorHint="@color/Carbon_70"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline34"
+        app:layout_constraintStart_toStartOf="@+id/guideline33"
+        app:layout_constraintTop_toTopOf="@+id/guideline37"
+        tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="136dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_profil_quiz"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@android:color/darker_gray"
+        app:layout_constraintEnd_toStartOf="@+id/guideline34"
+        app:layout_constraintTop_toTopOf="@+id/guideline35"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:fontFamily="@font/poppins_light"
+        android:gravity="center_vertical"
+        android:text="@string/mes"
+        android:textColor="@color/Carbon"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline33"
+        app:layout_constraintTop_toTopOf="@+id/guideline35"
+        tools:ignore="TextSizeCheck" />
+
+    <Space
+        android:id="@+id/space2"
+        android:layout_width="5dp"
+        android:layout_height="48dp"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/guideline35" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/quiz"
+        android:textColor="@color/Carbon"
+        android:textSize="28sp"
+        app:layout_constraintStart_toEndOf="@+id/space2"
+        app:layout_constraintTop_toTopOf="@+id/guideline35"
+        tools:ignore="TextSizeCheck" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="88dp" />
+
+    <ListView
+        android:id="@+id/lvQuiz"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:divider="@color/BG"
+        android:dividerHeight="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline40"
+        app:layout_constraintEnd_toStartOf="@+id/guideline34"
+        app:layout_constraintStart_toStartOf="@+id/guideline33"
+        app:layout_constraintTop_toTopOf="@+id/guideline39" />
+</androidx.constraintlayout.widget.ConstraintLayout>

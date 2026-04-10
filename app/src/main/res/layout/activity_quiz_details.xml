@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/BG">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txt_Votre_Note_Quiz_Details"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/votre_note"
+            android:textColor="@color/Carbon"
+            android:textSize="20sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/guideline59"
+            app:layout_constraintTop_toTopOf="@+id/guideline67"
+            tools:ignore="TextSizeCheck" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline67"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="398dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline68"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="432dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_Note_Quiz_details"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:background="@drawable/fond_blanc"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/guideline60"
+            app:layout_constraintStart_toStartOf="@+id/guideline59"
+            app:layout_constraintTop_toTopOf="@+id/guideline68">
+
+            <ProgressBar
+                android:id="@+id/progressBar_note_quiz_details"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:indeterminate="false"
+                android:indeterminateTint="#E4E3E7"
+                android:max="100"
+                android:progress="100"
+                android:progressDrawable="@drawable/cercle_note"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_note_resultat_quiz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/n_a"
+                android:textColor="@color/Carbon"
+                android:textSize="28sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/llRemis"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/guideline60"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline59"
+            app:layout_constraintTop_toTopOf="@+id/guideline65"
+            tools:ignore="TextSizeCheck">
+
+            <TextView
+                android:id="@+id/txt_remis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/remis_le_quiz"
+                android:textColor="@color/Carbon_70"
+                android:textSize="12sp" />
+
+            <Space
+                android:layout_width="6dp"
+                android:layout_height="14dp"
+                android:layout_weight="0"
+                tools:ignore="InefficientWeight" />
+
+            <TextView
+                android:id="@+id/txt_Date_Remise_Quiz_Details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:fontFamily="@font/poppins"
+                android:text="@string/date"
+                android:textColor="@color/Carbon_70"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/guideline60"
+            app:layout_constraintStart_toStartOf="@+id/guideline59"
+            app:layout_constraintTop_toTopOf="@+id/guideline64"
+            tools:ignore="TextSizeCheck">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Date limite :"
+                android:textColor="@color/Carbon_70"
+                android:textSize="12sp" />
+
+            <Space
+                android:layout_width="6dp"
+                android:layout_height="14dp"
+                android:layout_weight="0"
+                tools:ignore="InefficientWeight" />
+
+            <TextView
+                android:id="@+id/txt_Date_Limite_Quiz_Details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:fontFamily="@font/poppins"
+                android:text="@string/date"
+                android:textColor="@color/Carbon_70"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline64"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="306dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline65"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="330dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline66"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="354dp" />
+
+        <LinearLayout
+            android:id="@+id/llNbrQuestions"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/guideline60"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline59"
+            app:layout_constraintTop_toTopOf="@+id/guideline66"
+            tools:ignore="TextSizeCheck">
+
+            <TextView
+                android:id="@+id/txt_nbr_questions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/nombre_de_questions"
+                android:textColor="@color/Carbon_70"
+                android:textSize="12sp" />
+
+            <Space
+                android:layout_width="6dp"
+                android:layout_height="14dp"
+                android:layout_weight="0"
+                tools:ignore="InefficientWeight" />
+
+            <TextView
+                android:id="@+id/txt_Nombre_Questions_Quiz_Details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:fontFamily="@font/poppins"
+                android:text="@string/_1_question"
+                android:textColor="@color/Carbon_70"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/g_n_ralit_s"
+            android:textColor="@color/Carbon"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline59"
+            app:layout_constraintTop_toTopOf="@+id/guideline62"
+            tools:ignore="TextSizeCheck,VisualLintOverlap" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline62"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="272dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/guideline60"
+            app:layout_constraintStart_toStartOf="@+id/guideline59"
+            app:layout_constraintTop_toTopOf="@+id/guideline61">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:srcCompat="@drawable/icone_quiz_lilac"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_Nom_Quiz_Details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/nom_du_quiz"
+                    android:textColor="@color/Carbon"
+                    android:textSize="20sp"
+                    tools:ignore="TextSizeCheck" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp" />
+
+                <TextView
+                    android:id="@+id/txt_Cours_Quiz_Details"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/nom_du_cours_travail"
+                    android:textColor="@color/Carbon_70"
+                    android:textSize="12sp"
+                    tools:ignore="TextSizeCheck" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <TextView
+                    android:id="@+id/txt_statut_quiz_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:background="@drawable/statut_travail_details"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/poppins"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/statut_travail_details"
+                    android:textSize="12sp"
+                    tools:ignore="TextSizeCheck,VisualLintBounds" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline61"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="168dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_profil_quiz_details"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@android:color/darker_gray"
+            app:layout_constraintEnd_toStartOf="@+id/guideline60"
+            app:layout_constraintTop_toTopOf="@+id/guideline58"
+            tools:ignore="ImageContrastCheck" />
+
+        <ImageButton
+            android:id="@+id/btnRondFlecheGauche_Quiz_details"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/button_rond_fleche_gauche"
+            android:elevation="8dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline59"
+            app:layout_constraintTop_toTopOf="@+id/guideline58"
+            app:srcCompat="@drawable/fleche_gauche"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline58"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="88dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline59"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

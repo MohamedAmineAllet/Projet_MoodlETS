@@ -8,17 +8,21 @@ import android.widget.Button;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 
 import com.example.projet_moodlets.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnTravaux;
+    private Button btnTravaux, btnQuiz;
 
     private Button btnCours;
-    private Button btnConnexion;
+
 
     private ActivityResultLauncher<Intent> travauxLauncher;
+
+    private BottomNavigationView menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
         btnTravaux = findViewById(R.id.btnTravaux);
         btnCours = findViewById(R.id.btncours);
-        btnConnexion = findViewById(R.id.btnConnexion);
+        btnQuiz = findViewById(R.id.btn_Quiz);
+
+        menu = findViewById(R.id.menu_navigation);
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(menu, (v, insets) -> {
+            v.setPadding(0, 0, 0, 0);
+            return insets;
+        });
 
 
 
@@ -47,19 +59,20 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnQuiz.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intention = new Intent(MainActivity.this, MesQuizActivity.class);
+                travauxLauncher.launch(intention);
+                finish();
+            }
+        });
         btnCours.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intention = new Intent(MainActivity.this, MesCoursActivity.class);
                 travauxLauncher.launch(intention);
-                finish();
-            }
-        });
-        btnConnexion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent iConnexion = new Intent(MainActivity.this,ConnexionActivity.class);
-                travauxLauncher.launch(iConnexion);
                 finish();
             }
         });

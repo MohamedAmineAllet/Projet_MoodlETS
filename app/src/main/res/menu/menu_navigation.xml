@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/dashboard"
+        android:icon="@drawable/dashboard_icon"
+        android:title = "Dashboard"/>
+
+    <item
+        android:id="@+id/cours"
+        android:icon="@drawable/cours_icon"
+        android:title = "Cours"/>
+
+    <item
+        android:id="@+id/travaux"
+        android:icon="@drawable/travaux_icon"
+        android:title = "Travaux"/>
+
+    <item
+        android:id="@+id/quiz"
+        android:icon="@drawable/quiz_icon"
+        android:title = "Quiz"/>
+
+    <item
+        android:id="@+id/profil"
+        android:icon="@drawable/profil_icon"
+        android:title = "Profil"/>
+
+</menu>
