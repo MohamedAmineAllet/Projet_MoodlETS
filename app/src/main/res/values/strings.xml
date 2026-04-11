@@ -58,4 +58,12 @@
     <string name="_1_question">1 question</string>
     <string name="nombre_de_questions">Nombre de questions :</string>
     <string name="remis_le_quiz">Remis le :</string>
+    <string name="commencer">Commencer</string>
+    <string name="date_limite_quiz_details">Date limite :</string>
+    <string name="a_traitement">A. Traitement</string>
+    <string name="b_m_moire">B. Mémoire</string>
+    <string name="c_cran">C. Écran</string>
+    <string name="retour">Retour</string>
+    <string name="prochain">Prochain</string>
+    <string name="question">Question ?</string>
 </resources>

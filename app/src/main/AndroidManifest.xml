@@ -15,19 +15,19 @@
         android:theme="@style/Theme.Projet_MoodlETS"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activities.CoursDetails"
+            android:name=".vue.CoursDetails"
             android:exported="false" />
         <activity
-            android:name=".activities.MesCoursActivity"
+            android:name=".vue.MesCoursActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.InscriptionActivity"
+            android:name=".vue.InscriptionActivity"
             android:exported="false"/>
         <activity
-            android:name=".activities.ConnexionActivity"
+            android:name=".vue.ConnexionActivity"
             android:exported="false"/>
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".vue.MainActivity"
             android:exported="true">
 
             <intent-filter>
@@ -36,8 +36,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MesTravauxActivity" />
-        <activity android:name=".activities.TravailDetailsActivity"/>
+        <activity android:name=".vue.MesTravauxActivity" />
+        <activity android:name=".vue.TravailDetailsActivity"/>
+        <activity
+            android:name=".vue.MesQuizActivity"
+            android:exported="false"/>
+        <activity android:name=".vue.QuizDetailsActivity"/>
+        <activity android:name=".vue.QuizTestActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"

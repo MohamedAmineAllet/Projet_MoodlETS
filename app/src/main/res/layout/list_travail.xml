@@ -74,9 +74,8 @@
                 tools:ignore="SmallSp,TextSizeCheck,VisualLintBounds" />
 
             <Space
-                android:layout_width="4dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_width="8dp"
+                android:layout_height="match_parent" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -86,9 +85,8 @@
                 tools:ignore="ContentDescription" />
 
             <Space
-                android:layout_width="4dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_width="8dp"
+                android:layout_height="match_parent" />
 
             <TextView
                 android:id="@+id/txt_cours_travail"
@@ -99,7 +97,7 @@
                 android:text="@string/txt_cours_travail"
                 android:textColor="@color/Carbon_70"
                 android:textSize="10sp"
-                tools:ignore="SmallSp,TextSizeCheck,VisualLintBounds" />
+                tools:ignore="InefficientWeight,SmallSp,TextSizeCheck,VisualLintBounds" />
         </LinearLayout>
     </LinearLayout>
 

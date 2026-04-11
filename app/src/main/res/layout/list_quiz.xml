@@ -74,7 +74,7 @@
                 tools:ignore="SmallSp,TextSizeCheck,VisualLintBounds" />
 
             <Space
-                android:layout_width="4dp"
+                android:layout_width="8dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
@@ -86,7 +86,7 @@
                 tools:ignore="ContentDescription" />
 
             <Space
-                android:layout_width="4dp"
+                android:layout_width="8dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 

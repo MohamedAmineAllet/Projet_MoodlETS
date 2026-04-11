@@ -6,7 +6,7 @@
     android:background="@color/BG"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MesCoursActivity">
+    tools:context=".vue.MesCoursActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline43"

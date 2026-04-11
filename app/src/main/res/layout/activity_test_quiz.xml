@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BG">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="168dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="280dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline56"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="368dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline57"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="520dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline63"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="552dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="88dp" />
+
+    <ImageButton
+        android:id="@+id/btnRondFlecheGauche_Quiz_test"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/button_rond_fleche_gauche"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline51"
+        app:layout_constraintTop_toTopOf="@+id/guideline52"
+        app:srcCompat="@drawable/fleche_gauche"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_profil_quiz_test"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@android:color/darker_gray"
+        app:layout_constraintEnd_toStartOf="@+id/guideline53"
+        app:layout_constraintTop_toTopOf="@+id/guideline52"
+        tools:ignore="ImageContrastCheck" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline53"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline53"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline51"
+        app:layout_constraintTop_toTopOf="@+id/guideline54">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:srcCompat="@drawable/icone_quiz_lilac"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_Nom_Quiz_test"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/nom_du_quiz"
+                android:textColor="@color/Carbon"
+                android:textSize="20sp"
+                tools:ignore="TextSizeCheck" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="4dp" />
+
+            <TextView
+                android:id="@+id/txt_Cours_Quiz_test"
+                android:layout_width="match_parent"
+                android:layout_height="14dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/nom_du_cours_travail"
+                android:textColor="@color/Carbon_70"
+                android:textSize="12sp"
+                tools:ignore="TextSizeCheck" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <TextView
+                android:id="@+id/txt_statut_quiz_test"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:background="@drawable/statut_travail_details"
+                android:elevation="4dp"
+                android:fontFamily="@font/poppins"
+                android:paddingLeft="10dp"
+                android:paddingTop="4dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="4dp"
+                android:text="@string/statut_travail_details"
+                android:textSize="12sp"
+                tools:ignore="TextSizeCheck,VisualLintBounds" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_Question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/question"
+        android:textColor="@color/Carbon"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline53"
+        app:layout_constraintStart_toStartOf="@+id/guideline51"
+        app:layout_constraintTop_toTopOf="@+id/guideline55" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guideline57"
+        app:layout_constraintEnd_toStartOf="@+id/guideline53"
+        app:layout_constraintStart_toStartOf="@+id/guideline51"
+        app:layout_constraintTop_toTopOf="@+id/guideline56">
+
+        <Button
+            android:id="@+id/btn_choix_1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/Blanc"
+            android:elevation="8dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/a_traitement"
+            android:textAlignment="textStart"
+            android:textColor="@color/Carbon"
+            android:textSize="14sp"
+            app:strokeColor="@color/Lilac_3"
+            app:strokeWidth="0.3dp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <Button
+            android:id="@+id/btn_choix_2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/Blanc"
+            android:elevation="8dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/b_m_moire"
+            android:textAlignment="textStart"
+            android:textColor="@color/Carbon"
+            android:textSize="14sp"
+            app:strokeColor="@color/Lilac_3"
+            app:strokeWidth="0.3dp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <Button
+            android:id="@+id/btn_choix_3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/Blanc"
+            android:elevation="8dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/c_cran"
+            android:textAlignment="textStart"
+            android:textColor="@color/Carbon"
+            android:textSize="14sp"
+            app:strokeColor="@color/Lilac_3"
+            app:strokeWidth="0.3dp"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_retour"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/BG"
+        android:fontFamily="@font/poppins"
+        android:paddingStart="0dp"
+        android:text="@string/retour"
+        android:textColor="@color/Carbon"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline51"
+        app:layout_constraintTop_toTopOf="@+id/guideline63"
+        tools:ignore="RtlSymmetry,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btn_prochain"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/Peche_1"
+        android:elevation="8dp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/prochain"
+        android:textColor="@color/Carbon"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline53"
+        app:layout_constraintTop_toTopOf="@+id/guideline63"
+        tools:ignore="TouchTargetSizeCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>

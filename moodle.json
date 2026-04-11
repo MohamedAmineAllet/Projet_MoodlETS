@@ -70,10 +70,10 @@
       "imageCours": "icone_web",
       "annonces": [
         {
-         "titre":"L'examen intra",
+          "titre": "L'examen intra",
           "date": "2026-03-09",
           "auteur": " Marie Tremblay",
-          "description_annonce":"L'examen intra aura lieu le 15 mars en salle A-1234."
+          "description_annonce": "L'examen intra aura lieu le 15 mars en salle A-1234."
         }
       ],
       "horaire": [
@@ -103,13 +103,13 @@
       "imageCours": "icone_bases_donnees",
       "annonces": [
         {
-          "titre":"Nouveau TP sur la modélisation",
+          "titre": "Nouveau TP sur la modélisation",
           "date": "2026-03-09",
           "auteur": " Marie Tremblay",
-          "description_annonce":"Le  nouveau TP sur la modélisation est disponible sur Moodle."
+          "description_annonce": "Le  nouveau TP sur la modélisation est disponible sur Moodle."
         }
       ],
-      "horaire":[
+      "horaire": [
         {
           "jour": "Mercredi",
           "heureDebut": "09:00",
@@ -136,10 +136,10 @@
       "imageCours": "icone_mobile_cours",
       "annonces": [
         {
-        "titre":"Installation d'Android Studio requise.",
-        "date": "2026-03-09",
-        "auteur": "Pierre Durand",
-        "description_annonce": "Pour la prochaine séance de lab il faudrat que android studio soit installe est  fonctionel"
+          "titre": "Installation d'Android Studio requise.",
+          "date": "2026-03-09",
+          "auteur": "Pierre Durand",
+          "description_annonce": "Pour la prochaine séance de lab il faudrat que android studio soit installe est  fonctionel"
         }
       ],
       "horaire": [
@@ -169,10 +169,10 @@
       "imageCours": "icone_web",
       "annonces": [
         {
-        "titre":"Quiz HTML/CSS vendredi.",
-        "date": "2026-02-04",
-        "auteur": "Sophie Roy",
-        "description_annonce": "Quiz se fera le vendredi donc n'oubliez pas de tester sebs."
+          "titre": "Quiz HTML/CSS vendredi.",
+          "date": "2026-02-04",
+          "auteur": "Sophie Roy",
+          "description_annonce": "Quiz se fera le vendredi donc n'oubliez pas de tester sebs."
         }
       ],
       "horaire": [
@@ -216,10 +216,10 @@
       "imageCours": "icone_base_donnees",
       "annonces": [
         {
-        "titre": "Mise à jour des serveurs terminée.",
-        "date": "2026-02-04",
-        "auteur": "Luc Lefebvre",
-        "description_annonce": "Les mises a jour sont finalements terminée!"
+          "titre": "Mise à jour des serveurs terminée.",
+          "date": "2026-02-04",
+          "auteur": "Luc Lefebvre",
+          "description_annonce": "Les mises a jour sont finalements terminée!"
         }
       ],
       "horaire": [
@@ -246,13 +246,13 @@
       "description": "Programmation GRAFCET et séquences.",
       "teacher": "Julie Gagnon",
       "session": "Automne 2025",
-      "imageCours":"icone_web",
+      "imageCours": "icone_web",
       "annonces": [
         {
-        "titre": "Séance de labo mardi soir.",
-        "date":"2026-02-04" ,
-        "auteur": "Julie Gagnon",
-        "description_annonce": "Ce mardi nous avons une séance très importante"
+          "titre": "Séance de labo mardi soir.",
+          "date": "2026-02-04",
+          "auteur": "Julie Gagnon",
+          "description_annonce": "Ce mardi nous avons une séance très importante"
         }
       ],
       "horaire": [
@@ -278,7 +278,7 @@
       "id": "1",
       "courseId": "1",
       "title": "Quiz 1",
-      "status": "Non commencé",
+      "status": "Terminé",
       "grade": 1,
       "totalPoints": 1,
       "dueDate": "2026-03-20",
@@ -306,6 +306,16 @@
       "dueDate": "2026-04-05",
       "submissionDate": null,
       "questions": [
+        {
+          "id": "5",
+          "question": "ROM signifie ?",
+          "options": [
+            "Read-Only Memory",
+            "Random",
+            "Rapid"
+          ],
+          "correctOption": 0
+        },
         {
           "id": "5",
           "question": "ROM signifie ?",
@@ -598,16 +608,16 @@
     },
     {
       "id": "5",
-      "courseid": 0,
+      "courseid": 3,
       "title": "Devoir 1",
       "description": "UI Mobile.",
       "dueDate": "2026-03-30",
       "instructions": "Activity",
-      "status": "À faire",
+      "status": "Remis",
       "comment": "",
       "totalPoints": 20,
       "type": "file",
-      "submissionDate": null
+      "submissionDate": "2026-04-11"
     },
     {
       "id": "6",

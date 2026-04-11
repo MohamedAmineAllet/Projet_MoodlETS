@@ -1,0 +1,82 @@
+package com.example.projet_moodlets.vue;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.projet_moodlets.R;
+import com.example.projet_moodlets.vue.adapteurs.CoursAdapter;
+import com.example.projet_moodlets.modele.daos.Cours.CoursDaoSingleton;
+import com.example.projet_moodlets.modele.entites.Cours;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class MesCoursActivity extends AppCompatActivity implements OnItemClickListener {
+
+    private ListView lv;
+    private CoursAdapter adapteur;
+
+    private List<Cours> listeDeCours = new ArrayList<>();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_mes_cours);
+
+        lv = findViewById(R.id.lv);
+
+
+        adapteur = new CoursAdapter(this, R.layout.list_cours, listeDeCours);
+        lv.setAdapter(adapteur);
+        lv.setOnItemClickListener(this);
+
+        try {
+            obtenirCours();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void obtenirCours() throws IOException {
+
+        new Thread(){
+            @Override
+            public void run(){
+                List<Cours> coursRecuperes = CoursDaoSingleton.getInstance().getTousLesCours();
+                MesCoursActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (coursRecuperes != null) {
+                            listeDeCours.clear();
+                            listeDeCours.addAll(coursRecuperes);
+                            // On prévient l'adapteur du changement SANS le recréer
+                            adapteur.notifyDataSetChanged();
+                        }
+                    }
+                });
+            }
+        }.start();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent iCoursDetails = new Intent(this, CoursDetails.class);
+        Cours coursClique = (Cours) parent.getAdapter().getItem(position);
+
+        iCoursDetails.putExtra("TITRE_COURS", coursClique.getTitle());
+        iCoursDetails.putExtra("CODE_COURS", coursClique.getCode());
+        iCoursDetails.putExtra("ID_COURS", coursClique.getId());
+
+        startActivity(iCoursDetails);
+    }
+}
