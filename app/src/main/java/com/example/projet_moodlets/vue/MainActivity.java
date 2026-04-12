@@ -107,14 +107,14 @@ public class MainActivity extends AppCompatActivity {
                 travauxLauncher.launch(intention);
             }
         });
-      /*  btnConnexion.setOnClickListener(new View.OnClickListener() {
+        btnConnexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent iConnexion = new Intent(MainActivity.this, ConnexionActivity.class);
                 travauxLauncher.launch(iConnexion);
                 finish();
             }
-        });*/
+        });
 
 
     }
