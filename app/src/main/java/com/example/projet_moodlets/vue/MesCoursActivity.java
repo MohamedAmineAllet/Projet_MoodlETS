@@ -1,4 +1,4 @@
-package com.example.projet_moodlets.vue;
+package com.example.projet_moodlets.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,18 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projet_moodlets.R;
-import com.example.projet_moodlets.vue.adapteurs.CoursAdapter;
-import com.example.projet_moodlets.modele.daos.Cours.CoursDaoSingleton;
-import com.example.projet_moodlets.modele.entites.Cours;
+import com.example.projet_moodlets.adapteurs.CoursAdapter;
+import com.example.projet_moodlets.adapteurs.TravauxAdapter;
+import com.example.projet_moodlets.daos.Cours.CoursDaoSingleton;
+import com.example.projet_moodlets.daos.Travail.TravauxDaoSingleton;
+import com.example.projet_moodlets.entites.Annonce;
+import com.example.projet_moodlets.entites.Cours;
+import com.example.projet_moodlets.entites.Horaire;
+import com.example.projet_moodlets.entites.Travail;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,7 +61,7 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
         new Thread(){
             @Override
             public void run(){
-                List<Cours> coursRecuperes = CoursDaoSingleton.getInstance().getTousLesCours();
+                List<Cours> coursRecuperes = CoursDaoSingleton.getDaoInstance().getTousLesCours();
                 MesCoursActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -76,6 +85,10 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
         iCoursDetails.putExtra("TITRE_COURS", coursClique.getTitle());
         iCoursDetails.putExtra("CODE_COURS", coursClique.getCode());
         iCoursDetails.putExtra("ID_COURS", coursClique.getId());
+        iCoursDetails.putExtra("DESCRIPTION_COURS", coursClique.getDescription());
+        iCoursDetails.putExtra("ENSEIGNANT_COURS", coursClique.getTeacher());
+        iCoursDetails.putExtra("LISTE_HORAIRE", (ArrayList<Horaire>) coursClique.getHoraire());
+        iCoursDetails.putExtra("ANNONCES_COURS", (ArrayList<Annonce>) coursClique.getAnnonces());
 
         startActivity(iCoursDetails);
     }

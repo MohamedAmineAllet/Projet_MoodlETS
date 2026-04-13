@@ -1,6 +1,8 @@
 package com.example.projet_moodlets.modele.entites;
 
-public class Annonce {
+import java.io.Serializable;
+
+public class Annonce implements Serializable {
     private String titre;
     private String description_annonce;
     private String auteur;

@@ -1,6 +1,9 @@
 package com.example.projet_moodlets.modele.entites;
 
-public class Horaire {
+import java.io.Serializable;
+
+// Serializable :Pour envoyer une liste d'objets personnalisés entre deux activités
+public class Horaire implements Serializable {
     private String jour;
     private String heureDebut;
     private String heureFin;
