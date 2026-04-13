@@ -9,8 +9,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projet_moodlets.R;
-import com.example.projet_moodlets.entites.Annonce;
-import com.example.projet_moodlets.entites.Horaire;
+import com.example.projet_moodlets.modele.entites.Annonce;
+import com.example.projet_moodlets.modele.entites.Horaire;
+
 
 import java.util.List;
 

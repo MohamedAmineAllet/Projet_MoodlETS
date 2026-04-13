@@ -12,5 +12,5 @@ public interface CoursDao {
 
     String getTitreParId(String id);
 
-
+    void remplirCache(List<Cours> nouveauxCours);
 }

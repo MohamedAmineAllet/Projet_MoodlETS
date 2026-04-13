@@ -3,12 +3,12 @@ package com.example.projet_moodlets.modele.daos.Cours;
 // garantit qu'il n'y a qu'une seule instance
 public class CoursDaoSingleton {
 
-    private static CoursLocalDao daoInstance = null;
+    private static CoursDao daoInstance = null;
 
 
-    public static CoursLocalDao getInstance(){
+    public static CoursDao getInstance(){
         if(daoInstance==null){
-            daoInstance = new CoursLocalDao();
+            daoInstance = new HttpJsonCoursDao();
         }
         return daoInstance;
     }

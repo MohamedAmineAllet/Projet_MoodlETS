@@ -1,4 +1,4 @@
-package com.example.projet_moodlets.activities;
+package com.example.projet_moodlets.vue;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,14 +11,13 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projet_moodlets.R;
-import com.example.projet_moodlets.adapteurs.CoursAdapter;
-import com.example.projet_moodlets.adapteurs.TravauxAdapter;
-import com.example.projet_moodlets.daos.Cours.CoursDaoSingleton;
-import com.example.projet_moodlets.daos.Travail.TravauxDaoSingleton;
-import com.example.projet_moodlets.entites.Annonce;
-import com.example.projet_moodlets.entites.Cours;
-import com.example.projet_moodlets.entites.Horaire;
-import com.example.projet_moodlets.entites.Travail;
+
+import com.example.projet_moodlets.modele.daos.Cours.CoursDaoSingleton;
+import com.example.projet_moodlets.modele.entites.Annonce;
+import com.example.projet_moodlets.modele.entites.Cours;
+import com.example.projet_moodlets.modele.entites.Horaire;
+import com.example.projet_moodlets.vue.CoursDetails;
+import com.example.projet_moodlets.vue.adapteurs.CoursAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,7 +32,6 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
 
     private ListView lv;
     private CoursAdapter adapteur;
-
     private List<Cours> listeDeCours = new ArrayList<>();
 
     @Override
@@ -61,7 +59,7 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
         new Thread(){
             @Override
             public void run(){
-                List<Cours> coursRecuperes = CoursDaoSingleton.getDaoInstance().getTousLesCours();
+                List<Cours> coursRecuperes = CoursDaoSingleton.getInstance().getTousLesCours();
                 MesCoursActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

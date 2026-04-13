@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -107,14 +109,14 @@ public class MainActivity extends AppCompatActivity {
                 travauxLauncher.launch(intention);
             }
         });
-        btnConnexion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent iConnexion = new Intent(MainActivity.this, ConnexionActivity.class);
-                travauxLauncher.launch(iConnexion);
-                finish();
-            }
-        });
+//        btnConnexion.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent iConnexion = new Intent(MainActivity.this, ConnexionActivity.class);
+//                travauxLauncher.launch(iConnexion);
+//                finish();
+//            }
+//        });
 
 
     }

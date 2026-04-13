@@ -75,5 +75,10 @@ public class HttpJsonCoursDao implements CoursDao {
         return "";
     }
 
+    @Override
+    public void remplirCache(List<Cours> nouveauxCours) {
+
+    }
+
 
 }
