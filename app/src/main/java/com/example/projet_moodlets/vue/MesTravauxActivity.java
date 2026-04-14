@@ -28,6 +28,7 @@ import com.example.projet_moodlets.modele.entites.Travail;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MesTravauxActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -36,6 +37,9 @@ public class MesTravauxActivity extends AppCompatActivity implements AdapterView
     private TextView btnTousTravaux, btnAFaire, btnEnRetard, btnRemis, btnCorrige;
 
     private EditText editTextRecherche;
+
+    private String idCoursRecu;
+
 
     private BottomNavigationView menu;
 
@@ -51,6 +55,10 @@ public class MesTravauxActivity extends AppCompatActivity implements AdapterView
         btnRemis = findViewById(R.id.txt_filtre_Remis);
         btnCorrige = findViewById(R.id.txt_filtre_Corrige);
         editTextRecherche = findViewById(R.id.edit_txt_recherche_travail);
+
+        //recuperer l'ID du cours si present
+        idCoursRecu = getIntent().getStringExtra("ID_COURS");
+
 
         View.OnClickListener ecouteurFiltres = new View.OnClickListener(){
             @Override
@@ -164,13 +172,32 @@ public class MesTravauxActivity extends AppCompatActivity implements AdapterView
                 ((CoursLocalDao) CoursDaoSingleton.getInstance()).remplirCache(cours);
 
                 List<Travail> travaux = TravauxDaoSingleton.getInstance().getTravaux();
+                List<Travail> travauxAAfficher;
 
-                MesTravauxActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapteur = new TravauxAdapter(MesTravauxActivity.this, R.layout.list_travail, travaux);
-                        lv.setAdapter(adapteur);
+                // Filtrer par ID de cours si on en a reçu un
+                if (idCoursRecu != null && !idCoursRecu.isEmpty()) {
+                    int idCours = Integer.parseInt(idCoursRecu);
+                    travauxAAfficher = new ArrayList<>();
+                    for (Travail t : travaux) {
+                        if (t.getCourseId() == idCours) {
+                            travauxAAfficher.add(t);
+                        }
                     }
+                } else {
+                    travauxAAfficher = travaux;
+                }
+
+
+//                MesTravauxActivity.this.runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        adapteur = new TravauxAdapter(MesTravauxActivity.this, R.layout.list_travail, travaux);
+//                        lv.setAdapter(adapteur);
+//                    }
+//                });
+                MesTravauxActivity.this.runOnUiThread(() -> {
+                    adapteur = new TravauxAdapter(MesTravauxActivity.this, R.layout.list_travail, travauxAAfficher);
+                    lv.setAdapter(adapteur);
                 });
             }
         }.start();

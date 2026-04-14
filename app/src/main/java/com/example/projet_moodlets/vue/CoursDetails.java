@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.projet_moodlets.R;
 import com.example.projet_moodlets.modele.entites.Annonce;
 import com.example.projet_moodlets.modele.entites.Horaire;
+import com.example.projet_moodlets.modele.entites.Travail;
 
 
 import java.util.List;
@@ -39,13 +41,15 @@ public class CoursDetails extends AppCompatActivity {
             String description = extras.getString("DESCRIPTION_COURS");
             List<Horaire> horaires = (List<Horaire>) getIntent().getSerializableExtra("LISTE_HORAIRE");
             List<Annonce> annonces = (List<Annonce>) getIntent().getSerializableExtra("ANNONCES_COURS");
+            List<Travail> travaux = (List<Travail>) getIntent().getSerializableExtra("TRAVAUX_COURS");
+
 
             if (horaires != null && !horaires.isEmpty()) {
                 // LinearLayout pour contenir les cartes :
                 LinearLayout container = findViewById(R.id.layoutCartesHoraire);
 
                 for (Horaire h : horaires) {
-                    // on "gonfle" (inflate) le layout de la petite qui contient l'horaire carte
+                    // on "gonfle" (inflate) le layout qui contient l'horaire carte
                     View card = getLayoutInflater().inflate(R.layout.horaire_composante, container, false);
                     // on remplit les données
                     remplirCardHoraire(card, h);
@@ -59,7 +63,7 @@ public class CoursDetails extends AppCompatActivity {
                 LinearLayout container = findViewById(R.id.layoutAnnonce);
 
                 for(Annonce a: annonces){
-                    // on "gonfle" (inflate) le layout de la petite qui contient l'horaire carte
+                    // on "gonfle" (inflate) le layout qui contient l'annonce carte
                     View card = getLayoutInflater().inflate(R.layout.annonce_composante, container, false);
                     // on remplit les données
                     remplirCardAnnonce(card, a);
@@ -67,6 +71,26 @@ public class CoursDetails extends AppCompatActivity {
                     container.addView(card);
                 }
 
+            }
+
+            if(travaux != null && !travaux.isEmpty()) {
+                //  recupere le LinearLayout
+                LinearLayout container = findViewById(R.id.listeTravauxCours);
+
+                android.util.Log.d("DEBUG_COURS", "Nombre de travaux reçus : " + travaux.size());
+
+                for (Travail t : travaux) {
+                    //  on "gonfle" la vue d'un item
+                    View itemTravail = getLayoutInflater().inflate(R.layout.list_travail, container, false);
+
+                    //  on remplit les donnes manuellement
+                    remplirCardTravail(itemTravail, t);
+
+                    //  on l'ajoute au container
+                    container.addView(itemTravail);
+                }
+            }else{
+                android.util.Log.d("DEBUG_COURS", "La liste des travaux est VIDE ou NULL");
             }
 
             txtNomCours.setText(titre);
@@ -79,6 +103,28 @@ public class CoursDetails extends AppCompatActivity {
         // gerer le bouton retour (flèche gauche)
         ImageButton btnRetour = findViewById(R.id.btnRondFlecheGauche);
         btnRetour.setOnClickListener(v -> finish());
+    }
+
+    private void remplirCardTravail(View v, Travail t) {
+        TextView txtTitle = v.findViewById(R.id.txt_nom_travail);
+        TextView txtDate = v.findViewById(R.id.txt_date_echeance_travail);
+        TextView txtStatut = v.findViewById(R.id.txt_filtre_travail);
+        TextView txtCours = v.findViewById(R.id.txt_cours_travail);
+        TextView txtScore = v.findViewById(R.id.txt_Score_Pourcentage);
+
+        txtTitle.setText(t.getTitle());
+        txtDate.setText(t.getDueDate());
+        txtStatut.setText(t.getStatus());
+
+        // pour le nom du cours, on peut réutiliser le code déjà présent dans l'activite
+        txtCours.setText(getIntent().getStringExtra("CODE_COURS"));
+
+        if (t.getGrade() != null) {
+            double pourcentage = (t.getGrade() * 100) / t.getTotalPoints();
+            txtScore.setText((int)pourcentage + "%");
+        } else {
+            txtScore.setText("--");
+        }
     }
 
     //methode pour rempllir les horraire.

@@ -2,8 +2,10 @@ package com.example.projet_moodlets.modele.entites;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Travail {
+public class Travail implements Serializable {
 
     private int id, courseId;
     private Double grade, totalPoints;

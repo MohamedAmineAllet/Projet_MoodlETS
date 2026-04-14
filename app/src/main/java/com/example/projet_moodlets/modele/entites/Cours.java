@@ -16,18 +16,22 @@ public class Cours {
     private List<Annonce> annonces;
     private List<Horaire> horaire;
 
+    private List<Travail> assignments;
+
+
 
     //Constructeur
     public Cours() {}
 
     // Getters et Setters
+
+    public List<Travail> getassignments() {
+        return assignments;
+    }
     public List<Annonce> getAnnonces() {
         return annonces;
     }
 
-    public void setAnnonces(List<Annonce> annonces) {
-        this.annonces = annonces;
-    }
 
     public String getId() { return id; }
     public void setId(String id) { this.id=id; }
