@@ -169,7 +169,8 @@ public class MesTravauxActivity extends AppCompatActivity implements AdapterView
                 HttpJsonCoursDao coursService = new HttpJsonCoursDao();
                 List<Cours> cours = coursService.getTousLesCours();
 
-                ((CoursLocalDao) CoursDaoSingleton.getInstance()).remplirCache(cours);
+                CoursLocalDao localDao = new CoursLocalDao();
+                localDao.remplirCache(cours);
 
                 List<Travail> travaux = TravauxDaoSingleton.getInstance().getTravaux();
                 List<Travail> travauxAAfficher;

@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Projet_MoodlETS"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".vue.ProfileActivity"
+            android:name=".vue.MonProfile"
             android:exported="false" />
         <activity
             android:name=".vue.CoursDetails"

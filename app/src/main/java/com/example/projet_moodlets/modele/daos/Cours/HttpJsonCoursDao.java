@@ -49,7 +49,8 @@ public class HttpJsonCoursDao implements CoursDao {
             //chaîne de caractères
             String jsonData = responseBody.string();
 
-            Log.d("DEBUG_JSON", jsonData);
+            // c'est pour voir ce que le json retourne
+//            Log.d("DEBUG_JSON", jsonData);
 
             //on declare un nouvel object mapper
             ObjectMapper mapper = new ObjectMapper();

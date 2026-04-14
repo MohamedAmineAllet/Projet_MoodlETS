@@ -77,7 +77,6 @@ public class CoursDetails extends AppCompatActivity {
                 //  recupere le LinearLayout
                 LinearLayout container = findViewById(R.id.listeTravauxCours);
 
-                android.util.Log.d("DEBUG_COURS", "Nombre de travaux reçus : " + travaux.size());
 
                 for (Travail t : travaux) {
                     //  on "gonfle" la vue d'un item
