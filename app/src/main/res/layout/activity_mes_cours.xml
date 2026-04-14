@@ -50,7 +50,7 @@
         tools:ignore="TextSizeCheck" />
 
     <EditText
-        android:id="@+id/edit_txt_recherche_travail5"
+        android:id="@+id/recherche_cours"
         android:layout_width="302dp"
         android:layout_height="40dp"
         android:autofillHints=""

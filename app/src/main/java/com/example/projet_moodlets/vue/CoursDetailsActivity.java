@@ -1,5 +1,6 @@
 package com.example.projet_moodlets.vue;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -7,11 +8,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 
 import com.example.projet_moodlets.R;
 import com.example.projet_moodlets.modele.entites.Annonce;
 import com.example.projet_moodlets.modele.entites.Horaire;
 import com.example.projet_moodlets.modele.entites.Travail;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 import java.util.List;
@@ -19,6 +22,7 @@ import java.util.List;
 public class CoursDetailsActivity extends AppCompatActivity {
     private TextView txtNomCours, txtDetails, txtDescription, txtProf ;
 
+    private BottomNavigationView menuNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +99,49 @@ public class CoursDetailsActivity extends AppCompatActivity {
             txtDetails.setText(code);
             txtProf.setText(prof);
             txtDescription.setText(description);
+
+            menuNavigation = findViewById(R.id.menu_navigation);
+            ViewCompat.setOnApplyWindowInsetsListener(menuNavigation, (v, insets) -> {
+                v.setPadding(0, 0, 0, 0);
+                return insets;
+            });
+
+            menuNavigation.setOnItemSelectedListener(item ->{
+                int id = item.getItemId();
+
+                if (id == R.id.travaux) {
+                    Intent iMesTravaux = new Intent(this, MesTravauxActivity.class);
+                    iMesTravaux.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(iMesTravaux);
+                    overridePendingTransition(0, 0);
+                    return true;
+                } else if(id == R.id.cours){
+                    Intent iMesCours = new Intent(this, MesCoursActivity.class);
+                    iMesCours.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(iMesCours);
+                    overridePendingTransition(0, 0);
+                    return true;
+                }else if(id == R.id.dashboard){
+                    Intent iDashboard = new Intent(this, MainActivity.class);
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(iDashboard);
+                    overridePendingTransition(0, 0);
+                    return true;
+                }else if(id == R.id.quiz){
+                    Intent iMesQuiz = new Intent(this, MesQuizActivity.class);
+                    iMesQuiz.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(iMesQuiz);
+                    overridePendingTransition(0, 0);
+                    return true;
+                }else if(id == R.id.profil){
+                    Intent iMonProfil = new Intent(this, MonProfile.class);
+                    iMonProfil.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(iMonProfil);
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                return false;
+            });
 
         }
 

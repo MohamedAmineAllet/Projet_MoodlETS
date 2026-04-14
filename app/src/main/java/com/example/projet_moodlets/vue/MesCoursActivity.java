@@ -2,9 +2,12 @@ package com.example.projet_moodlets.vue;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +33,8 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
     private List<Cours> listeDeCours = new ArrayList<>();
     private BottomNavigationView menuNavigation;
 
+    private EditText rechercheCours;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,7 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
 
         lv = findViewById(R.id.lv);
 
-        adapteur = new CoursAdapter(this, R.layout.list_cours, listeDeCours);
+        adapteur = new CoursAdapter(this, R.layout.list_cours, new ArrayList<>(listeDeCours));
         lv.setAdapter(adapteur);
         lv.setOnItemClickListener(this);
 
@@ -49,7 +54,14 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
             throw new RuntimeException(e);
         }
 
+        /*
+         * Pour changer de page selon la navigation
+         *
+         */
+
+        //on lie la variable a son element dans le layout
         menuNavigation = findViewById(R.id.menu_navigation);
+
         ViewCompat.setOnApplyWindowInsetsListener(menuNavigation, (v, insets) -> {
             v.setPadding(0, 0, 0, 0);
             return insets;
@@ -82,10 +94,66 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
                 startActivity(iMesQuiz);
                 overridePendingTransition(0, 0);
                 return true;
+            }else if(id == R.id.profil){
+                Intent iMonProfil = new Intent(this, MonProfile.class);
+                iMonProfil.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(iMonProfil);
+                overridePendingTransition(0, 0);
+                return true;
             }
             return false;
         });
 
+        /*
+        * Pour rechercher un  cours selon le nom ou le code
+        *
+        */
+
+        //on lie la variable a son element dans le layout
+        rechercheCours= findViewById(R.id.recherche_cours);
+
+        rechercheCours.addTextChangedListener(new android.text.TextWatcher(){
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String query = s.toString().toLowerCase().trim();
+                List<Cours> resultats = new ArrayList<>();
+
+                for (Cours c : listeDeCours) {
+                    //on verifie le titre ou le code du cours
+                    if (c.getTitle().toLowerCase().contains(query) || c.getCode().toLowerCase().contains(query)) {
+                        resultats.add(c);
+                    }
+                }
+                adapteur.filtreListeCours(resultats);
+            }
+        });
+
+    }
+
+    private void filtrerLesCours(String texte){
+        List<Cours> listeFiltree= new ArrayList<>();
+        for (Cours cours : listeDeCours) {
+            // pour que peut importe le case il va pouvoir  comprendre
+            String query = texte.toLowerCase();
+
+            if (cours.getTitle().toLowerCase().contains(query) || cours.getCode().toLowerCase().contains(query)) {
+                listeFiltree.add(cours);
+            }
+        }
+
+
+        adapteur.filtreListeCours(listeFiltree);
     }
 
     private void obtenirCours() throws IOException {
@@ -96,7 +164,12 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
                     if (coursRecuperes != null) {
                         listeDeCours.clear();
                         listeDeCours.addAll(coursRecuperes);
+
+                        adapteur.clear();
+                        adapteur.addAll(listeDeCours);
                         adapteur.notifyDataSetChanged();
+
+
                     }
                 });
             } catch (Exception e) {

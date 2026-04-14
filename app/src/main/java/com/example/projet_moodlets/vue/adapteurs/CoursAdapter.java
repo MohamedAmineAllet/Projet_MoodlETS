@@ -27,9 +27,6 @@ public class CoursAdapter extends ArrayAdapter<Cours> {
 
     private Resources ressources;
 
-    private TextView ls_code_cours, ls_nom_cours, ls_session_cours;
-    private ImageView icone_cours;
-
 
     public CoursAdapter(@NonNull Context contexte, int viewResourceId, @NonNull List<Cours> Cours) {
         super(contexte, viewResourceId, Cours);
@@ -38,6 +35,14 @@ public class CoursAdapter extends ArrayAdapter<Cours> {
         this.ressources = contexte.getResources();
 
         this.lesCours =  Cours;
+    }
+
+    public void filtreListeCours(List<Cours> listeFiltree) {
+        this.clear();
+        if (listeFiltree != null) {
+            this.addAll(listeFiltree);
+        }
+        notifyDataSetChanged();
     }
 
     @SuppressLint("NewApi")
