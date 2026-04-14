@@ -8,12 +8,16 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
+
 import com.example.projet_moodlets.R;
 import com.example.projet_moodlets.modele.daos.Cours.CoursDaoSingleton;
 import com.example.projet_moodlets.modele.daos.Travail.TravauxDaoSingleton;
 import com.example.projet_moodlets.modele.entites.Cours;
 import com.example.projet_moodlets.modele.entites.Travail;
 import com.example.projet_moodlets.vue.adapteurs.CoursAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +28,8 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
     private ListView lv;
     private CoursAdapter adapteur;
     private List<Cours> listeDeCours = new ArrayList<>();
+    private BottomNavigationView menuNavigation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,42 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
             throw new RuntimeException(e);
         }
 
+        menuNavigation = findViewById(R.id.menu_navigation);
+        ViewCompat.setOnApplyWindowInsetsListener(menuNavigation, (v, insets) -> {
+            v.setPadding(0, 0, 0, 0);
+            return insets;
+        });
+
+        menuNavigation.setOnItemSelectedListener(item ->{
+            int id = item.getItemId();
+
+            if (id == R.id.travaux) {
+                Intent iMesTravaux = new Intent(this, MesTravauxActivity.class);
+                iMesTravaux.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(iMesTravaux);
+                overridePendingTransition(0, 0);
+                return true;
+            } else if(id == R.id.cours){
+                Intent iMesCours = new Intent(this, MesCoursActivity.class);
+                iMesCours.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(iMesCours);
+                overridePendingTransition(0, 0);
+                return true;
+            }else if(id == R.id.dashboard){
+                Intent iDashboard = new Intent(this, MainActivity.class);
+                iDashboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(iDashboard);
+                overridePendingTransition(0, 0);
+                return true;
+            }else if(id == R.id.quiz){
+                Intent iMesQuiz = new Intent(this, MesQuizActivity.class);
+                iMesQuiz.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(iMesQuiz);
+                overridePendingTransition(0, 0);
+                return true;
+            }
+            return false;
+        });
 
     }
 
@@ -73,11 +115,11 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
     private void obtenirTravauxEtOuvrirDetails(Cours coursClique) {
         new Thread(() -> {
             try {
-                // recupere TOUS les travaux depuis le serveur
+                // recupere tous les travaux depuis le serveur
                 List<Travail> tousLesTravaux = TravauxDaoSingleton.getInstance().getTravaux();
                 ArrayList<Travail> travauxDuCours = new ArrayList<>();
 
-                // Filtrer : on compare l'ID du cours avec le courseId du travail
+                // filtrer : on compare l'ID du cours avec le courseId du travail
                 if (tousLesTravaux != null) {
                     for (Travail t : tousLesTravaux) {
                         // il faut que le id cliquer du cours et et id  du  cours referencer du  assignment soit pareil

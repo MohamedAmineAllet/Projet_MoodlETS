@@ -8,6 +8,23 @@
     android:background="@color/BG"
     tools:context=".vue.CoursDetails">
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/menu_navigation"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/fond_navigation_background"
+        android:elevation="4dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        app:itemIconSize="44dp"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline24"
+        app:layout_constraintStart_toStartOf="@+id/guideline23"
+        app:menu="@menu/menu_navigation"
+        tools:ignore="VisualLintBottomNav" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline23"
         android:layout_width="wrap_content"
