@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 
+import com.example.projet_moodlets.EtatConnexion.SessionManager;
 import com.example.projet_moodlets.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SessionManager session = new SessionManager(this);
+
 
         travauxLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -109,14 +112,14 @@ public class MainActivity extends AppCompatActivity {
                 travauxLauncher.launch(intention);
             }
         });
-//        btnConnexion.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent iConnexion = new Intent(MainActivity.this, ConnexionActivity.class);
-//                travauxLauncher.launch(iConnexion);
-//                finish();
-//            }
-//        });
+        btnConnexion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iConnexion = new Intent(MainActivity.this, ConnexionActivity.class);
+                travauxLauncher.launch(iConnexion);
+                finish();
+            }
+        });
 
 
     }
