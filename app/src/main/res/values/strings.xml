@@ -66,4 +66,10 @@
     <string name="retour">Retour</string>
     <string name="prochain">Prochain</string>
     <string name="question">Question ?</string>
+    <string name="mon_prenom">Mon prénom</string>
+    <string name="mon_nom">Mon nom</string>
+    <string name="mon_courriel">Mon courriel</string>
+    <string name="mon_numero_telephone">Mon numéro de téléphone</string>
+    <string name="url_ma_photo">L'URL de ma photo de profil</string>
+    <string name="mon_mot_de_passe">Mon mot de passe</string>
 </resources>

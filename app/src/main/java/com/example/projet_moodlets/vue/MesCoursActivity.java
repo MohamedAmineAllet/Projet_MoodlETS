@@ -131,7 +131,7 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
 
                 // revenir sur le thread UI pour lancer l'activité de détails
                 runOnUiThread(() -> {
-                    Intent iCoursDetails = new Intent(MesCoursActivity.this, CoursDetails.class);
+                    Intent iCoursDetails = new Intent(MesCoursActivity.this, CoursDetailsActivity.class);
                     iCoursDetails.putExtra("TITRE_COURS", coursClique.getTitle());
                     iCoursDetails.putExtra("CODE_COURS", coursClique.getCode());
                     iCoursDetails.putExtra("DESCRIPTION_COURS", coursClique.getDescription());

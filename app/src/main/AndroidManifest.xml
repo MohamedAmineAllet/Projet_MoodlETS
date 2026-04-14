@@ -18,7 +18,7 @@
             android:name=".vue.MonProfile"
             android:exported="false" />
         <activity
-            android:name=".vue.CoursDetails"
+            android:name=".vue.CoursDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".vue.MesCoursActivity"
