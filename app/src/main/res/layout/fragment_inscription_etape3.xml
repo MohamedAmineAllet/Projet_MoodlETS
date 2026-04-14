@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- Aperçu de la photo choisie -->
+    <ImageView
+        android:id="@+id/imgApercu"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/circle_gray"
+        android:scaleType="centerCrop"/>
+
+    <!-- Texte indicatif -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Aucune photo sélectionnée"
+        android:id="@+id/tvPhotoStatus"
+        android:textSize="13sp"
+        android:textColor="#888888"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Bouton galerie -->
+    <Button
+        android:id="@+id/btnGalerie"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Choisir depuis la galerie"
+        android:textColor="#1A1A2E"
+        android:backgroundTint="#E0DFEF"
+        android:layout_marginBottom="24dp"
+        style="@style/Widget.MaterialComponents.Button"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnPrecedent"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="← Précédent"
+            android:textColor="#1A1A2E"
+            android:backgroundTint="#E0DFEF"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_marginEnd="8dp"
+            style="@style/Widget.MaterialComponents.Button"/>
+
+        <Button
+            android:id="@+id/btnConfirmer"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="Confirmer →"
+            android:textColor="#1A1A2E"
+            android:backgroundTint="#F5E6C8"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            style="@style/Widget.MaterialComponents.Button"/>
+
+    </LinearLayout>
+
+</LinearLayout>
