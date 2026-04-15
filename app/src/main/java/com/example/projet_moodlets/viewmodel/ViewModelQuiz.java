@@ -14,36 +14,56 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * ViewModel gérant l'état de l'interface utilisateur pour la section Quiz.
+ * Il survit aux changements de configuration (comme la rotation de l'écran).
+ */
 public class ViewModelQuiz extends ViewModel {
 
     private QuizRepository repository;
-
     private final MutableLiveData<List<Quiz>> quizzesLiveData = new MutableLiveData<>();
 
-    public void initRepository(Context context){
-        if(repository == null){
+    /**
+     * Initialise le repository si ce n'est pas déjà fait.
+     *
+     * @param context Contexte de l'application nécessaire pour la base de données SQLite.
+     */
+    public void initRepository(Context context) {
+        if (repository == null) {
             repository = new QuizRepository(context);
         }
     }
 
-    public void chagerQuiz(){
+    /**
+     * Déclenche la récupération des quiz via le repository et observe le résultat.
+     * Met à jour la donnée observable quizzesLiveData une fois les données reçues.
+     */
+    public void chagerQuiz() {
         LiveData<List<Quiz>> result = repository.getQuizzes();
 
-        if(result != null){
+        if (result != null) {
             result.observeForever(quizzes -> {
-                if(quizzes != null){
+                if (quizzes != null) {
                     quizzesLiveData.setValue(quizzes);
                 }
             });
         }
     }
 
-    public LiveData<List<Quiz>> getQuizLiveData(){
+    /**
+     * @return Le LiveData que l'activité doit observer pour afficher la liste des quiz.
+     */
+    public LiveData<List<Quiz>> getQuizLiveData() {
         return quizzesLiveData;
     }
 
+    /**
+     * Demande au repository de persister la note du quiz localement.
+     *
+     * @param quiz Le quiz terminé contenant le score final.
+     */
     public void sauvegarderNote(Quiz quiz) throws JSONException, IOException {
-        if ( repository != null){
+        if (repository != null) {
             repository.sauvegarderResultatLocal(quiz);
         }
     }

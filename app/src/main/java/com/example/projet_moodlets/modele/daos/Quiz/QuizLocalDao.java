@@ -15,37 +15,50 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuizLocalDao implements QuizDao{
+/**
+ * Implémentation du DAO pour le stockage local SQLite des quiz.
+ */
+public class QuizLocalDao implements QuizDao {
     private Context context;
     private List<Quiz> quiz = new ArrayList<>();
+
 
     public QuizLocalDao(Context context) {
         this.context = context;
     }
 
-    @Override
-    public List<String> getTitresDesQuiz() {
-        List<String> lesQuiz = new ArrayList<>();
-        for(Quiz q: quiz){
-            lesQuiz.add(q.getTitle());
-        }
-        return lesQuiz;
-    }
 
+    /**
+     * Récupère la liste des quiz stockés localement.
+     *
+     * @return Une liste de quiz (actuellement vide par défaut).
+     */
     @Override
     public List<Quiz> getQuiz() {
         return new ArrayList<>();
     }
 
+    /**
+     * Recherche un quiz spécifique dans la liste locale par son ID.
+     *
+     * @param id Identifiant du quiz recherché.
+     * @return L'objet Quiz correspondant ou null.
+     */
     @Override
     public Quiz getQuizParId(int id) {
-        for(Quiz q:quiz){
-            if(q.getId() == id){
+        for (Quiz q : quiz) {
+            if (q.getId() == id) {
                 return q;
             }
-        }return null;
+        }
+        return null;
     }
 
+    /**
+     * Met à jour les informations d'un quiz dans la base de données SQLite.
+     *
+     * @param quiz L'objet contenant les nouvelles données à enregistrer.
+     */
     @Override
     public void modifier(Quiz quiz) throws IOException, JSONException {
         DbUtil dbUtil = new DbUtil(context);
@@ -58,11 +71,16 @@ public class QuizLocalDao implements QuizDao{
         values.put(QuizContract.Colonnes.TOTAL_POINTS, quiz.getTotalPoints());
         values.put(QuizContract.Colonnes.SUBMISSION_DATE, quiz.getSubmissionDate());
 
-        db.insert(QuizContract.TABLE_NAME, null, values);
+        db.update(QuizContract.TABLE_NAME, values, QuizContract.Colonnes.ID + " = ?", new String[]{String.valueOf(quiz.getId())});
         db.close();
     }
 
-    public void sauvegarderResultatQuiz(Quiz quiz){
+    /**
+     * Charge les données persistantes (note, statut) depuis SQLite vers l'objet Quiz fourni.
+     *
+     * @param quiz L'objet Quiz à synchroniser avec la base locale.
+     */
+    public void sauvegarderResultatQuiz(Quiz quiz) {
         DbUtil dbUtil = new DbUtil(context);
         SQLiteDatabase db = dbUtil.getReadableDatabase();
 
@@ -73,11 +91,13 @@ public class QuizLocalDao implements QuizDao{
                 new String[]{String.valueOf(quiz.getId())},
                 null, null, null);
 
-        if (cursor != null && cursor.moveToFirst()) {
-            quiz.setGrade(cursor.getDouble(cursor.getColumnIndexOrThrow(QuizContract.Colonnes.GRADE)));
-            quiz.setTotalPoints(cursor.getDouble(cursor.getColumnIndexOrThrow(QuizContract.Colonnes.TOTAL_POINTS)));
-            quiz.setStatus(cursor.getString(cursor.getColumnIndexOrThrow(QuizContract.Colonnes.STATUS)));
-            quiz.setSubmissionDate(cursor.getString(cursor.getColumnIndexOrThrow(QuizContract.Colonnes.SUBMISSION_DATE)));
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                quiz.setGrade(cursor.getDouble(cursor.getColumnIndexOrThrow(QuizContract.Colonnes.GRADE)));
+                quiz.setTotalPoints(cursor.getDouble(cursor.getColumnIndexOrThrow(QuizContract.Colonnes.TOTAL_POINTS)));
+                quiz.setStatus(cursor.getString(cursor.getColumnIndexOrThrow(QuizContract.Colonnes.STATUS)));
+                quiz.setSubmissionDate(cursor.getString(cursor.getColumnIndexOrThrow(QuizContract.Colonnes.SUBMISSION_DATE)));
+            }
             cursor.close();
         }
         db.close();

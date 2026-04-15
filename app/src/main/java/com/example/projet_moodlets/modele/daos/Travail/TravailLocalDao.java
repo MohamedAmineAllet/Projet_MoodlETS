@@ -8,25 +8,31 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implémentation locale du DAO pour les travaux.
+ * Actuellement configurée pour stocker les données en mémoire vive (ArrayList).
+ */
 public class TravailLocalDao implements TravauxDao {
+
     private List<Travail> travaux = new ArrayList<>();
 
-
-    @Override
-    public List<String> getTitresDesTravaux() {
-        List<String> lesTitres = new ArrayList<>();
-        for( Travail t:travaux){
-            lesTitres.add(t.getTitle());
-        }
-        return lesTitres;
-    }
-
-    public List<Travail> getTravaux(){
+    /**
+     * Retourne la liste des travaux stockés en mémoire.
+     *
+     * @return Liste d'objets Travail.
+     */
+    public List<Travail> getTravaux() {
         return travaux;
     }
 
-    public Travail getTravailParId(String title){
-        for(Travail t:travaux){
+    /**
+     * Recherche un travail par son titre (insensible à la casse).
+     *
+     * @param title Le titre du travail recherché.
+     * @return L'objet Travail trouvé ou null.
+     */
+    public Travail getTravailParId(String title) {
+        for (Travail t : travaux) {
             if (t.getTitle() != null && t.getTitle().equalsIgnoreCase(title)) {
                 return t;
             }
@@ -35,8 +41,13 @@ public class TravailLocalDao implements TravauxDao {
     }
 
 
+    /**
+     * Met à jour un travail existant dans la liste locale en le cherchant par son ID.
+     *
+     * @param travail L'objet contenant les nouvelles données.
+     */
     @Override
-    public void modifier(Travail travail) throws IOException, JSONException{
+    public void modifier(Travail travail) throws IOException, JSONException {
         for (int i = 0; i < travaux.size(); i++) {
             // On compare par ID et non par titre, car le titre peut changer ou être identique
             if (travaux.get(i).getId() == travail.getId()) {
@@ -45,8 +56,6 @@ public class TravailLocalDao implements TravauxDao {
             }
         }
     }
-
-
 
 }
 

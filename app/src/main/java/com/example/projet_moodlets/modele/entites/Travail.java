@@ -1,18 +1,25 @@
 package com.example.projet_moodlets.modele.entites;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
+/**
+ * Représente un travail (assignment) au sein d'un cours.
+ * Implémente Serializable pour permettre le passage d'objets entre les activités.
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Travail implements Serializable {
 
     private int id, courseId;
     private Double grade, totalPoints;
-
     private String title;
     private String description, dueDate, instructions, status, comment, type, submissionDate;
 
+    /**
+     * Constructeur complet utilisé pour l'initialisation depuis la base de données ou l'API.
+     */
     public Travail(int id, int courseId, Double grade, Double totalPoints, String title, String description, String dueDate, String instructions, String status, String comment, String type, String submissionDate) {
         this.id = id;
         this.courseId = courseId;
@@ -28,6 +35,9 @@ public class Travail implements Serializable {
         this.submissionDate = submissionDate;
     }
 
+    /**
+     * Constructeur simplifié pour la création d'un nouveau travail.
+     */
     public Travail(int courseId, String title, String description, String dueDate, String instructions, String status, String type) {
         this.courseId = courseId;
         this.title = title;
@@ -38,6 +48,9 @@ public class Travail implements Serializable {
         this.type = type;
     }
 
+    /**
+     * Constructeur par défaut requis par Jackson.
+     */
     public Travail() {
         this.title = "";
         this.description = "";
@@ -48,6 +61,9 @@ public class Travail implements Serializable {
         this.type = "";
     }
 
+    /**
+     * Constructeur minimaliste avec statut par défaut "Non soumis".
+     */
     public Travail(int id, String title, String dueDate) {
         this.id = id;
         this.title = title;
@@ -69,10 +85,6 @@ public class Travail implements Serializable {
         return courseId;
     }
 
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
     public Double getGrade() {
         return grade;
     }
@@ -83,10 +95,6 @@ public class Travail implements Serializable {
 
     public Double getTotalPoints() {
         return totalPoints;
-    }
-
-    public void setTotalPoints(Double totalPoints) {
-        this.totalPoints = totalPoints;
     }
 
     @JsonProperty("title")
@@ -103,24 +111,12 @@ public class Travail implements Serializable {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
-    }
-
     public String getInstructions() {
         return instructions;
-    }
-
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
     }
 
     public String getStatus() {
@@ -135,16 +131,8 @@ public class Travail implements Serializable {
         return comment;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getSubmissionDate() {

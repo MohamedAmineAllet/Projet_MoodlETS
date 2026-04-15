@@ -94,6 +94,7 @@
                 android:id="@+id/txt_cours_quiz"
                 android:layout_width="wrap_content"
                 android:layout_height="14dp"
+                android:layout_marginStart="12dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="@string/txt_cours_travail"
                 android:textColor="@color/Carbon_70"

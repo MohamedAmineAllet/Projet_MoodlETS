@@ -19,17 +19,27 @@ import com.example.projet_moodlets.modele.entites.Quiz;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Adapteur personnalisé pour afficher une liste d'objets Quiz dans un ListView ou un Spinner.
+ * Gère l'affichage des scores, des dates et le filtrage dynamique.
+ */
 public class QuizAdapter extends ArrayAdapter<Quiz> {
 
     private List<Quiz> lesQuiz;
     private Context contexte;
-
     private int viewResourceId;
-
     private Resources ressources;
 
-    private TextView txtTitle, txtDate, txtCours, txtStatut,txtNote, txtScore;
+    // Références aux composants graphiques de la ligne (item)
+    private TextView txtTitle, txtDate, txtCours, txtStatut, txtNote, txtScore;
 
+    /**
+     * Constructeur de l'adapteur.
+     *
+     * @param context        Contexte de l'application.
+     * @param viewResourceId L'identifiant de la mise en page (layout) pour chaque ligne.
+     * @param quiz           La liste initiale des quiz à afficher.
+     */
     public QuizAdapter(@NonNull Context context, int viewResourceId, @NonNull List<Quiz> quiz) {
         super(context, viewResourceId, new ArrayList<>(quiz));
 
@@ -37,23 +47,32 @@ public class QuizAdapter extends ArrayAdapter<Quiz> {
         this.viewResourceId = viewResourceId;
         this.ressources = contexte.getResources();
 
-        this.lesQuiz =  new ArrayList<>(quiz);
+        this.lesQuiz = new ArrayList<>(quiz);
     }
 
+    /**
+     * Prépare et retourne la vue pour une ligne spécifique de la liste.
+     *
+     * @param position    Position de l'élément dans la liste.
+     * @param convertView Vue recyclée (si disponible).
+     * @param parent      Le parent auquel la vue sera attachée.
+     * @return La vue remplie avec les données du quiz.
+     */
     @SuppressLint("NewApi")
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = convertView;
 
-        if(view == null){
+        if (view == null) {
             LayoutInflater layoutInflater = (LayoutInflater) contexte.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(this.viewResourceId, parent, false);
         }
 
         final Quiz quiz = getItem(position);
 
-        if(quiz != null){
+        if (quiz != null) {
+            // Liaison des composants UI
             txtTitle = view.findViewById(R.id.txt_nom_quiz);
             txtDate = view.findViewById(R.id.txt_date_echeance_quiz);
             txtStatut = view.findViewById(R.id.txt_filtre_quiz);
@@ -62,39 +81,46 @@ public class QuizAdapter extends ArrayAdapter<Quiz> {
             txtScore = view.findViewById(R.id.txt_Score_Pourcentage_quiz);
 
 
-
-            if(quiz.getGrade() != null ){
+            // Gestion de l'affichage de la note (si disponible)
+            if (quiz.getGrade() != null) {
                 Double score = (quiz.getGrade() * 100) / quiz.getTotalPoints();
                 txtScore.setText(score.toString() + "%");
 
                 txtNote.setVisibility(View.VISIBLE);
                 txtScore.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 txtNote.setVisibility(View.GONE);
                 txtScore.setVisibility(View.GONE);
             }
 
+            // Remplissage des données textuelles
             txtTitle.setText(quiz.getTitle());
             txtDate.setText(quiz.getDueDate());
             txtStatut.setText(quiz.getStatus());
 
-
+            // Récupération du titre du cours via le Singleton
             String titreCours = CoursDaoSingleton.getInstance().getTitreParId(String.valueOf(quiz.getCourseId()));
             txtCours.setText(titreCours);
 
 
-        }return view;
+        }
+        return view;
     }
 
 
-    public void filtrer(String filtre){
+    /**
+     * Filtre la liste affichée selon le statut du quiz (ex: "Terminé", "À faire").
+     *
+     * @param filtre Le statut sélectionné ou "Tous les quiz".
+     */
+    public void filtrer(String filtre) {
         this.clear();
 
-        if(filtre.equalsIgnoreCase("Tous les quiz")){
+        if (filtre.equalsIgnoreCase("Tous les quiz")) {
             this.addAll(lesQuiz);
-        }else{
-            for(Quiz q : lesQuiz){
-                if(q.getStatus().equalsIgnoreCase(filtre)){
+        } else {
+            for (Quiz q : lesQuiz) {
+                if (q.getStatus().equalsIgnoreCase(filtre)) {
                     this.add(q);
                 }
             }
@@ -102,17 +128,26 @@ public class QuizAdapter extends ArrayAdapter<Quiz> {
         notifyDataSetChanged();
     }
 
-    public void rechercher(String rechercher){
+    /**
+     * Effectue une recherche textuelle sur les titres des quiz.
+     *
+     * @param rechercher La chaîne de caractères saisie par l'utilisateur.
+     */
+    public void rechercher(String rechercher) {
         this.clear();
 
-        if(rechercher.isEmpty()){
+        if (rechercher.isEmpty()) {
             this.addAll(lesQuiz);
-        }else{
+        } else {
             String query = rechercher.toLowerCase().trim();
-            for(Quiz q: lesQuiz){
+            for (Quiz q : lesQuiz) {
+                // 1. Récupérer le titre du quiz
                 String titre = q.getTitle().toLowerCase();
+                // 2. Récupérer le nom du cours associé
+                String nomCours = CoursDaoSingleton.getInstance().getTitreParId(String.valueOf(q.getCourseId())).toLowerCase();
 
-                if(titre.contains(query)){
+                // Vérifier si la recherche correspond à l'un ou l'autre
+                if (titre.contains(query) || nomCours.contains(query)) {
                     this.add(q);
                 }
             }

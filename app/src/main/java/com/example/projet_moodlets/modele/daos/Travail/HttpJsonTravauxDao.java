@@ -2,12 +2,14 @@ package com.example.projet_moodlets.modele.daos.Travail;
 
 import com.example.projet_moodlets.modele.entites.Travail;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONObject;
 
-import kotlin.NotImplementedError;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -15,30 +17,34 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-
+/**
+ * Implémentation du DAO pour la gestion des travaux (assignments) via une API JSON distante.
+ */
 public class HttpJsonTravauxDao implements TravauxDao {
 
     final String URL_POINT_ENTREE = "http://10.0.2.2:3000";
 
+    /**
+     * Récupère la liste de tous les travaux à partir du serveur.
+     *
+     * @return Une liste d'objets Travail.
+     */
     @Override
-    public List<Travail> getTravaux(){
+    public List<Travail> getTravaux() {
         OkHttpClient client = new OkHttpClient();
         Request requete = new Request.Builder().url(URL_POINT_ENTREE + "/assignments").build();
         Response response = null;
-        try{
+        try {
             response = client.newCall(requete).execute();
             ResponseBody responseBody = response.body();
             String jsonData = responseBody.string();
 
             ObjectMapper mapper = new ObjectMapper();
 
-            try{
+            try {
                 Travail[] tabTravaux = mapper.readValue(jsonData, Travail[].class);
                 return Arrays.asList(tabTravaux);
-            }catch(JsonProcessingException e){
+            } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
         } catch (IOException e) {
@@ -46,6 +52,12 @@ public class HttpJsonTravauxDao implements TravauxDao {
         }
     }
 
+    /**
+     * Envoie une requête PUT au serveur pour mettre à jour les informations d'un travail.
+     * Cette opération est effectuée de manière asynchrone dans un nouveau Thread.
+     *
+     * @param travail L'objet contenant les modifications à enregistrer.
+     */
     @Override
     public void modifier(Travail travail) {
         new Thread(() -> {
@@ -83,17 +95,18 @@ public class HttpJsonTravauxDao implements TravauxDao {
     }
 
 
-    @Override
-    public List<String> getTitresDesTravaux(){
-        throw new NotImplementedError("Méthode inutile dans cette application");
-    }
-
+    /**
+     * Récupère un travail spécifique par son identifiant unique.
+     *
+     * @param id L'identifiant du travail à récupérer.
+     * @return L'objet Travail correspondant.
+     */
     @Override
     public Travail getTravailParId(String id) {
         Travail travail = null;
         OkHttpClient client = new OkHttpClient();
         Request requete = new Request.Builder().url(URL_POINT_ENTREE + "/assignments/" + id).build();
-        try{
+        try {
             Response response = client.newCall(requete).execute();
             ResponseBody responseBody = response.body();
             String jsonData = responseBody.string();

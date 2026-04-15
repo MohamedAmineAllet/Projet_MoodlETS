@@ -23,6 +23,7 @@ public class HttpJsonCoursDao implements CoursDao {
     //serveur qui s’exécute sur l’ordinateur sur lequel s’exécute l’émulateur, elle
     //doit utiliser l’adresse spéciale "10.0.2.2"
     final String URL_POINT_ENTREE = "http://10.0.2.2:3000";
+    private static List<Cours> cours = null;
 
 
     @Override
@@ -58,8 +59,11 @@ public class HttpJsonCoursDao implements CoursDao {
             try{
                 //Conversion (désérialisation) du JSON
                 Cours[] tabCours = mapper.readValue(jsonData, Cours[].class);
+                List<Cours> liste = Arrays.asList(tabCours);
+
+                remplirCache(liste);
                 //retourne la liste des cours
-                return Arrays.asList(tabCours);
+                return liste;
 
             }catch (JsonProcessingException e){
                 throw new RuntimeException(e);
@@ -71,14 +75,25 @@ public class HttpJsonCoursDao implements CoursDao {
         }
     }
 
+
+
     @Override
     public String getTitreParId(String id) {
-        return "";
+        if (cours != null && id != null) {
+            for (Cours c : cours) {
+                // On compare l'ID du cours avec l'ID reçu
+                if (String.valueOf(c.getId()).equals(id)) {
+                    return c.getTitle();
+                }
+            }
+        }
+        return "Cours inconnu";
     }
 
     @Override
     public void remplirCache(List<Cours> nouveauxCours) {
-
+        cours = nouveauxCours;
+        Log.d("DEBUG_MOODLETS", "Cache mis à jour. Nombre de cours : " + (cours != null ? cours.size() : 0));
     }
 
 

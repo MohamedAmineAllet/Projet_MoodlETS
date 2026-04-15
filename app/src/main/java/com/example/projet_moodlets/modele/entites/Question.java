@@ -2,11 +2,18 @@ package com.example.projet_moodlets.modele.entites;
 
 import java.util.List;
 
+/**
+ * Représente une question individuelle au sein d'un quiz.
+ * Cette classe est utilisée pour le mapping JSON vers Java.
+ */
 public class Question {
     private int id, correctOption;
     private String question;
     private List<String> options;
 
+    /**
+     * Constructeur complet pour initialiser une question avec ses options.
+     */
     public Question(int id, int correctOption, String question, List<String> options) {
         this.id = id;
         this.correctOption = correctOption;
@@ -14,6 +21,9 @@ public class Question {
         this.options = options;
     }
 
+    /**
+     * Constructeur vide nécessaire pour la désérialisation par Jackson/ObjectMapper.
+     */
     public Question() {
         this.question = "";
         this.options = null;
@@ -27,27 +37,21 @@ public class Question {
         this.id = id;
     }
 
+    /**
+     * @return L'index de la réponse correcte dans la liste des options.
+     */
     public int getCorrectOption() {
         return correctOption;
-    }
-
-    public void setCorrectOption(int correctOption) {
-        this.correctOption = correctOption;
     }
 
     public String getQuestion() {
         return question;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
+    /**
+     * @return La liste des choix de réponses possibles.
+     */
     public List<String> getOptions() {
         return options;
-    }
-
-    public void setOptions(List<String> options) {
-        this.options = options;
     }
 }

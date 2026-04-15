@@ -5,18 +5,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+/**
+ * Représente un Quiz complet, incluant ses métadonnées et sa liste de questions.
+ * Utilise Jackson pour le mapping automatique des données du serveur.
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Quiz {
 
     private int id, courseId;
-
     private Double grade, totalPoints;
-
     private String title, status, dueDate, submissionDate;
 
     @JsonProperty("questions")
     private List<Question> questions;
 
+    /**
+     * Constructeur complet pour l'initialisation de l'objet.
+     */
     public Quiz(int id, int courseId, Double grade, Double totalPoints, String title, String status, String dueDate, String submissionDate, List<Question> questions) {
         this.id = id;
         this.courseId = courseId;
@@ -29,6 +34,9 @@ public class Quiz {
         this.questions = questions;
     }
 
+    /**
+     * Constructeur par défaut requis par Jackson pour la désérialisation.
+     */
     public Quiz() {
         this.title = "";
         this.status = "";
@@ -49,24 +57,12 @@ public class Quiz {
         return courseId;
     }
 
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public List<Question> getQuestion() {
-        return questions;
-    }
-
-    public void setQuestion(List<Question> question) {
-        this.questions = question;
     }
 
     public Double getGrade() {
@@ -97,10 +93,6 @@ public class Quiz {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
-    }
-
     public String getSubmissionDate() {
         return submissionDate;
     }
@@ -109,11 +101,10 @@ public class Quiz {
         this.submissionDate = submissionDate;
     }
 
+    /**
+     * @return La liste des questions associées à ce quiz.
+     */
     public List<Question> getQuestions() {
         return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
     }
 }

@@ -21,32 +21,30 @@ import com.example.projet_moodlets.modele.entites.Cours;
 import com.example.projet_moodlets.modele.entites.Quiz;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activité affichant les détails d'un quiz spécifique (titre, date, score, etc.).
+ * Permet à l'utilisateur de commencer le quiz ou de consulter sa note finale.
+ */
 public class QuizDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton btnRetour;
     private Button btnCommence;
-
     private TextView txtTitle, txtCours, txtStatut, txtDate, txtDateRemise, txtNbrQuestions, txtNote;
-
     private Quiz quiz;
-
     private ProgressBar progressBar;
-
     private ConstraintLayout clNote;
-
     private BottomNavigationView menu;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_details);
 
+        // Liaison des composants graphiques
         btnRetour = findViewById(R.id.btnRondFlecheGauche_Quiz_details);
-
         txtTitle = findViewById(R.id.txt_Nom_Quiz_Details);
         txtCours = findViewById(R.id.txt_Cours_Quiz_Details);
         txtStatut = findViewById(R.id.txt_statut_quiz_details);
@@ -65,15 +63,17 @@ public class QuizDetailsActivity extends AppCompatActivity implements View.OnCli
         btnCommence.setOnClickListener(this);
         btnRetour.setOnClickListener(this);
 
+        // Récupération de l'ID passé par MesQuizActivity
         Intent intent = getIntent();
         String idQuiz = intent.getStringExtra("ID_QUIZ");
-        try{
+        try {
             obtenirQuiz(idQuiz);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
 
+        // Configuration de la barre de navigation
         menu = findViewById(R.id.menu_navigation);
 
         ViewCompat.setOnApplyWindowInsetsListener(menu, (v, insets) -> {
@@ -81,26 +81,26 @@ public class QuizDetailsActivity extends AppCompatActivity implements View.OnCli
             return insets;
         });
 
-        menu.setOnItemSelectedListener(item ->{
+        menu.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.quiz) {
                 return true;
             }
 
-            if(id == R.id.cours){
+            if (id == R.id.cours) {
                 Intent iMesCours = new Intent(this, MesCoursActivity.class);
                 iMesCours.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(iMesCours);
                 overridePendingTransition(0, 0);
                 return true;
-            }else if(id == R.id.travaux){
+            } else if (id == R.id.travaux) {
                 Intent iMesTravaux = new Intent(this, MesTravauxActivity.class);
                 iMesTravaux.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(iMesTravaux);
                 overridePendingTransition(0, 0);
                 return true;
-            }else if(id == R.id.dashboard){
+            } else if (id == R.id.dashboard) {
                 Intent iDashboard = new Intent(this, MainActivity.class);
                 iDashboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(iDashboard);
@@ -114,12 +114,13 @@ public class QuizDetailsActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View view) {
-        if(view == btnRetour){
+        if (view == btnRetour) {
             Intent iQuiz = new Intent(this, MesQuizActivity.class);
             startActivity(iQuiz);
         }
 
-        if(view == btnCommence){
+        if (view == btnCommence) {
+            // Lancement de l'activité du test proprement dit
             Intent iQuizTest = new Intent(this, QuizTestActivity.class);
             String idQuizClique = String.valueOf(quiz.getId());
             iQuizTest.putExtra("ID_QUIZ", idQuizClique);
@@ -127,17 +128,26 @@ public class QuizDetailsActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    public void obtenirQuiz(String id){
-        new Thread(){
+    /**
+     * Charge les données du quiz asynchronement.
+     * Met à jour l'interface (UI) selon le statut du quiz (Terminé ou Non commencé).
+     */
+    public void obtenirQuiz(String id) {
+        new Thread() {
             @Override
-            public void run(){
+            public void run() {
+                // Vérification et remplissage du cache des cours si nécessaire
                 if (CoursDaoSingleton.getInstance().getTousLesCours().isEmpty()) {
                     List<Cours> liste = new HttpJsonCoursDao().getTousLesCours();
                     CoursDaoSingleton.getInstance().remplirCache(liste);
                 }
+                // Récupération du quiz par ID via le Singleton
                 quiz = QuizDaoSingleton.getInstance().getQuizParId(Integer.parseInt(id));
+                // Synchronisation avec SQLite pour récupérer/mettre à jour les notes locales
                 QuizLocalDao localDao = new QuizLocalDao(QuizDetailsActivity.this);
                 localDao.sauvegarderResultatQuiz(quiz);
+
+                // Mise à jour de l'UI sur le thread principal
                 QuizDetailsActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -154,13 +164,16 @@ public class QuizDetailsActivity extends AppCompatActivity implements View.OnCli
                         int nombreDeQuestions = quiz.getQuestions().size();
                         txtNbrQuestions.setText(nombreDeQuestions + " questions");
 
-                        if(quiz.getStatus().equalsIgnoreCase("Terminé")){
+                        // Logique d'affichage selon l'état du quiz
+                        if (quiz.getStatus().equalsIgnoreCase("Terminé")) {
                             btnCommence.setVisibility(View.GONE);
+
+                            // Calcul de la note en pourcentage pour la ProgressBar
                             int note = (int) ((quiz.getGrade() * 100) / quiz.getTotalPoints());
                             txtNote.setText(note + " %");
                             progressBar.setProgress(note);
                             progressBar.setProgressTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#46AAA2")));
-                        }else if(quiz.getStatus().equalsIgnoreCase("Non commencé")){
+                        } else if (quiz.getStatus().equalsIgnoreCase("Non commencé")) {
                             btnCommence.setVisibility(View.VISIBLE);
                         }
 
@@ -176,6 +189,7 @@ public class QuizDetailsActivity extends AppCompatActivity implements View.OnCli
         super.onResume();
         menu.setSelectedItemId(R.id.quiz);
 
+        // On rafraîchit les données au retour d'un QuizTest pour voir la nouvelle note
         Intent intent = getIntent();
         String idQuiz = intent.getStringExtra("ID_QUIZ");
 

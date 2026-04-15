@@ -28,39 +28,38 @@ import com.google.android.material.button.MaterialButton;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Activité gérant le déroulement d'un quiz interactif.
+ * Permet de naviguer entre les questions, de sélectionner des réponses et d'enregistrer le score final.
+ */
 public class QuizTestActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ImageButton btnRetour;
     private Button  btnChoix1, btnChoix2, btnChoix3, btnDerriere, btnProchain;
-
     private TextView txtTitle, txtCours, txtStatut, txtQuestion;
-
     private QuizAdapter adapteur;
-
     private Quiz quiz;
-
     private int questionActuelle = 0;
-    private int[] reponses;
+    private int[] reponses;// Stocke l'index de la réponse choisie pour chaque question
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_quiz);
 
+        // Liaison des composants UI
         btnRetour = findViewById(R.id.btnRondFlecheGauche_Quiz_test);
-
         btnChoix1 = findViewById(R.id.btn_choix_1);
         btnChoix2 = findViewById(R.id.btn_choix_2);
         btnChoix3 = findViewById(R.id.btn_choix_3);
-
         btnDerriere = findViewById(R.id.btn_retour);
         btnProchain = findViewById(R.id.btn_prochain);
-
         txtTitle = findViewById(R.id.txt_Nom_Quiz_test);
         txtCours = findViewById(R.id.txt_Cours_Quiz_test);
         txtStatut = findViewById(R.id.txt_statut_quiz_test);
         txtQuestion = findViewById(R.id.txt_Question);
 
+        // Enregistrement des écouteurs
         btnRetour.setOnClickListener(this);
         btnChoix1.setOnClickListener(this);
         btnChoix2.setOnClickListener(this);
@@ -68,6 +67,7 @@ public class QuizTestActivity extends AppCompatActivity implements View.OnClickL
         btnDerriere.setOnClickListener(this);
         btnProchain.setOnClickListener(this);
 
+        // Récupération des données du quiz via l'ID passé par l'Intent
         Intent intent = getIntent();
         String idQuiz = intent.getStringExtra("ID_QUIZ");
         try{
@@ -79,6 +79,7 @@ public class QuizTestActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+        // Gestion de la sélection des options
         if (v == btnChoix1){
             selectionnerBouton(btnChoix1, 0);
 
@@ -90,6 +91,7 @@ public class QuizTestActivity extends AppCompatActivity implements View.OnClickL
             selectionnerBouton(btnChoix3, 2);
         }
 
+        // Navigation entre les questions
         if (v == btnProchain) {
             if (questionActuelle < quiz.getQuestions().size() - 1) {
                 questionActuelle++;
@@ -107,6 +109,9 @@ public class QuizTestActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Marque visuellement le bouton sélectionné et enregistre le choix de l'utilisateur.
+     */
     private void selectionnerBouton(View boutonSelectionne, int indexReponse) {
         reponses[questionActuelle] = indexReponse;
 
@@ -123,6 +128,10 @@ public class QuizTestActivity extends AppCompatActivity implements View.OnClickL
             }
         }
     }
+
+    /**
+     * Réinitialise le style des boutons pour la nouvelle question.
+     */
     private void reinitialiserBordures() {
         com.google.android.material.button.MaterialButton[] boutons = {
                 (com.google.android.material.button.MaterialButton) btnChoix1,
@@ -136,6 +145,9 @@ public class QuizTestActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Charge les informations du quiz et initialise le tableau des réponses.
+     */
     public void obtenirQuiz(String id){
         new Thread(){
             @Override
@@ -158,7 +170,7 @@ public class QuizTestActivity extends AppCompatActivity implements View.OnClickL
                         txtStatut.setText(quiz.getStatus());
 
                         reponses = new int[quiz.getQuestions().size()];
-                        java.util.Arrays.fill(reponses, -1); // -1 signifie "pas encore répondu"
+                        java.util.Arrays.fill(reponses, -1); // Initialise à "aucune réponse"
                         afficherQuestion();
 
                     }
@@ -168,6 +180,9 @@ public class QuizTestActivity extends AppCompatActivity implements View.OnClickL
         }.start();
     }
 
+    /**
+     * Met à jour les textes des boutons et de la question selon l'index actuel.
+     */
     private void afficherQuestion(){
         if(quiz != null && quiz.getQuestions() != null){
             Question question = quiz.getQuestions().get(questionActuelle);
@@ -192,19 +207,23 @@ public class QuizTestActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Calcule le score final, l'enregistre dans SQLite et ferme l'activité.
+     */
     private void sauvegarderResultat(){
         int points =0;
         List<Question> questions = quiz.getQuestions();
 
+        // Calcul du nombre de bonnes réponses
         for (int i = 0; i < questions.size(); i++) {
             if (reponses[i] == questions.get(i).getCorrectOption()) {
                 points++;
             }
         }
 
+        // Persistance locale avec SQLite
         DbUtil dbUtil = new DbUtil(this);
         SQLiteDatabase db = dbUtil.getWritableDatabase();
-
 
         android.content.ContentValues values = new android.content.ContentValues();
 
@@ -215,7 +234,7 @@ public class QuizTestActivity extends AppCompatActivity implements View.OnClickL
         values.put(QuizContract.Colonnes.TOTAL_POINTS, (double) questions.size());
         values.put(QuizContract.Colonnes.SUBMISSION_DATE, "2026-04-11");
 
-        // "REPLACE" met à jour si l'ID existe déjà, sinon il l'insère
+        // Mise à jour ou insertion automatique
         db.insertWithOnConflict(QuizContract.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
         db.close();
 

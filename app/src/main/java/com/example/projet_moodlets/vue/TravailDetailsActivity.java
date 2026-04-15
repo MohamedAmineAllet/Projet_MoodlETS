@@ -1,7 +1,6 @@
 package com.example.projet_moodlets.vue;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,20 +25,19 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * Activité affichant les détails d'un travail (Assignment).
+ * Gère la remise d'un travail, l'affichage des notes et des commentaires du professeur.
+ */
 public class TravailDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton btnRetour;
     private Button btnRemise;
-
-    private TextView txtTitle,txtCours, txtStatut, txtType, txtDate, txtDescription, txtInstructions, txtNote, txtVotreNote, txtLabelCommentaire, txtNomCommentaire, txtCommentaire, txtDateRemis;
-
+    private TextView txtTitle, txtCours, txtStatut, txtType, txtDate, txtDescription, txtInstructions, txtNote, txtVotreNote, txtLabelCommentaire, txtNomCommentaire, txtCommentaire, txtDateRemis;
     private Travail travail;
-
     private ProgressBar progressBar;
-
     private ConstraintLayout clNote;
     private LinearLayout llCommentaire, llRemise, llUrl, llMessage;
-
     private BottomNavigationView menu;
 
     @Override
@@ -47,6 +45,7 @@ public class TravailDetailsActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_travail_details);
 
+        // Initialisation de tous les composants UI
         btnRetour = findViewById(R.id.btnRondFlecheGauche_Travail_details);
         btnRemise = findViewById(R.id.btn_Remise);
 
@@ -77,41 +76,42 @@ public class TravailDetailsActivity extends AppCompatActivity implements View.On
         btnRetour.setOnClickListener(this);
         btnRemise.setOnClickListener(this);
 
+        // Récupération de l'ID du travail passé en paramètre
         Intent intent = getIntent();
         String idTravail = intent.getStringExtra("ID_TRAVAIL");
-        try{
+        try {
             obtenirTravail(idTravail);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
+        // Configuration de la navigation
         menu = findViewById(R.id.menu_navigation);
-
         ViewCompat.setOnApplyWindowInsetsListener(menu, (v, insets) -> {
             v.setPadding(0, 0, 0, 0);
             return insets;
         });
 
-        menu.setOnItemSelectedListener(item ->{
+        menu.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.travaux) {
                 return true;
             }
 
-            if(id == R.id.cours){
+            if (id == R.id.cours) {
                 Intent iMesCours = new Intent(this, MesCoursActivity.class);
                 iMesCours.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(iMesCours);
                 overridePendingTransition(0, 0);
                 return true;
-            }else if(id == R.id.dashboard){
+            } else if (id == R.id.dashboard) {
                 Intent iDashboard = new Intent(this, MainActivity.class);
                 iDashboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(iDashboard);
                 overridePendingTransition(0, 0);
                 return true;
-            }else if(id == R.id.quiz){
+            } else if (id == R.id.quiz) {
                 Intent iMesQuiz = new Intent(this, MesQuizActivity.class);
                 iMesQuiz.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(iMesQuiz);
@@ -124,12 +124,14 @@ public class TravailDetailsActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
-        if(view == btnRetour){
+        // Retourne à l'activité précédente (MesTravauxActivity)
+        if (view == btnRetour) {
             Intent iTravaux = new Intent(this, MesTravauxActivity.class);
             startActivity(iTravaux);
         }
 
-        if (view == btnRemise){
+        if (view == btnRemise) {
+            // Action de remise du travail
             travail.setStatus("Remis");
             travail.setSubmissionDate(LocalDate.now().toString());
             new Thread() {
@@ -137,6 +139,7 @@ public class TravailDetailsActivity extends AppCompatActivity implements View.On
                 public void run() {
 
                     try {
+                        // Mise à jour via l'API (via le Singleton)
                         TravauxDaoSingleton.getInstance().modifier(travail);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -146,19 +149,22 @@ public class TravailDetailsActivity extends AppCompatActivity implements View.On
 
                     runOnUiThread(() -> {
                         Toast.makeText(TravailDetailsActivity.this, "Travail remis", Toast.LENGTH_SHORT).show();
-                        obtenirTravail(String.valueOf(travail.getId()));
+                        obtenirTravail(String.valueOf(travail.getId())); // Rafraîchir l'affichage
                     });
                 }
             }.start();
         }
     }
 
-    public void obtenirTravail(String id){
-        new Thread(){
+    /**
+     * Récupère les données du travail et adapte l'UI selon son état (À faire, Remis ou Corrigé).
+     */
+    public void obtenirTravail(String id) {
+        new Thread() {
             @Override
-            public void run(){
+            public void run() {
                 travail = TravauxDaoSingleton.getInstance().getTravailParId(id);
-               TravailDetailsActivity.this.runOnUiThread(new Runnable() {
+                TravailDetailsActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         txtTitle.setText(travail.getTitle());
@@ -168,10 +174,11 @@ public class TravailDetailsActivity extends AppCompatActivity implements View.On
                         txtDescription.setText(travail.getDescription());
                         txtInstructions.setText(travail.getInstructions());
 
+                        // Affichage du nom du cours associé
                         String titreCours = CoursDaoSingleton.getInstance().getTitreParId(String.valueOf(travail.getCourseId()));
                         txtCours.setText(titreCours);
 
-
+                        // LOGIQUE D'AFFICHAGE DYNAMIQUE SELON LE STATUT
                         if (travail.getStatus().equals("Remis") || travail.getStatus().equals("Corrigé") && travail.getSubmissionDate() != null) {
                             llRemise.setVisibility(View.VISIBLE);
                             txtDateRemis.setText(travail.getSubmissionDate());
@@ -181,12 +188,16 @@ public class TravailDetailsActivity extends AppCompatActivity implements View.On
                             llUrl.setVisibility(View.GONE);
                             llMessage.setVisibility(View.GONE);
                             btnRemise.setVisibility(View.GONE);
-                            if(travail.getStatus().equals("Corrigé")){
+
+                            // Calcul et affichage de la note
+                            if (travail.getStatus().equals("Corrigé")) {
                                 int note = (int) ((travail.getGrade() * 100) / travail.getTotalPoints());
                                 txtNote.setText(note + " %");
                                 progressBar.setProgress(note);
                                 progressBar.setProgressTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#46AAA2")));
-                                if(travail.getComment() != null){
+
+                                // Affichage du commentaire du professeur s'il existe
+                                if (travail.getComment() != null) {
                                     llCommentaire.setVisibility(View.VISIBLE);
                                     txtLabelCommentaire.setVisibility(View.VISIBLE);
                                     txtNomCommentaire.setText("Correction " + travail.getTitle());
@@ -195,6 +206,7 @@ public class TravailDetailsActivity extends AppCompatActivity implements View.On
                             }
 
                         } else {
+                            // Statut "À faire" ou "En retard"
                             llRemise.setVisibility(View.GONE);
 
                             clNote.setVisibility(View.GONE);
@@ -209,7 +221,7 @@ public class TravailDetailsActivity extends AppCompatActivity implements View.On
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         menu.setSelectedItemId(R.id.travaux);
 
