@@ -74,6 +74,16 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline41"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
+    <Button
+        android:id="@+id/btn_dashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="212dp"
+        android:layout_marginEnd="12dp"
+        android:text="DashBoard"
+        app:layout_constraintEnd_toStartOf="@+id/guideline41"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline42"
         android:layout_width="wrap_content"

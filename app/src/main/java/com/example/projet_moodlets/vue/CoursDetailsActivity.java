@@ -134,7 +134,7 @@ public class CoursDetailsActivity extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 }else if(id == R.id.profil){
-                    Intent iMonProfil = new Intent(this, MonProfile.class);
+                    Intent iMonProfil = new Intent(this, MonProfileActivity.class);
                     iMonProfil.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(iMonProfil);
                     overridePendingTransition(0, 0);

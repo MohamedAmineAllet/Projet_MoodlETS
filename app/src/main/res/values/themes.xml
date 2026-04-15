@@ -5,5 +5,8 @@
     <style name="Theme.Projet_MoodlETS" parent="Base.Theme.Projet_MoodlETS">
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
 
 </resources>
