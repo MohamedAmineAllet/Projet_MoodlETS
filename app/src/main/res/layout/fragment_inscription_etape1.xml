@@ -63,17 +63,36 @@
         android:inputType="textEmailAddress"
         android:textSize="14sp"
         android:layout_marginBottom="20dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="4dp">
 
-    <Button
-        android:id="@+id/btnSuivant"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_gravity="end"
-        android:text="Suivant →"
-        android:textColor="#1A1A2E"
-        android:backgroundTint="#F5E6C8"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        style="@style/Widget.MaterialComponents.Button"/>
+        <Button
+            android:id="@+id/btnRetourConnexion"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="start"
+            android:backgroundTint="#E0DFEF"
+            android:paddingStart="24dp"
+            android:paddingEnd="12dp"
+            android:text="Retour Connexion"
+            style="@style/Widget.MaterialComponents.Button"
+            android:textColor="#1A1A2E" />
+
+        <Button
+            android:id="@+id/btnSuivant"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="end"
+            android:backgroundTint="#F5E6C8"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="Suivant"
+            android:textColor="#1A1A2E" />
+
+    </LinearLayout>
 
 </LinearLayout>

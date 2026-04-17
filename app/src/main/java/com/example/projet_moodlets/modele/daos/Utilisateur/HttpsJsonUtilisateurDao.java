@@ -139,9 +139,9 @@ public class HttpsJsonUtilisateurDao implements UtilisateurDao {
                 obj.put("prenom",utilisateurAModifier.getPrenom());
                 obj.put("telephone",utilisateurAModifier.getTelephone());
                 obj.put("photoUrl",utilisateurAModifier.getPhotoUrl());
-                obj.put("enrolledCourseIds",utilisateurAModifier.getEnrolledCourseIds());
-                obj.put("quizResults",utilisateurAModifier.getQuizResults());
-                obj.put("completedAssignmentIds",utilisateurAModifier.getCompletedAssignmentIds());
+                obj.put("enrolledCourseIds",new JSONArray(utilisateurAModifier.getEnrolledCourseIds()) );
+                obj.put("quizResults",new JSONArray(utilisateurAModifier.getQuizResults()) );
+                obj.put("completedAssignmentIds",new JSONArray(utilisateurAModifier.getCompletedAssignmentIds()));
 
                 RequestBody body = RequestBody.create(obj.toString(),JSON);
                 String url = URL_POINT_ENTREE + "/users/" + utilisateurAModifier.getId();
