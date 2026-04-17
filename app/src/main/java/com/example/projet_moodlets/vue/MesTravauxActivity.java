@@ -97,6 +97,9 @@ public class MesTravauxActivity extends AppCompatActivity implements AdapterView
         // Gestion du menu de navigation
         menu = findViewById(R.id.menu_navigation);
 
+        menu.setSelectedItemId(R.id.travaux);
+
+
         ViewCompat.setOnApplyWindowInsetsListener(menu, (v, insets) -> {
             v.setPadding(0, 0, 0, 0);
             return insets;
@@ -116,7 +119,7 @@ public class MesTravauxActivity extends AppCompatActivity implements AdapterView
                 overridePendingTransition(0, 0);
                 return true;
             } else if (id == R.id.dashboard) {
-                Intent iDashboard = new Intent(this, MainActivity.class);
+                Intent iDashboard = new Intent(this, DashBoardActivity.class);
                 iDashboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(iDashboard);
                 overridePendingTransition(0, 0);
@@ -125,6 +128,12 @@ public class MesTravauxActivity extends AppCompatActivity implements AdapterView
                 Intent iMesQuiz = new Intent(this, MesQuizActivity.class);
                 iMesQuiz.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(iMesQuiz);
+                overridePendingTransition(0, 0);
+                return true;
+            }else if (id == R.id.profil){
+                Intent iProfil = new Intent(this,MonProfileActivity.class);
+                iProfil.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(iProfil);
                 overridePendingTransition(0, 0);
                 return true;
             }

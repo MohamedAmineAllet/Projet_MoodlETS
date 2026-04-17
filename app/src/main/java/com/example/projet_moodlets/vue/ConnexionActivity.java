@@ -23,6 +23,7 @@ public class ConnexionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connexion);
+        SessionManager session = new SessionManager(this);
 
         etEmail       = findViewById(R.id.etEmail);
         etPassword    = findViewById(R.id.etPassword);
@@ -30,12 +31,22 @@ public class ConnexionActivity extends AppCompatActivity {
         tvErreur      = findViewById(R.id.tvErreur);
         tvInscription = findViewById(R.id.tvInscription);
 
+        /* Ici on vérifie si il y a un utilisateur connecté dans le cas où l'utilisateur est
+        connecté on redirige directement vers le tableau de bord.*/
+        if (session.estConnecte()){
+            allerAccueil();
+        }
         btnConnexion.setOnClickListener(v -> tenterConnexion());
 
         tvInscription.setOnClickListener(v ->
                 startActivity(new Intent(this, InscriptionActivity.class)));
     }
 
+    /**
+     * Cette méthode permet de voir si les informations que l'utilisateur rentre existe dans la base
+     * de donnée (dans notre cas on utilise un serveur JSON) et dans le cas où il n'existe pas
+     * on affiche qu'il n'existe pas d'utilisateur avec ces informations.
+     */
     private void tenterConnexion() {
         String email    = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
@@ -86,11 +97,14 @@ public class ConnexionActivity extends AppCompatActivity {
         }).start();
     }
 
+    /**
+     * Redirige vers la page d'acceuil.
+     */
     private void allerAccueil() {
         tvErreur.setVisibility(View.GONE);
         //A mettre le dashboard quand se sera bon.
 
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, DashBoardActivity.class));
         finish();
     }
 

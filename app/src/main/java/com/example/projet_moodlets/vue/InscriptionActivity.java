@@ -55,6 +55,9 @@ public class InscriptionActivity extends AppCompatActivity {
         tvEtapeLabel.setText(labels[position]);
     }
 
+    /**
+     * Cette méthode permet d'ajouter un utilisateur à la base de donnée qui est le JSON serveur.
+     */
     public void soumettre() {
         new Thread(() -> {
             try {

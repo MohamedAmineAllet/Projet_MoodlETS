@@ -63,4 +63,18 @@ public class DashBoardActivity extends AppCompatActivity {
             return false;
         });
     }
+
+    /**
+     * Cette méthode permet de forcer que lorsque dans le menu on clique sur une icon on force
+     * l'affichage que l'icon soit cliquée.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomNavigationView menuNavigation = findViewById(R.id.menu_navigation);
+        if (menuNavigation != null) {
+            menuNavigation.setSelectedItemId(R.id.dashboard);
+        }
+    }
+
 }

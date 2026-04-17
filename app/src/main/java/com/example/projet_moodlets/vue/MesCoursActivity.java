@@ -60,8 +60,10 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
          */
 
         //on lie la variable a son element dans le layout
+
         menuNavigation = findViewById(R.id.menu_navigation);
 
+        menuNavigation.setSelectedItemId(R.id.cours);
         ViewCompat.setOnApplyWindowInsetsListener(menuNavigation, (v, insets) -> {
             v.setPadding(0, 0, 0, 0);
             return insets;
@@ -83,7 +85,7 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
                 overridePendingTransition(0, 0);
                 return true;
             }else if(id == R.id.dashboard){
-                Intent iDashboard = new Intent(this, MainActivity.class);
+                Intent iDashboard = new Intent(this, DashBoardActivity.class);
                 iDashboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(iDashboard);
                 overridePendingTransition(0, 0);

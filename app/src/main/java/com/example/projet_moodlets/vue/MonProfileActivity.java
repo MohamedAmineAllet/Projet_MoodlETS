@@ -89,6 +89,10 @@ public class MonProfileActivity extends AppCompatActivity {
         btnDeconnexion = findViewById(R.id.btnDeconnexion);
     }
 
+    /**
+     * Cette méthode permet de gerer la logique du Menu en bas de page qui redirige vers la
+     * page que représente l'icon dans laquelle on clique dessus.
+     */
     private void configurerNavigation() {
         BottomNavigationView menuNavigation = findViewById(R.id.menu_navigation);
         menuNavigation.setSelectedItemId(R.id.profil);
@@ -128,6 +132,18 @@ public class MonProfileActivity extends AppCompatActivity {
         if (user.getPhotoUrl() != null && !user.getPhotoUrl().isEmpty()) {
             Glide.with(this).load(user.getPhotoUrl()).circleCrop()
                     .placeholder(R.drawable.circle_gray).error(R.drawable.circle_gray).into(imageProfile);
+        }
+    }
+    /**
+     * Cette méthode permet de forcer que lorsque dans le menu on clique sur une icon on force
+     * l'affichage que l'icon soit cliquée.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomNavigationView menuNavigation = findViewById(R.id.menu_navigation);
+        if (menuNavigation != null) {
+            menuNavigation.setSelectedItemId(R.id.profil);
         }
     }
 }

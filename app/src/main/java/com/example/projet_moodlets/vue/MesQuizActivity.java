@@ -91,6 +91,8 @@ public class MesQuizActivity extends AppCompatActivity implements AdapterView.On
         // Configuration de la navigation basse (BottomNavigationView)
         menu = findViewById(R.id.menu_navigation);
 
+        menu.setSelectedItemId(R.id.quiz);
+
         // Correction du padding pour l'encoche (Edge-to-Edge)
         ViewCompat.setOnApplyWindowInsetsListener(menu, (v, insets) -> {
             v.setPadding(0, 0, 0, 0);
@@ -118,9 +120,16 @@ public class MesQuizActivity extends AppCompatActivity implements AdapterView.On
                 overridePendingTransition(0, 0);
                 return true;
             } else if (id == R.id.dashboard) {
-                Intent iDahsboard = new Intent(this, MainActivity.class);
+                Intent iDahsboard = new Intent(this, DashBoardActivity.class);
                 iDahsboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(iDahsboard);
+                overridePendingTransition(0, 0);
+                return true;
+            }
+            else if(id == R.id.profil){
+                Intent iProfil = new Intent(this, MonProfileActivity.class);
+                iProfil.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(iProfil);
                 overridePendingTransition(0, 0);
                 return true;
             }

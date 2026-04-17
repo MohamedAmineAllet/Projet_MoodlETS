@@ -106,6 +106,9 @@ public class CoursDetailsActivity extends AppCompatActivity {
                 return insets;
             });
 
+            menuNavigation.setSelectedItemId(R.id.cours);
+
+
             menuNavigation.setOnItemSelectedListener(item ->{
                 int id = item.getItemId();
 
@@ -122,7 +125,7 @@ public class CoursDetailsActivity extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 }else if(id == R.id.dashboard){
-                    Intent iDashboard = new Intent(this, MainActivity.class);
+                    Intent iDashboard = new Intent(this, DashBoardActivity.class);
                     iDashboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(iDashboard);
                     overridePendingTransition(0, 0);
@@ -198,5 +201,18 @@ public class CoursDetailsActivity extends AppCompatActivity {
         txtJour.setText(a.getDate());
         txtEnseigant.setText(a.getAuteur());
         txtContenu.setText(a.getDescription_annonce());
+    }
+
+    /**
+     * Cette méthode permet de forcer que lorsque dans le menu on clique sur une icon on force
+     * l'affichage que l'icon soit cliquée.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomNavigationView menuNavigation = findViewById(R.id.menu_navigation);
+        if (menuNavigation != null) {
+            menuNavigation.setSelectedItemId(R.id.cours);
+        }
     }
 }
