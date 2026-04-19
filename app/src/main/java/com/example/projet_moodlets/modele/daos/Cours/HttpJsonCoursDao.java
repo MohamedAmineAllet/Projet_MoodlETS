@@ -25,7 +25,6 @@ public class HttpJsonCoursDao implements CoursDao {
     final String URL_POINT_ENTREE = "http://10.0.2.2:3000";
     private static List<Cours> cours = null;
 
-
     @Override
     public List<Cours> getTousLesCours() {
         //Création d’un client OkHttp qui permettra
@@ -74,7 +73,6 @@ public class HttpJsonCoursDao implements CoursDao {
             throw new RuntimeException(e);
         }
     }
-
 
 
     @Override

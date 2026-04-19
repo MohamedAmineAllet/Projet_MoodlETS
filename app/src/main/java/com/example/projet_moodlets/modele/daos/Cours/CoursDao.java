@@ -10,6 +10,7 @@ public interface CoursDao {
 
     List<Cours> getTousLesCours();
 
+
     String getTitreParId(String id);
 
     void remplirCache(List<Cours> nouveauxCours);

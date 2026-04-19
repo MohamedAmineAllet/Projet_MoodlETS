@@ -6,6 +6,7 @@ import com.example.projet_moodlets.modele.entites.Cours;
 import com.example.projet_moodlets.modele.entites.Travail;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CoursLocalDao implements CoursDao{
@@ -16,6 +17,7 @@ public class CoursLocalDao implements CoursDao{
     public List<Cours> getTousLesCours() {
         return cours;
     }
+
 
     @Override
     public String getTitreParId(String id) {

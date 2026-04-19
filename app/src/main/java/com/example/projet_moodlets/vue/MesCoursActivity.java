@@ -13,11 +13,14 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 
+import com.example.projet_moodlets.EtatConnexion.SessionManager;
 import com.example.projet_moodlets.R;
 import com.example.projet_moodlets.modele.daos.Cours.CoursDaoSingleton;
 import com.example.projet_moodlets.modele.daos.Travail.TravauxDaoSingleton;
+import com.example.projet_moodlets.modele.daos.Utilisateur.UtilisateurDaoSingleton;
 import com.example.projet_moodlets.modele.entites.Cours;
 import com.example.projet_moodlets.modele.entites.Travail;
+import com.example.projet_moodlets.modele.entites.Utilisateur;
 import com.example.projet_moodlets.vue.adapteurs.CoursAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -159,21 +162,38 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
     }
 
     private void obtenirCours() throws IOException {
+        SessionManager session = new SessionManager(this);
+        String userId = session.getUserId();
         new Thread(() -> {
             try {
+                Utilisateur moi = UtilisateurDaoSingleton.getUtilisateurSingleton().getUtilisateurParId(userId);
                 List<Cours> coursRecuperes = CoursDaoSingleton.getInstance().getTousLesCours();
-                runOnUiThread(() -> {
-                    if (coursRecuperes != null) {
-                        listeDeCours.clear();
-                        listeDeCours.addAll(coursRecuperes);
 
-                        adapteur.clear();
-                        adapteur.addAll(listeDeCours);
-                        adapteur.notifyDataSetChanged();
+                if (moi != null && coursRecuperes != null) {
+                    // recupere la liste des id des cours inscrit
+                    List<String> mesIdsInscrits = moi.getEnrolledCourseIds();
+                    List<Cours> coursFiltres = new ArrayList<>();
 
-
+                    // on compare et garde que less cours dont l'utilisateure est inscrit
+                    for (Cours c : coursRecuperes) {
+                        if (mesIdsInscrits != null && mesIdsInscrits.contains(c.getId())) {
+                            coursFiltres.add(c);
+                        }
                     }
-                });
+
+                    runOnUiThread(() -> {
+                        if (coursRecuperes != null) {
+                            listeDeCours.clear();
+                            listeDeCours.addAll(coursRecuperes);
+
+                            adapteur.clear();
+                            adapteur.addAll(listeDeCours);
+                            adapteur.notifyDataSetChanged();
+
+
+                        }
+                    });
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
