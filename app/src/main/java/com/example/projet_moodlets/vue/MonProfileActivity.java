@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.projet_moodlets.EtatConnexion.SessionManager;
@@ -96,6 +97,12 @@ public class MonProfileActivity extends AppCompatActivity {
     private void configurerNavigation() {
         BottomNavigationView menuNavigation = findViewById(R.id.menu_navigation);
         menuNavigation.setSelectedItemId(R.id.profil);
+
+        menuNavigation = findViewById(R.id.menu_navigation);
+        ViewCompat.setOnApplyWindowInsetsListener(menuNavigation, (v, insets) -> {
+            v.setPadding(0, 0, 0, 0);
+            return insets;
+        });
 
         menuNavigation.setOnItemSelectedListener(item -> {
             int id = item.getItemId();

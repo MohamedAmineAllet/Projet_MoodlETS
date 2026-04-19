@@ -14,7 +14,7 @@ import com.example.projet_moodlets.modele.entites.Utilisateur;
 
 public class Etape2Fragement extends Fragment {
 
-    private EditText etTelephone, etPassword, etEmailConfirm;
+    private EditText etTelephone, etPassword;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -23,12 +23,11 @@ public class Etape2Fragement extends Fragment {
 
         etTelephone   = view.findViewById(R.id.etTelephone);
         etPassword    = view.findViewById(R.id.etPassword);
-        etEmailConfirm = view.findViewById(R.id.etEmailConfirm);
 
         view.findViewById(R.id.btnPrecedent).setOnClickListener(v ->
                 ((InscriptionActivity) requireActivity()).allerAEtape(0));
 
-        view.findViewById(R.id.btnSuivant).setOnClickListener(v -> {
+        view.findViewById(R.id.btnConfirmer).setOnClickListener(v -> {
             if (valider()) {
                 Utilisateur user = ((InscriptionActivity) requireActivity()).getUserInscription();
                 user.setTelephone(etTelephone.getText().toString().trim());

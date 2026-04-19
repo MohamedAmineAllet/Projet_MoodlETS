@@ -31,6 +31,7 @@ public class InscriptionActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private TextView tvEtapeLabel;
     private Utilisateur userInscription = new Utilisateur();
+    private TextView tvConnexion;
 
     private final String[] labels = {
             "1/3  Mes informations générales",
@@ -45,9 +46,13 @@ public class InscriptionActivity extends AppCompatActivity {
 
         viewPager    = findViewById(R.id.viewPager);
         tvEtapeLabel = findViewById(R.id.tvEtapeLabel);
+        tvConnexion = findViewById(R.id.tvConnexion);
 
         viewPager.setAdapter(new InscriptionPageAdapter(this));
         viewPager.setUserInputEnabled(false); // navigation par boutons uniquement
+
+        tvConnexion.setOnClickListener(v ->
+                startActivity(new Intent(this, ConnexionActivity.class)));
     }
 
     public void allerAEtape(int position) {

@@ -1,6 +1,5 @@
 package com.example.projet_moodlets.vue.fragementsInscription;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 
 import com.example.projet_moodlets.R;
-import com.example.projet_moodlets.vue.ConnexionActivity;
 import com.example.projet_moodlets.vue.InscriptionActivity;
 import com.example.projet_moodlets.modele.entites.Utilisateur;
 
@@ -26,7 +24,7 @@ public class Etape1Fragement extends Fragment {
         etNom    = view.findViewById(R.id.etNom);
         etEmail  = view.findViewById(R.id.etEmail);
 
-        view.findViewById(R.id.btnSuivant).setOnClickListener(v -> {
+        view.findViewById(R.id.btnConfirmer).setOnClickListener(v -> {
             if (valider()) {
                 // Sauvegarder dans l'objet partagé
                 Utilisateur user = ((InscriptionActivity) requireActivity()).getUserInscription();
@@ -37,13 +35,7 @@ public class Etape1Fragement extends Fragment {
                 ((InscriptionActivity) requireActivity()).allerAEtape(1);
             }
         });
-        view.findViewById(R.id.btnRetourConnexion).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent iRetourConnexion = new Intent(requireActivity(), ConnexionActivity.class);
-                startActivity(iRetourConnexion);
-            }
-        });
+
 
         return view;
     }

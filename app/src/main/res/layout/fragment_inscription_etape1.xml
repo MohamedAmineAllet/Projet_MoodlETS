@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -7,91 +9,90 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/poppins"
         android:text="Mon prénom"
-        android:textSize="13sp"
-        android:textColor="#1A1A2E"
-        android:layout_marginBottom="6dp"/>
+        android:textColor="@color/Carbon"
+        android:textSize="14sp" />
 
     <EditText
         android:id="@+id/etPrenom"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginBottom="14dp"
         android:background="@drawable/input_background"
+        android:fontFamily="@font/poppins_light"
         android:hint="Entre ton prénom"
+        android:inputType="textPersonName"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:textSize="14sp"
-        android:inputType="textPersonName"
-        android:layout_marginBottom="14dp"/>
+        android:textColor="@color/Carbon_70"
+        android:textSize="12sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/poppins"
         android:text="Mon nom"
-        android:textSize="13sp"
-        android:textColor="#1A1A2E"
-        android:layout_marginBottom="6dp"/>
+        android:textColor="@color/Carbon"
+        android:textSize="14sp" />
 
     <EditText
         android:id="@+id/etNom"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginBottom="14dp"
         android:background="@drawable/input_background"
+        android:fontFamily="@font/poppins_light"
         android:hint="Entre ton nom"
+        android:inputType="textPersonName"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:textSize="14sp"
-        android:inputType="textPersonName"
-        android:layout_marginBottom="14dp"/>
+        android:textColor="@color/Carbon_70"
+        android:textSize="12sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/poppins"
         android:text="Mon adresse courriel"
-        android:textSize="13sp"
-        android:textColor="#1A1A2E"
-        android:layout_marginBottom="6dp"/>
+        android:textColor="@color/Carbon"
+        android:textSize="14sp" />
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/input_background"
+        android:fontFamily="@font/poppins_light"
         android:hint="Entre ton adresse courriel"
+        android:inputType="textEmailAddress"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:inputType="textEmailAddress"
-        android:textSize="14sp"
-        android:layout_marginBottom="20dp"/>
+        android:textColor="@color/Carbon_70"
+        android:textSize="12sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="4dp">
+        android:layout_marginBottom="4dp"
+        android:gravity="end"
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnRetourConnexion"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_gravity="start"
-            android:backgroundTint="#E0DFEF"
-            android:paddingStart="24dp"
-            android:paddingEnd="12dp"
-            android:text="Retour Connexion"
-            style="@style/Widget.MaterialComponents.Button"
-            android:textColor="#1A1A2E" />
-
-        <Button
-            android:id="@+id/btnSuivant"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_gravity="end"
-            android:backgroundTint="#F5E6C8"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
+            android:id="@+id/btnConfirmer"
+            android:layout_width="116dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/Peche_1"
+            android:elevation="8dp"
+            android:fontFamily="@font/poppins"
             android:text="Suivant"
-            android:textColor="#1A1A2E" />
+            android:textColor="@color/Carbon"
+            android:textSize="12sp"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
 

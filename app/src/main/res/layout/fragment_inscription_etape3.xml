@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <!-- Aperçu de la photo choisie -->
+
     <ImageView
         android:id="@+id/imgApercu"
         android:layout_width="100dp"
@@ -16,54 +18,71 @@
 
     <!-- Texte indicatif -->
     <TextView
+        android:id="@+id/tvPhotoStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/poppins_light"
         android:text="Aucune photo sélectionnée"
-        android:id="@+id/tvPhotoStatus"
-        android:textSize="13sp"
-        android:textColor="#888888"
-        android:layout_marginBottom="16dp"/>
+        android:textColor="@color/Carbon_70"
+        android:textSize="12sp" />
 
     <!-- Bouton galerie -->
     <Button
         android:id="@+id/btnGalerie"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="Choisir depuis la galerie"
-        android:textColor="#1A1A2E"
-        android:backgroundTint="#E0DFEF"
-        android:layout_marginBottom="24dp"
-        style="@style/Widget.MaterialComponents.Button"/>
+        android:layout_height="40dp"
+        android:layout_gravity="left"
+        android:backgroundTint="@color/Peche_1"
+        android:elevation="8dp"
+        android:fontFamily="@font/poppins"
+        android:text="Choisir depuis la gallerie"
+        android:textColor="@color/Carbon"
+        android:textSize="12sp"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Space
+        android:layout_width="12dp"
+        android:layout_height="24dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="end">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="4dp"
+        android:gravity="fill_horizontal"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnPrecedent"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:text="← Précédent"
-            android:textColor="#1A1A2E"
-            android:backgroundTint="#E0DFEF"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:layout_marginEnd="8dp"
-            style="@style/Widget.MaterialComponents.Button"/>
+            android:layout_height="40dp"
+            android:layout_gravity="clip_vertical"
+            android:backgroundTint="@color/Lilac_1"
+            android:fontFamily="@font/poppins"
+            android:paddingStart="0dp"
+            android:text="@string/retour"
+            android:textColor="@color/Carbon"
+            android:textSize="12sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/btnConfirmer"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:text="Confirmer →"
-            android:textColor="#1A1A2E"
-            android:backgroundTint="#F5E6C8"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            style="@style/Widget.MaterialComponents.Button"/>
+            tools:ignore="TouchTargetSizeCheck"
+            android:layout_width="116dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:backgroundTint="@color/Peche_1"
+            android:elevation="8dp"
+            android:fontFamily="@font/poppins"
+            android:text="Suivant"
+            android:textColor="@color/Carbon"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
