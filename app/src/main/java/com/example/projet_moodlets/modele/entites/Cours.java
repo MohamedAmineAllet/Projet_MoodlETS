@@ -18,13 +18,16 @@ public class Cours implements Serializable {
     private List<Horaire> horaire;
 
     private List<Travail> assignments;
-
+    private List<Quiz> quizzes;
 
 
     //Constructeur
     public Cours() {}
 
     // Getters et Setters
+    public List<Quiz> getQuizzes() {
+        return quizzes;
+    }
 
     public List<Travail> getassignments() {
         return assignments;

@@ -1,10 +1,12 @@
 package com.example.projet_moodlets.modele.entites;
 
+import java.io.Serializable;
+
 /**
  * Représente le résultat simplifié d'un quiz terminé par l'utilisateur.
  * Utilisé pour le transfert de données (DTO) vers le serveur JSON.
  */
-public class QuizResult {
+public class QuizResult implements Serializable {
     private String quizId;
     private int score, total;
 

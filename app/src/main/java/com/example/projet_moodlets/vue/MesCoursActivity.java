@@ -15,9 +15,11 @@ import androidx.core.view.ViewCompat;
 import com.example.projet_moodlets.EtatConnexion.SessionManager;
 import com.example.projet_moodlets.R;
 import com.example.projet_moodlets.modele.daos.Cours.CoursDaoSingleton;
+import com.example.projet_moodlets.modele.daos.Quiz.QuizDaoSingleton;
 import com.example.projet_moodlets.modele.daos.Travail.TravauxDaoSingleton;
 import com.example.projet_moodlets.modele.daos.Utilisateur.UtilisateurDaoSingleton;
 import com.example.projet_moodlets.modele.entites.Cours;
+import com.example.projet_moodlets.modele.entites.Quiz;
 import com.example.projet_moodlets.modele.entites.Travail;
 import com.example.projet_moodlets.modele.entites.Utilisateur;
 import com.example.projet_moodlets.vue.adapteurs.CoursAdapter;
@@ -102,7 +104,6 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
     private void obtenirCours() throws IOException {
         SessionManager session = new SessionManager(this);
         String userId = session.getUserId();
-        // on lance un thread pour pas bloquer l'ecran (ui thread)
         new Thread(() -> {
             try {
                 Utilisateur moi = UtilisateurDaoSingleton.getUtilisateurSingleton().getUtilisateurParId(userId);
@@ -112,7 +113,7 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
                     List<String> mesIdsInscrits = moi.getEnrolledCourseIds();
                     List<Cours> coursFiltres = new ArrayList<>();
 
-                    // on garde juste les cours ou l'id est dans la liste de l'etudiant
+                    // garde juste les cours ou l'id est dans la liste de l'etudiant
                     for (Cours c : coursRecuperes) {
                         if (mesIdsInscrits != null && mesIdsInscrits.contains(c.getId())) {
                             coursFiltres.add(c);
@@ -148,12 +149,13 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
     private void obtenirTravauxEtOuvrirDetails(Cours coursClique) {
         new Thread(() -> {
             ArrayList<Travail> travauxDuCours = new ArrayList<>();
+            ArrayList<Quiz> quizDuCours = new ArrayList<>();
+
             try {
                 // on recupere tout les travaux pour filtrer
                 List<Travail> tousLesTravaux = TravauxDaoSingleton.getInstance().getTravaux();
                 if (tousLesTravaux != null) {
                     for (Travail t : tousLesTravaux) {
-                        // on compare l'id du cours avec le courseId du travail
                         if (coursClique.getId() != null && coursClique.getId().equals(String.valueOf(t.getCourseId()))) {
                             travauxDuCours.add(t);
                         }
@@ -163,13 +165,32 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
                 e.printStackTrace();
             }
 
+            try {
+                //on recupere les quuiz
+                List<Quiz> tousLesQuiz = QuizDaoSingleton.getInstance().getQuiz();
+                if (tousLesQuiz != null) {
+                    for (Quiz q : tousLesQuiz) {
+                        if (coursClique.getId() != null && coursClique.getId().equals(String.valueOf(q.getCourseId()))) {
+                            quizDuCours.add(q);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             // on lance l'activite de details avec tout les extras
             runOnUiThread(() -> {
-                Intent intent = new Intent(this, CoursDetailsActivity.class);
-                intent.putExtra("OBJET_COURS", coursClique); // l'objet cours complet
-                intent.putExtra("TRAVAUX_COURS", travauxDuCours); // la liste des devoirs
-                intent.putExtra("CODE_COURS", coursClique.getCode()); // pour le header
-                startActivity(intent);
+                Intent intent = new Intent(MesCoursActivity.this, CoursDetailsActivity.class);
+                intent.putExtra("OBJET_COURS", coursClique);
+                intent.putExtra("TRAVAUX_COURS", travauxDuCours);
+                intent.putExtra("QUIZ_COURS", quizDuCours);
+                intent.putExtra("CODE_COURS", coursClique.getCode());
+
+                // On vérifie que l'activité actuelle est toujours là
+                if (!isFinishing()) {
+                    startActivity(intent);
+                }
             });
         }).start();
     }

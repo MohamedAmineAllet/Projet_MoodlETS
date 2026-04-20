@@ -1,12 +1,13 @@
 package com.example.projet_moodlets.modele.entites;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Représente une question individuelle au sein d'un quiz.
  * Cette classe est utilisée pour le mapping JSON vers Java.
  */
-public class Question {
+public class Question implements Serializable {
     private int id, correctOption;
     private String question;
     private List<String> options;

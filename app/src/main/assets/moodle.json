@@ -38,7 +38,12 @@
       "enrolledCourseIds": [
         "2"
       ],
-      "quizResults": [],
+      "quizResults": [{
+        "quizId": "3",
+        "score": 4,
+        "total": 5
+      }
+      ],
       "completedAssignmentIds": []
     },
     {

@@ -12,6 +12,7 @@ import com.example.projet_moodlets.R;
 import com.example.projet_moodlets.modele.entites.Annonce;
 import com.example.projet_moodlets.modele.entites.Cours;
 import com.example.projet_moodlets.modele.entites.Horaire;
+import com.example.projet_moodlets.modele.entites.Quiz;
 import com.example.projet_moodlets.modele.entites.Travail;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
@@ -89,6 +90,24 @@ public class CoursDetailsActivity extends AppCompatActivity {
                     container.addView(item);
                 }
             }
+
+            // --- QUIZ ---
+            // meme chose pour les quiz
+            List<Quiz> listeQuiz = (List<Quiz>) getIntent().getSerializableExtra("QUIZ_COURS");
+            if (listeQuiz == null && cours.getQuizzes() != null) {
+                listeQuiz = cours.getQuizzes();
+            }
+
+            if (listeQuiz != null && !listeQuiz.isEmpty()) {
+                LinearLayout containerQuiz = findViewById(R.id.listeQuizCours); // l'id qu'on a mis dans le XML
+                containerQuiz.removeAllViews();
+                for (Quiz q : listeQuiz) {
+                    // on gonfle ton layout de quiz (celui avec le RelativeLayout)
+                    View viewQuiz = getLayoutInflater().inflate(R.layout.list_quiz, containerQuiz, false);
+                    remplirCardQuiz(viewQuiz, q);
+                    containerQuiz.addView(viewQuiz);
+                }
+            }
         }
 
         // gestion du menu de navigation en bas
@@ -121,7 +140,7 @@ public class CoursDetailsActivity extends AppCompatActivity {
         if (btnRetour != null) btnRetour.setOnClickListener(v -> finish());
     }
 
-    // petite methode pour remplir les cartes de travaux avec calcul de %
+    // petite methode pour remplir la section de travaux avec calcul de %
     private void remplirCardTravail(View v, Travail t) {
         TextView txtTitle = v.findViewById(R.id.txt_nom_travail);
         TextView txtDate = v.findViewById(R.id.txt_date_echeance_travail);
@@ -139,8 +158,32 @@ public class CoursDetailsActivity extends AppCompatActivity {
             double pourcentage = (t.getGrade() * 100) / t.getTotalPoints();
             txtScore.setText((int) pourcentage + "%");
         } else {
-            txtScore.setText("--"); // si ya pas de note on met des tirets
+            txtScore.setText("--"); // si pas de note on met des tirets
         }
+
+    }
+
+    //pour mettre les information dans la section
+    private void remplirCardQuiz(View v, Quiz q) {
+        TextView txtNom = v.findViewById(R.id.txt_nom_quiz);
+        TextView txtStatut = v.findViewById(R.id.txt_filtre_quiz);
+        TextView txtDate = v.findViewById(R.id.txt_date_echeance_quiz);
+        TextView txtScore = v.findViewById(R.id.txt_Score_Pourcentage_quiz);
+        TextView txtCours = v.findViewById(R.id.txt_cours_quiz);
+
+        txtNom.setText(q.getTitle());
+        txtStatut.setText(q.getStatus());
+        txtDate.setText(q.getDueDate());
+        txtCours.setText(getIntent().getStringExtra("CODE_COURS"));
+
+        // Gestion du score
+        if (q.getGrade() != null && q.getTotalPoints() != null && q.getTotalPoints() > 0) {
+            double score = (q.getGrade() * 100) / q.getTotalPoints();
+            txtScore.setText((int) score + "%");
+        } else {
+            txtScore.setText("--");
+        }
+
     }
 
     // on met les strings dans les textviews des horaires
