@@ -22,7 +22,7 @@ public class SessionManager {
     }
 
     /**
-     * Cette méthode permet d'ajouter un utilisateur à la base de données.
+     * Cette méthode permet d'ajouter un utilisateur aux serveurs JSON.
      * @param userId
      * @param email
      * @param prenom
@@ -48,6 +48,10 @@ public class SessionManager {
         editor.apply();
     }
 
+    /**
+     * Cette méthode permet de vérifier s'il y a un utilisateur courrant qui est connecté.
+     * @return etat de la personne
+     */
     public boolean estConnecte() {
         return prefs.getBoolean(KEY_CONNECTE, false);
     }

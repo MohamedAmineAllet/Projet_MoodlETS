@@ -66,6 +66,11 @@ public class HttpsJsonUtilisateurDao implements UtilisateurDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet durant après l'étapes de l'inscription d'ajouter l'utilisateur au
+     * serveur json.
+     * @param utilisateurAAjouter
+     */
     @Override
     public void ajouterUtilisateur(Utilisateur utilisateurAAjouter) {
         new Thread(() ->{
@@ -103,6 +108,11 @@ public class HttpsJsonUtilisateurDao implements UtilisateurDao {
         }).start();
     }
 
+    /**
+     * Cette méthode permet de supprimer l'utilisateur qu'on selectione par son id pour la retirer
+     * du serveur json.
+     * @param id Le id de l'utilisateur qu'on veux supprimer.
+     */
     @Override
     public void supprimerUtilisateur(String id) {
         new Thread(()->{
@@ -124,6 +134,11 @@ public class HttpsJsonUtilisateurDao implements UtilisateurDao {
         }).start();
     }
 
+    /**
+     * Cette méthode permet de modifier les informations de l'utilisateur qu'on modifie grâce à
+     * la page profile.
+     * @param utilisateurAModifier les nouveaux informations de l'utilisateur.
+     */
     @Override
     public void modifierUtilisateur(Utilisateur utilisateurAModifier) {
         new Thread(() ->{
