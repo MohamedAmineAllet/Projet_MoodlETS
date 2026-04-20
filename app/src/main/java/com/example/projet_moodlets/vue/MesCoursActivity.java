@@ -3,7 +3,6 @@ package com.example.projet_moodlets.vue;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -28,16 +27,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MesCoursActivity extends AppCompatActivity implements OnItemClickListener {
 
-    private ListView lv;
-    private CoursAdapter adapteur;
+    // la liste qui garde tout les cours en memoire
     private List<Cours> listeDeCours = new ArrayList<>();
-    private BottomNavigationView menuNavigation;
-
-    private EditText rechercheCours;
-
+    private CoursAdapter adapteur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,153 +39,93 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_mes_cours);
 
-        lv = findViewById(R.id.lv);
-
+        // on prepare la listview avec l'adapteur
+        ListView lv = findViewById(R.id.lv);
         adapteur = new CoursAdapter(this, R.layout.list_cours, new ArrayList<>(listeDeCours));
         lv.setAdapter(adapteur);
         lv.setOnItemClickListener(this);
 
+        // on essaie de charger les cours au debut
         try {
             obtenirCours();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
-        /*
-         * Pour changer de page selon la navigation
-         *
-         */
-
-        //on lie la variable a son element dans le layout
-
-        menuNavigation = findViewById(R.id.menu_navigation);
-
+        // gestion du menu en bas
+        BottomNavigationView menuNavigation = findViewById(R.id.menu_navigation);
         menuNavigation.setSelectedItemId(R.id.cours);
         ViewCompat.setOnApplyWindowInsetsListener(menuNavigation, (v, insets) -> {
             v.setPadding(0, 0, 0, 0);
             return insets;
         });
 
-        menuNavigation.setOnItemSelectedListener(item ->{
+        // quand on clic sur les icones du menu
+        menuNavigation.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
-
             if (id == R.id.travaux) {
-                Intent iMesTravaux = new Intent(this, MesTravauxActivity.class);
-                iMesTravaux.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(iMesTravaux);
-                overridePendingTransition(0, 0);
-                return true;
-            } else if(id == R.id.cours){
-                Intent iMesCours = new Intent(this, MesCoursActivity.class);
-                iMesCours.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(iMesCours);
-                overridePendingTransition(0, 0);
-                return true;
-            }else if(id == R.id.dashboard){
-                Intent iDashboard = new Intent(this, DashBoardActivity.class);
-                iDashboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(iDashboard);
-                overridePendingTransition(0, 0);
-                return true;
-            }else if(id == R.id.quiz){
-                Intent iMesQuiz = new Intent(this, MesQuizActivity.class);
-                iMesQuiz.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(iMesQuiz);
-                overridePendingTransition(0, 0);
-                return true;
-            }else if(id == R.id.profil){
-                Intent iMonProfil = new Intent(this, MonProfileActivity.class);
-                iMonProfil.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(iMonProfil);
-                overridePendingTransition(0, 0);
-                return true;
+                startActivity(new Intent(this, MesTravauxActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+            } else if (id == R.id.dashboard) {
+                startActivity(new Intent(this, DashBoardActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+            } else if (id == R.id.quiz) {
+                startActivity(new Intent(this, MesQuizActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+            } else if (id == R.id.profil) {
+                startActivity(new Intent(this, MonProfileActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
             }
-            return false;
+            return true;
         });
 
-        /*
-        * Pour rechercher un  cours selon le nom ou le code
-        *
-        */
-
-        //on lie la variable a son element dans le layout
-        rechercheCours= findViewById(R.id.recherche_cours);
-
-        rechercheCours.addTextChangedListener(new android.text.TextWatcher(){
-
+        // barre de recherche pour filtrer les cours par nom ou code
+        EditText rechercheCours = findViewById(R.id.recherche_cours);
+        rechercheCours.addTextChangedListener(new android.text.TextWatcher() {
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String query = s.toString().toLowerCase().trim();
                 List<Cours> resultats = new ArrayList<>();
-
                 for (Cours c : listeDeCours) {
-                    //on verifie le titre ou le code du cours
+                    // on check si le titre ou le code contient ce qu'on a ecrit
                     if (c.getTitle().toLowerCase().contains(query) || c.getCode().toLowerCase().contains(query)) {
                         resultats.add(c);
                     }
                 }
+                // on met a jour la liste afficher
                 adapteur.filtreListeCours(resultats);
             }
+            @Override
+            public void afterTextChanged(Editable s) {}
         });
-
     }
 
-    private void filtrerLesCours(String texte){
-        List<Cours> listeFiltree= new ArrayList<>();
-        for (Cours cours : listeDeCours) {
-            // pour que peut importe le case il va pouvoir  comprendre
-            String query = texte.toLowerCase();
-
-            if (cours.getTitle().toLowerCase().contains(query) || cours.getCode().toLowerCase().contains(query)) {
-                listeFiltree.add(cours);
-            }
-        }
-
-
-        adapteur.filtreListeCours(listeFiltree);
-    }
-
+    // methode pour recuperer les cours de l'etudiant connecter
     private void obtenirCours() throws IOException {
         SessionManager session = new SessionManager(this);
         String userId = session.getUserId();
+        // on lance un thread pour pas bloquer l'ecran (ui thread)
         new Thread(() -> {
             try {
                 Utilisateur moi = UtilisateurDaoSingleton.getUtilisateurSingleton().getUtilisateurParId(userId);
                 List<Cours> coursRecuperes = CoursDaoSingleton.getInstance().getTousLesCours();
 
                 if (moi != null && coursRecuperes != null) {
-                    // recupere la liste des id des cours inscrit
                     List<String> mesIdsInscrits = moi.getEnrolledCourseIds();
                     List<Cours> coursFiltres = new ArrayList<>();
 
-                    // on compare et garde que less cours dont l'utilisateure est inscrit
+                    // on garde juste les cours ou l'id est dans la liste de l'etudiant
                     for (Cours c : coursRecuperes) {
                         if (mesIdsInscrits != null && mesIdsInscrits.contains(c.getId())) {
                             coursFiltres.add(c);
                         }
                     }
 
+                    // on retourne sur le thread principal pour modifier la vue
                     runOnUiThread(() -> {
-                        if (coursRecuperes != null) {
-                            listeDeCours.clear();
-                            listeDeCours.addAll(coursRecuperes);
-
-                            adapteur.clear();
-                            adapteur.addAll(listeDeCours);
-                            adapteur.notifyDataSetChanged();
-
-
-                        }
+                        listeDeCours.clear();
+                        listeDeCours.addAll(coursFiltres);
+                        adapteur.clear();
+                        adapteur.addAll(listeDeCours);
+                        adapteur.notifyDataSetChanged();
                     });
                 }
             } catch (Exception e) {
@@ -200,54 +134,43 @@ public class MesCoursActivity extends AppCompatActivity implements OnItemClickLi
         }).start();
     }
 
-
+    // quand on clic sur un item de la liste
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Cours coursClique = (Cours) parent.getAdapter().getItem(position);
-        obtenirTravauxEtOuvrirDetails(coursClique);
+        Cours coursClique = (Cours) parent.getItemAtPosition(position);
+        if (coursClique != null) {
+            // on va chercher les travaux avant de changer de page
+            obtenirTravauxEtOuvrirDetails(coursClique);
+        }
     }
 
+    // va chercher les travaux specifiques au cours cliquer
     private void obtenirTravauxEtOuvrirDetails(Cours coursClique) {
         new Thread(() -> {
+            ArrayList<Travail> travauxDuCours = new ArrayList<>();
             try {
-                // recupere tous les travaux depuis le serveur
+                // on recupere tout les travaux pour filtrer
                 List<Travail> tousLesTravaux = TravauxDaoSingleton.getInstance().getTravaux();
-                ArrayList<Travail> travauxDuCours = new ArrayList<>();
-
-                // filtrer : on compare l'ID du cours avec le courseId du travail
                 if (tousLesTravaux != null) {
                     for (Travail t : tousLesTravaux) {
-                        // il faut que le id cliquer du cours et et id  du  cours referencer du  assignment soit pareil
-                        if (coursClique.getId().equals(String.valueOf(t.getCourseId()))) {
+                        // on compare l'id du cours avec le courseId du travail
+                        if (coursClique.getId() != null && coursClique.getId().equals(String.valueOf(t.getCourseId()))) {
                             travauxDuCours.add(t);
                         }
                     }
                 }
-
-                // revenir sur le thread UI pour lancer l'activité de détails
-                runOnUiThread(() -> {
-                    Intent iCoursDetails = new Intent(MesCoursActivity.this, CoursDetailsActivity.class);
-                    iCoursDetails.putExtra("TITRE_COURS", coursClique.getTitle());
-                    iCoursDetails.putExtra("CODE_COURS", coursClique.getCode());
-                    iCoursDetails.putExtra("DESCRIPTION_COURS", coursClique.getDescription());
-                    iCoursDetails.putExtra("ENSEIGNANT_COURS", coursClique.getTeacher());
-
-                    // on envoie la liste filtre
-                    iCoursDetails.putExtra("TRAVAUX_COURS", travauxDuCours);
-
-                    // les autre donne comme horaire et annonce lie au cours
-                    if (coursClique.getHoraire() != null) {
-                        iCoursDetails.putExtra("LISTE_HORAIRE", new ArrayList<>(coursClique.getHoraire()));
-                    }
-                    if (coursClique.getAnnonces() != null) {
-                        iCoursDetails.putExtra("ANNONCES_COURS", new ArrayList<>(coursClique.getAnnonces()));
-                    } startActivity(iCoursDetails);
-                });
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            // on lance l'activite de details avec tout les extras
+            runOnUiThread(() -> {
+                Intent intent = new Intent(this, CoursDetailsActivity.class);
+                intent.putExtra("OBJET_COURS", coursClique); // l'objet cours complet
+                intent.putExtra("TRAVAUX_COURS", travauxDuCours); // la liste des devoirs
+                intent.putExtra("CODE_COURS", coursClique.getCode()); // pour le header
+                startActivity(intent);
+            });
         }).start();
     }
-
 }

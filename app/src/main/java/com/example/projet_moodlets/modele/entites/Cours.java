@@ -1,9 +1,10 @@
 package com.example.projet_moodlets.modele.entites;
 
+import java.io.Serializable;
 import java.util.List;
 
 // entite pour un cours
-public class Cours {
+public class Cours implements Serializable {
     //  noms doivent être IDENTIQUES aux clés du JSON
     private String id;
     private String code;

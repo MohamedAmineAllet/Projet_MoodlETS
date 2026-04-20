@@ -6,22 +6,19 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
-
 import com.example.projet_moodlets.R;
 import com.example.projet_moodlets.modele.entites.Annonce;
+import com.example.projet_moodlets.modele.entites.Cours;
 import com.example.projet_moodlets.modele.entites.Horaire;
 import com.example.projet_moodlets.modele.entites.Travail;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class CoursDetailsActivity extends AppCompatActivity {
-    private TextView txtNomCours, txtDetails, txtDescription, txtProf ;
-
+    private TextView txtNomCours, txtDetails, txtDescription, txtProf;
     private BottomNavigationView menuNavigation;
 
     @Override
@@ -29,130 +26,102 @@ public class CoursDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cours_details);
 
-        // Faire le lien avec les vues du XML
+        // on fait le pont entre le java et le xml pour les textes
         txtNomCours = findViewById(R.id.textView3);
         txtDetails = findViewById(R.id.textView4);
         txtProf = findViewById(R.id.txtEnseignant);
-        txtDescription= findViewById(R.id.txt_description_cours);
+        txtDescription = findViewById(R.id.txt_description_cours);
+        menuNavigation = findViewById(R.id.menu_navigation);
 
-        // Récupérer les données de l'Intent
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String titre = extras.getString("TITRE_COURS");
-            String code = extras.getString("CODE_COURS");
-            String prof = extras.getString("ENSEIGNANT_COURS");
-            String description = extras.getString("DESCRIPTION_COURS");
-            List<Horaire> horaires = (List<Horaire>) getIntent().getSerializableExtra("LISTE_HORAIRE");
-            List<Annonce> annonces = (List<Annonce>) getIntent().getSerializableExtra("ANNONCES_COURS");
-            List<Travail> travaux = (List<Travail>) getIntent().getSerializableExtra("TRAVAUX_COURS");
+        // on recupere l'objet cours complet quon a envoyer par l'intent
+        Cours cours = (Cours) getIntent().getSerializableExtra("OBJET_COURS");
 
+        if (cours != null) {
+            // on remplit les infos de base du cours
+            txtNomCours.setText(cours.getTitle());
+            txtDetails.setText(cours.getCode());
+            txtProf.setText(cours.getTeacher());
+            txtDescription.setText(cours.getDescription());
 
+            // --- Horraire ---
+            // on recupere la liste dhoraire pour l'afficher dans le linearlayout
+            List<Horaire> horaires = cours.getHoraire();
             if (horaires != null && !horaires.isEmpty()) {
-                // LinearLayout pour contenir les cartes :
                 LinearLayout container = findViewById(R.id.layoutCartesHoraire);
+                container.removeAllViews(); // on nettoye le layout au cas ou
 
                 for (Horaire h : horaires) {
-                    // on "gonfle" (inflate) le layout qui contient l'horaire carte
+                    // on inflate la petite carte xml pour chaque horaire
                     View card = getLayoutInflater().inflate(R.layout.horaire_composante, container, false);
-                    // on remplit les données
+                    // on met les infos dedans a la main
                     remplirCardHoraire(card, h);
-                    // on l'ajoute au container
+                    // on l'ajoute a la liste horizontale
                     container.addView(card);
                 }
-
             }
+
+            // --- ANNONCES ---
+            // meme chose pour les annonces du prof
+            List<Annonce> annonces = cours.getAnnonces();
             if (annonces != null && !annonces.isEmpty()) {
-                // LinearLayout pour contenir les cartes :
                 LinearLayout container = findViewById(R.id.layoutAnnonce);
-
-                for(Annonce a: annonces){
-                    // on "gonfle" (inflate) le layout qui contient l'annonce carte
+                container.removeAllViews();
+                for (Annonce a : annonces) {
+                    // on gonfle le layout des annonces
                     View card = getLayoutInflater().inflate(R.layout.annonce_composante, container, false);
-                    // on remplit les données
                     remplirCardAnnonce(card, a);
-                    // on l'ajoute au container
                     container.addView(card);
                 }
-
             }
 
-            if(travaux != null && !travaux.isEmpty()) {
-                //  recupere le LinearLayout
+            // --- TRAVAUX ---
+            // on regarde si on a recu les travaux sinon on les prend direct dans l'objet
+            List<Travail> travaux = (List<Travail>) getIntent().getSerializableExtra("TRAVAUX_COURS");
+            if (travaux == null) travaux = cours.getassignments();
+
+            if (travaux != null && !travaux.isEmpty()) {
                 LinearLayout container = findViewById(R.id.listeTravauxCours);
-
-
+                container.removeAllViews();
                 for (Travail t : travaux) {
-                    //  on "gonfle" la vue d'un item
-                    View itemTravail = getLayoutInflater().inflate(R.layout.list_travail, container, false);
-
-                    //  on remplit les donnes manuellement
-                    remplirCardTravail(itemTravail, t);
-
-                    //  on l'ajoute au container
-                    container.addView(itemTravail);
+                    // inflation du layout pour chaque devoir
+                    View item = getLayoutInflater().inflate(R.layout.list_travail, container, false);
+                    remplirCardTravail(item, t);
+                    container.addView(item);
                 }
-            }else{
-                android.util.Log.d("DEBUG_COURS", "La liste des travaux est VIDE ou NULL");
             }
-
-            txtNomCours.setText(titre);
-            txtDetails.setText(code);
-            txtProf.setText(prof);
-            txtDescription.setText(description);
-
-            menuNavigation = findViewById(R.id.menu_navigation);
-            ViewCompat.setOnApplyWindowInsetsListener(menuNavigation, (v, insets) -> {
-                v.setPadding(0, 0, 0, 0);
-                return insets;
-            });
-
-            menuNavigation.setSelectedItemId(R.id.cours);
-
-
-            menuNavigation.setOnItemSelectedListener(item ->{
-                int id = item.getItemId();
-
-                if (id == R.id.travaux) {
-                    Intent iMesTravaux = new Intent(this, MesTravauxActivity.class);
-                    iMesTravaux.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(iMesTravaux);
-                    overridePendingTransition(0, 0);
-                    return true;
-                } else if(id == R.id.cours){
-                    Intent iMesCours = new Intent(this, MesCoursActivity.class);
-                    iMesCours.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(iMesCours);
-                    overridePendingTransition(0, 0);
-                    return true;
-                }else if(id == R.id.dashboard){
-                    Intent iDashboard = new Intent(this, DashBoardActivity.class);
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(iDashboard);
-                    overridePendingTransition(0, 0);
-                    return true;
-                }else if(id == R.id.quiz){
-                    Intent iMesQuiz = new Intent(this, MesQuizActivity.class);
-                    iMesQuiz.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(iMesQuiz);
-                    overridePendingTransition(0, 0);
-                    return true;
-                }else if(id == R.id.profil){
-                    Intent iMonProfil = new Intent(this, MonProfileActivity.class);
-                    iMonProfil.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(iMonProfil);
-                    overridePendingTransition(0, 0);
-                    return true;
-                }
-                return false;
-            });
-
         }
 
-        // gerer le bouton retour (flèche gauche)
+        // gestion du menu de navigation en bas
+        menuNavigation = findViewById(R.id.menu_navigation);
+        ViewCompat.setOnApplyWindowInsetsListener(menuNavigation, (v, insets) -> {
+            v.setPadding(0, 0, 0, 0);
+            return insets;
+        });
+
+        if (menuNavigation != null) {
+            menuNavigation.setSelectedItemId(R.id.cours); // on met l'icone cours "allumer" il va etre  en mauve
+            menuNavigation.setOnItemSelectedListener(item -> {
+                int id = item.getItemId();
+                // switch entre les differentes activites
+                if (id == R.id.travaux) {
+                    startActivity(new Intent(this, MesTravauxActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+                } else if (id == R.id.dashboard) {
+                    startActivity(new Intent(this, DashBoardActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+                } else if (id == R.id.quiz) {
+                    startActivity(new Intent(this, MesQuizActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+                } else if (id == R.id.profil) {
+                    startActivity(new Intent(this, MonProfileActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+                }
+                return true;
+            });
+        }
+
+        // le bouton pour revenir en arriere
         ImageButton btnRetour = findViewById(R.id.btnRondFlecheGauche);
-        btnRetour.setOnClickListener(v -> finish());
+        if (btnRetour != null) btnRetour.setOnClickListener(v -> finish());
     }
 
+    // petite methode pour remplir les cartes de travaux avec calcul de %
     private void remplirCardTravail(View v, Travail t) {
         TextView txtTitle = v.findViewById(R.id.txt_nom_travail);
         TextView txtDate = v.findViewById(R.id.txt_date_echeance_travail);
@@ -163,56 +132,30 @@ public class CoursDetailsActivity extends AppCompatActivity {
         txtTitle.setText(t.getTitle());
         txtDate.setText(t.getDueDate());
         txtStatut.setText(t.getStatus());
-
-        // pour le nom du cours, on peut réutiliser le code déjà présent dans l'activite
         txtCours.setText(getIntent().getStringExtra("CODE_COURS"));
 
-        if (t.getGrade() != null) {
+        // on calcule le pourcentage de la note si on a les points
+        if (t.getGrade() != null && t.getTotalPoints() != null) {
             double pourcentage = (t.getGrade() * 100) / t.getTotalPoints();
-            txtScore.setText((int)pourcentage + "%");
+            txtScore.setText((int) pourcentage + "%");
         } else {
-            txtScore.setText("--");
+            txtScore.setText("--"); // si ya pas de note on met des tirets
         }
     }
 
-    //methode pour rempllir les horraire.
+    // on met les strings dans les textviews des horaires
     private void remplirCardHoraire(View v, Horaire h) {
-        //les ids dans ma composante pour faire les horaires
-        TextView txtType = v.findViewById(R.id.typeCoursHoraire);
-        TextView txtJour = v.findViewById(R.id.horaireJournee);
-        TextView txtLocal = v.findViewById(R.id.horaireLocal);
-        TextView txtHeure = v.findViewById(R.id.horaireHeure);
-
-        txtType.setText(h.getType());
-        txtJour.setText(h.getJour());
-        txtLocal.setText(h.getLocal());
-        txtHeure.setText(h.getHeureDebut() + " - " + h.getHeureFin());
+        ((TextView) v.findViewById(R.id.typeCoursHoraire)).setText(h.getType());
+        ((TextView) v.findViewById(R.id.horaireJournee)).setText(h.getJour());
+        ((TextView) v.findViewById(R.id.horaireLocal)).setText(h.getLocal());
+        ((TextView) v.findViewById(R.id.horaireHeure)).setText(h.getHeureDebut() + " - " + h.getHeureFin());
     }
 
-    //methode pour remplir la composante pour  les annonces
-    private void remplirCardAnnonce(View v, Annonce a){
-        //les ids dans ma composante pour faire les horaires
-        TextView txtTitre = v.findViewById(R.id.titre_annonce);
-        TextView txtJour = v.findViewById(R.id.date_annonce);
-        TextView txtEnseigant = v.findViewById(R.id.nom_prof_annonce);
-        TextView txtContenu = v.findViewById(R.id.contenu_annonce);
-
-        txtTitre.setText(a.getTitre());
-        txtJour.setText(a.getDate());
-        txtEnseigant.setText(a.getAuteur());
-        txtContenu.setText(a.getDescription_annonce());
-    }
-
-    /**
-     * Cette méthode permet de forcer que lorsque dans le menu on clique sur une icon on force
-     * l'affichage que l'icon soit cliquée.
-     */
-    @Override
-    protected void onResume() {
-        super.onResume();
-        BottomNavigationView menuNavigation = findViewById(R.id.menu_navigation);
-        if (menuNavigation != null) {
-            menuNavigation.setSelectedItemId(R.id.cours);
-        }
+    // meme chose pour les annonces
+    private void remplirCardAnnonce(View v, Annonce a) {
+        ((TextView) v.findViewById(R.id.titre_annonce)).setText(a.getTitre());
+        ((TextView) v.findViewById(R.id.date_annonce)).setText(a.getDate());
+        ((TextView) v.findViewById(R.id.nom_prof_annonce)).setText(a.getAuteur());
+        ((TextView) v.findViewById(R.id.contenu_annonce)).setText(a.getDescription_annonce());
     }
 }
